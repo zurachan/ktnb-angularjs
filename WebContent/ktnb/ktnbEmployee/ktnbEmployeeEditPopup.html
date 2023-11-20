@@ -1,0 +1,146 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row" >
+                                <label class="col-md-4 control-label req">Loại nhân sự:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.insertForm.type">
+                                        <option ng-selected="caller.insertForm.type" value="1">Nhân sự ngành dọc Pháp chế</option>
+                                        <option ng-selected="caller.insertForm.type" value="3">Nhân sự ngành dọc KSNB</option>
+                                        <option ng-selected="caller.insertForm.type" value="2">Trợ lý lãnh đạo Phòng/Trung tâm TCT</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label ">Chức danh tổ chức quần chúng</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.positionOther">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nhân viên:</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.name" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Email</label>
+                                <div class="col-md-8">
+                                    <input type ="text" class="form-control width100" ng-model="caller.insertForm.email" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Đơn vị</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <i class="fa fa-search directive" ng-click="caller.openPopupSysGroup()"></i>
+                                    <input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId" id="sysGroupDvgId"
+                                            ng-model="caller.insertForm.sysGroupName" kendo-auto-complete
+                                            k-options="caller.sysGroupDvgOptions"/>
+                                </div>
+<!--                                <input type = "text" class="form-control width100" ng-model="caller.insertForm.sysGroupName">-->
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>SĐT: </label>
+                            <div class="col-md-8 position-relative">
+                                <input class="form-control width100" ng-model="caller.insertForm.phoneNumber">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label ">Năm sinh</label>
+                                <div class="col-md-8 ">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="birth" ng-change="caller.parseDate('birth')" id="birth"
+                                           ng-model="caller.insertForm.birth" style="width: 100%;"
+                                           min-year="1000"/>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6 margin-bottom-30">
+                            <label class="col-md-4 control-label " translate>Chức danh chính quyền: </label>
+                            <div class="col-md-8 position-relative">
+                                <input type = "text" class="form-control width100" ng-model="caller.insertForm.positionName">
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Chứng chỉ đào tạo </label>
+                                <div class="col-md-8 position-relative " style="border:1px solid #c2cad8">
+                                    <label class="col-md-2 control-label" translate>Pháp chế </label>
+                                    <div class="col-md-10 position-relative">
+                                        <input type = "text" class="form-control width100 margin-bottom-15 margin-top-15" ng-model="caller.insertForm.certificatePCHE">
+                                    </div>
+                                    <label class="col-md-2 control-label " translate>KTNB </label>
+                                    <div class="col-md-10 position-relative">
+                                        <input type = "text" class="form-control width100 margin-bottom-15" ng-model="caller.insertForm.certificateKTNB">
+                                    </div>
+                                    <label class="col-md-2 control-label " translate>QTRR </label>
+                                    <div class="col-md-10 position-relative">
+                                        <input type = "text" class="form-control width100 margin-bottom-15" ng-model="caller.insertForm.certificateQTRR">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Thực hiện nhiệm vụ ngành dọc PC&KTNB </label>
+                                <div class="col-md-8 position-relative " style="border:1px solid #c2cad8">
+                                    <label class="col-md-3 control-label" translate>Số QĐ GNV </label>
+                                    <div class="col-md-9 position-relative">
+                                        <input type = "text" class="form-control width100 margin-bottom-15 margin-top-15" ng-model="caller.insertForm.numberQdGnv">
+                                    </div>
+                                    <label class="col-md-3 control-label padding0 margin-bottom-15" translate>Ngày bắt đầu </label>
+                                    <div class="col-md-9 position-relative">
+                                        <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                               name="startDate" ng-change="caller.parseDate('startDate')" id="startDate"
+                                               ng-model="caller.insertForm.startDate" style="width: 100%;"
+                                               min-year="1000"/>
+                                    </div>
+                                    <br>
+                                    <label class="col-md-3 control-label margin-bottom-15" translate>Tình trạng </label>
+                                    <div class="col-md-9 position-relative">
+
+                                        <select class="form-control width100 margin-top-15" ng-model="caller.insertForm.state">
+                                            <option ng-selected="caller.insertForm.state" value="0">Hết hạn</option>
+                                            <option ng-selected="caller.insertForm.state" value="1">Hoạt động</option>
+                                        </select>
+
+                                    </div>
+                                    <label class="col-md-3 control-label margin-bottom-15" translate>Ghi chú </label>
+                                    <div class="col-md-9 position-relative">
+                                        <input type = "text" class="form-control width100 margin-bottom-15  margin-top-15" ng-model="caller.insertForm.note">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save('edit')" style="width: 200px" translate>Lưu lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

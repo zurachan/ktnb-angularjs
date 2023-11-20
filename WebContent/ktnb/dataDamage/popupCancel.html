@@ -1,0 +1,23 @@
+<form class="form-horizontal row padding10" role="form" id="ktnb_popup_Cancel_Id">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="row">
+                <label class="col-md-4 control-label req">Lý do :</label>
+                <div class="col-md-8">
+                    <div class="input-icon right ">
+                        <input type="text" class="form-control width100" ng-model="caller.reasonReject"
+                               id="reasonReject" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancelPopupReject()" translate>Hủy bỏ
+            </button>
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveCancelStatus()" translate>Xác nhận
+            </button>
+        </div>
+    </div>
+</form>

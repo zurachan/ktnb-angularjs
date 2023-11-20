@@ -1,0 +1,156 @@
+<style>
+    html {
+        overflow-y: scroll; /*Fix rung màn hình*/
+    }
+    .form-group{
+        margin-top: 1em;
+    }
+</style>
+<div data-ng-controller="incidentReportController as vm" id="incidentReport">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form"
+          id="incidentReportForm">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="collapseSearchForm" class="collapse in from-search">
+                    <div class="clearfix position-relative">
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Mã vụ việc: </label>
+                                <div class="col-md-8">
+                                    <input style="background-color: #fff" translate placeholder="Mã vụ việc"
+                                           class=" form-control width100" type="text" name="codeIncident"
+                                           id="codeIncidentSearch"
+                                           ng-model="vm.searchForm.code"/>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('codeIncidentSearch')"></i>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Đơn vị:</label>
+                                <div class="col-md-8">
+                                    <input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId"
+                                            id="sysGroupDvgId"
+                                           ng-model="vm.sysGroupName" kendo-auto-complete
+                                           k-options="vm.sysGroupDvgOptions"/>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupDvg')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-group col-md-6" style="display:flex">
+                                <label class="control-label" style="width:33.33%;text-align:right;margin-right: 15px" translate>Ngày tạo từ: </label>
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" style="width: 25%;" class="form-control"
+                                       name="dateFrom" ng-model="vm.searchForm.dateFrom"
+                                       id="incidentDateFrom"
+                                />
+                                <label class="control-label" style="width: 5%;text-align: right;margin-right: 15px" translate>Đến: </label>
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" class="form-control " style="width: 25%;"
+                                       name="dateFrom"
+                                       ng-model="vm.searchForm.dateTo"
+                                       id="incidentDateTo"
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tình trạng lần 1: </label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="statusApproved" class="form-control width100" ng-model="vm.searchForm.statusApproved" >
+                                        <option value="0">Chờ duyệt</option>
+                                        <option value="1">Đã duyệt</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Trạng thái bản ghi:</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="status" class="form-control width100" ng-model="vm.searchForm.status" >
+                                        <option value="0">Hết hiệu lực</option>
+                                        <option value="1">Hiệu lực</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tình trạng lần 2: </label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="statusConfirm" class="form-control width100" ng-model="vm.searchForm.statusConfirm" >
+                                        <option value="0">Chờ duyệt</option>
+                                        <option value="1">Đã duyệt</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix form-actions margin-top">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" style="width: 125px;"
+                                            ng-click="vm.doSearch()"
+                                            class="btn btn-qlk padding-search-right searchlQLK " translate>Tìm kiếm</button>
+                                    <button type="button" style="width: 125px;"
+                                            ng-click="vm.openAdd()"
+                                            ng-if="!vm.viewPermission"
+                                            class="btn btn-qlk padding-search-right searchlQLK " translate>Thêm mới</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount2">{{vm.countIncident}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div  id="incidentReportGrid" kendo-grid="vm.incidentReportGrid" k-editable="false"  k-options="vm.incidentReportOptions" ng-if="vm.viewPermission"></div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $('#reportWoDtttId')
+        .keypress(
+            function(event) {
+                $("input").change(function() {
+                    $(this).val($.trim($(this).val()));
+                });
+                document.onkeydown = keyDown;
+                function keyDown(e) {
+                    switch (e.keyCode) {
+                        case 27:
+                            $("#cancel").click();
+                            break;
+                        case 13:
+                            if ($('.k-widget.k-window.fix-footer').css(
+                                'display') !== 'block') {
+                                $("#doSearch").click();
+                            }
+                            break;
+                    }
+                }
+            });
+</script>

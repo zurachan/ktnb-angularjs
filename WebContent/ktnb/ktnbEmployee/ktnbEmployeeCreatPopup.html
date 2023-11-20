@@ -1,0 +1,84 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+
+            <div class="form-group col-md-12" >
+                <div class="row">
+                    <label class="col-md-4 control-label req">Loại nhân sự:</label>
+                    <div class="col-md-4">
+                        <select class="form-control width100" ng-model="caller.insertForm.type">
+                            <option value >--- Chọn ---</option>
+                            <option value="1">Nhân sự ngành dọc Pháp chế</option>
+                            <option value="3">Nhân sự ngành dọc KSNB</option>
+                            <option value="2">Trợ lý lãnh đạo Phòng/Trung tâm TCT</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="form-group col-md-12" ng-show="caller.showTypeLineDepartment">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-5" style="text-align: right;">-->
+<!--                        <label for = "PC" style="padding-right: 10px">Pháp chế</label>-->
+<!--                        <input type="radio" value="1" name="line_department_type" id="PC" checked="true" ng-model="caller.lineDepartmentType" >-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6" style="text-align: left;margin-left: 100px">-->
+<!--                        <label for ="KTNB" style="padding-right: 10px">Kiểm soát nội bộ</label>-->
+<!--                        <input type="radio" value="2" name="line_department_type" id="KTNB" ng-model="caller.lineDepartmentType">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="portlet light ">
+                <div class=" margin-bottom row">
+                    <div class="caption col-md-12">
+                        <span class="text-header-popup bold lowercase" translate>Import file *</span>
+                    </div>
+                </div>
+            </div>
+            <div class="padding-width18" >
+                <div class="border-gray">
+                    <div class="clearfix" >
+                        <div class="form-group col-md-8">
+                            <label class="col-md-2 control-label req" translate>File Import</label>
+                            <div class="col-md-6">
+                                <input class=" form-control width100" translate type="file" id="fileS" /> <span
+                                    style="color: gray" translate>Dung lượng &#60;&#61; 100MB, định dạng xls,xlsx</span>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="col-md-4" style="height: 25px;" ng-click="caller.submit()" type="button" id="bntFiles" translate value="Tải lên">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <a href="javascript:void(0);" id="linkFile"
+                               style="text-decoration: underline; float: right;"
+                               ng-click="caller.getExcelTemplate(caller.insertForm.type)" translate>Tải file biểu mẫu</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p id="listDup" style="color: red;text-align: center;font-size:13px"></p>
+            <div class="portlet light">
+                <div class="row ">
+                    <div class=" col-md-8">
+                        <span class="text-header-popup bold lowercase" translate>Danh sách nhân sự: </span>
+                    </div>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="listEmployeeImportGrid" kendo-grid="caller.listEmployeeImportGrid"
+                         k-options="caller.listEmployeeImportGridOptions">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save('new')" style="width: 200px" translate>Lưu
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,136 @@
+<div data-ng-controller="dtttDvgAssignController as vm" id="dtttAssign">
+	<p class="text-brecum">{{vm.String}}</p>
+	<form class="form-horizontal row" role="form" >
+		<div class="form-body">
+			<div class="portlet light bordered">
+				<div class="portlet-title background-title">
+					<div class="caption">
+						<span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+					</div>
+					<div class="text-right margin-row-title">
+						<i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div id="collapseSearchForm" class="collapse in from-search">
+					<div class="clearfix">
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Thông tin tìm kiếm</label>
+							<div class="col-md-8">
+								<div class="input-icon right ">
+									<input type="text" class="form-control width100" ng-model="vm.searchForm.keySearch"
+										   id="searchdtttAssignKeySearch" />
+								</div>
+							</div>
+							<div class="One_icon">
+								<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('keySearch')"></i>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Trạng thái WO</label>
+							<div class="col-md-8">
+									<select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchDtttAssignStatus" class="form-control width100" ng-model="vm.searchForm.status"
+											k-data-source="vm.statusArray" k-data-text-field="'name'" k-data-value-field="'id'"
+									>
+									</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix">
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Ngày tạo WO: Từ ngày </label>
+							<div class="col-md-4">
+								<input kendo-date-picker class="form-control width100" required data-date-msg="Ngày tạo không hợp lệ"
+									   name="dateFrom" ng-model="vm.searchForm.dateFrom"
+									   data-required-msg="Ngày tạo không được để trống" k-format="'dd/MM/yyyy'"
+									   id="searchDtttAssignDateFrom" ng-change="vm.checkErr1()" date-time min-year="1000" data-minyear-msg="Ngày tạo không hợp lệ"/>
+								<span data-for="dateFrom" class="k-invalid-msg"></span>
+								<span style="color:red">{{vm.errMessage1}}</span>
+							</div>
+
+							<label class="col-md-1 control-label" translate>đến</label>
+							<div class="col-md-3 position-relative">
+								<input kendo-date-picker class="form-control width100" data-date-msg="Ngày đến không hợp lệ"
+									   name="dateTo" ng-model="vm.searchForm.dateTo" k-format="'dd/MM/yyyy'"
+									   id="searchDtttAssignDateTo" ng-change="vm.checkErr()" date-time min-year="1000" data-minyear-msg="Ngày đến không hợp lệ"/>
+								<span data-for="dateTo" class="k-invalid-msg" ></span>
+								<span style="color:red">{{vm.errMessage}}</span>
+							</div>
+							<div class="One_icon">
+								<i class="fa fa-times" aria-hidden="true"
+								   ng-click="vm.clear('createDate_search')"></i>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Tình trạng</label>
+							<div class="col-md-8">
+									<select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchDtttAssignStatusDoWork" class="form-control width100" ng-model="vm.searchForm.statusDoWork"
+											k-data-source="vm.statusDoWorkArray" k-data-text-field="'name'" k-data-value-field="'id'"
+									>
+									</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix">
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Trạng thái đơn vị xác nhận</label>
+							<div class="col-md-8">
+									<select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchDtttAssignStatusDvnApprove" class="form-control width100" ng-model="vm.searchForm.statusDvnApprove"
+											k-data-source="vm.statusDvnApproveArray" k-data-text-field="'name'" k-data-value-field="'id'"
+									>
+									</select>
+							</div>
+						</div>
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Trạng thái duyệt</label>
+							<div class="col-md-8">
+									<select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchDtttAssignStatusDvgVerify" class="form-control width100" ng-model="vm.searchForm.statusDvgVerify"
+											k-data-source="vm.statusDvgVerifyArray" k-data-text-field="'name'" k-data-value-field="'id'"
+									>
+									</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix">
+						<div class="form-group col-md-6">
+							<label class="col-md-4 control-label" translate>Cấp thực hiện</label>
+							<div class="col-md-8">
+									<select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchDtttAssignTypeWo" class="form-control width100" ng-model="vm.searchForm.levelAction"
+											k-data-source="vm.levelActionArray" k-data-text-field="'name'" k-data-value-field="'id'"
+									>
+									</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix form-actions margin-top">
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<button id="doSearchdtttAssign" ng-click="vm.doSearch()" class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="portlet light bordered">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount">{{vm.countdtttAssign}}</label>
+				<label class="control-label bold lowercase">&nbsp;bản ghi</label>
+			</div>
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div id="collapseResultGrid" class="collapse in ">
+			<div class=" margin_top_button"></div>
+			<div id="dtttAssignGrid" kendo-grid="vm.dtttAssignGrid" k-editable="false"  k-options="vm.dtttAssignGridOptions" ></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,131 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6" ng-if="!caller.isCreateForm">
+                            <div class="row" >
+                                <label class="col-md-4 control-label">Mã WO:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.code" ng-disabled="true"
+                                           id="insertWorkAssignCode" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Bộ phận giao WO</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.insertForm.departmentCode"
+                                            ng-options="u.code as u.name for u in caller.departmentCodeArray" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Loại WO</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.insertForm.typeWo"
+                                            ng-options="u.code as u.name for u in caller.listTypeWo" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignStartDate"
+                                       ng-model="caller.insertForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignEndDate" id="insertWorkAssignEndDate"
+                                       ng-model="caller.insertForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="vm.clearDate()"></i>
+                            </div>
+                        </div>
+                        <!--                        <div class="form-group col-md-6" ng-if="!(caller.isCreateForm && caller.insertForm.typeWo == 1)">-->
+                        <!--                            <div class="form-group col-md-6" ng-if="(caller.isCreateForm || caller.isUpdateForm)" >-->
+                        <!--                                <label class="col-md-4 control-label req">Đơn vị thực hiện</label>-->
+                        <!--                                <div class="col-md-8">-->
+                        <!--                                    <div class="input-icon right ">-->
+                        <!--                                        <i class="fa fa-search directive" ng-click="caller.openPopupSysGroup('insert')"></i>-->
+                        <!--                                        <input type="text" class="form-control width100" ng-model="caller.insertForm.sysGroupLv2Name"-->
+                        <!--                                               id="insertWorkAssignSysGroup" kendo-auto-complete k-options="caller.sysGroupOptions" />-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="One_icon">-->
+                        <!--                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupInsert')"></i>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung công việc</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.description"
+                                                  id="insertWorkAssignDescription" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('descriptionInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6" ng-hide="caller.isCreateForm||caller.isEdit">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Gia hạn đến ngày:</label>
+                                <div class="col-md-3">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="insertWorkAssignStartDate" id="extendTimeDate"
+                                           ng-model="caller.insertForm.extendDateTo" style="width: 100%;"
+                                           min-year="1000" ng-disabled="caller.checkViewDetail"/>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <button style="float: right" ng-click="caller.openExtendTimeHistory()">Lịch sử gia hạn</button>
+                                </div>
+                            </div>
+
+                            <div class="row" style="padding-top: 10px">
+                                <label class="col-md-4 control-label req">Lý do gia hạn</label>
+                                <div class="col-md-8">
+                                        <textarea rows="3" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.extendReason"
+                                                  id="extendTimeReason" ng-disabled="caller.checkViewDetail"> </textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button id="extendButton" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveExtend()" style="width: 100px" translate>Gia hạn
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

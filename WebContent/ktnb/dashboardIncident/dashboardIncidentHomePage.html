@@ -1,0 +1,181 @@
+<div data-ng-controller="dashboardIncidentController as vm" id="dashboardIncidentControllerId">
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseSearchForm" class="collapse in from-search">
+            <div class="clearfix position-relative">
+                <div class="clearfix">
+                    <div class="form-group col-md-6" >
+                        <div class="row">
+                            <label class="col-md-4 control-label">Thời gian</label>
+                            <div class="col-md-8">
+                                <select class="form-control width100" ng-model="vm.searchForm.yearReport">
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" >
+                        <div class="row">
+                            <label class="col-md-4 control-label">Loại vụ việc:</label>
+                            <div class="col-md-8">
+                                <select class="form-control width100" ng-model="vm.searchForm.incidentType">
+                                    <option ng-repeat="a in vm.listIncidentType" value="{{a.value}}">{{a.title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label " translate>Đơn vị:</label>
+                        <div class="col-md-8">
+                            <input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId"
+                                    id="sysGroupDvgId"
+                                    ng-model="vm.searchForm.sysGroupName" kendo-auto-complete
+                                    k-options="vm.sysGroupDvgOptions"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupDvg')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" >
+                        <div class="row">
+                            <label class="col-md-4 control-label">Tình trạng vụ việc</label>
+                            <div class="col-md-8">
+                                <select class="form-control width100" ng-model="vm.searchForm.stateIncident">
+                                    <option value="1">Hoàn thành</option>
+                                    <option value="2">Công an đang điều tra</option>
+                                    <option value="3">BQP đang điều tra</option>
+                                    <option value="4">Đang truy tố</option>
+                                    <option value="5">Đang xét xử</option>
+                                    <option value="6">Thi hành án</option>
+                                    <option value="7">Đang xét họp kỷ luật</option>
+                                    <option value="8">Đang tạm đóng chờ tiếp tục xử lý</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-actions margin-top">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" style="width: 125px;"
+                                    ng-click="vm.doSearch()"
+                                    class="btn btn-qlk padding-search-right searchlQLK " translate>Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate> Biểu đồ chi tiết</span>&nbsp;
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultDashboardContent" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultDashboardContent" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div class="col-md-6" style="padding-left: 0">
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <h4 class="line_bottom">
+                        <div class="title_region_1" style="border-top-right-radius: 84px !important"><a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Biểu đồ cơ cấu loại vụ việc</a>
+                        </div>
+                    </h4>
+                    <div class="border-gray">
+                        <div id="chartIncident1" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <h4 class="line_bottom">
+                        <div class="title_region_1" style="border-top-right-radius: 84px !important"><a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Biểu đồ số lượng vụ việc</a>
+                        </div>
+                    </h4>
+                    <div class="border-gray">
+                        <div id="chartIncident2" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-left: 0">
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <h4 class="line_bottom">
+                        <div class="title_region_1" style="border-top-right-radius: 84px !important"><a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Biểu đồ cơ cấu vụ việc và thiệt hại</a>
+                        </div>
+                    </h4>
+                    <div class="border-gray">
+                        <div id="chartIncident3" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <h4 class="line_bottom">
+                        <div class="title_region_1" style="border-top-right-radius: 84px !important"><a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Biểu đồ tình trạng xử lý vụ việc</a>
+                        </div>
+                    </h4>
+                    <div class="border-gray">
+                        <div id="chartIncident4" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <h4 class="line_bottom">
+                        <div class="title_region_1" style="border-top-right-radius: 84px !important"><a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Biểu đồ cơ cấu vụ việc và thiệt hại</a>
+                        </div>
+                    </h4>
+                    <div class="border-gray">
+                        <div id="chartIncident5" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #reportOneTableGrid {
+        font-family: "system-ui";
+    }
+    .title_region_1 {
+        width: 50%;
+        height: 85%;
+        text-align: center;
+        background-color:#c9c6dd;
+        border-top-right-radius: 84px;
+        color: red;
+        /*margin-top: 7px;*/
+    }
+    .search_region {
+        width: 74%;
+        font-size: 14px;
+        padding-top: 10px;
+    }
+    .line_bottom{
+        width: 100%;
+        height: 45px;
+        border-bottom: 4px solid #c9c6dd;
+        padding-bottom: 0;
+        margin-top: 35px;
+        display: flex;
+    }
+</style>

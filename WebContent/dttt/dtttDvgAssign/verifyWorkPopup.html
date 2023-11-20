@@ -1,0 +1,242 @@
+<style>
+    /*reset css*/
+    div,label{margin:0;padding:0;}
+    body{margin:20px;}
+    h1{font-size:1.5em;margin:10px;}
+    /****** Style Star Rating Widget *****/
+    #rating{border:none;float:left;}
+    #rating>input{display:none;}/*ẩn input radio - vì chúng ta đã có label là GUI*/
+    #rating>label:before{margin:5px;font-size:1.25em;font-family:FontAwesome;display:inline-block;content:"\f005";}/*1 ngôi sao*/
+    #rating>.half:before{content:"\f089";position:absolute;}/*0.5 ngôi sao*/
+    #rating>label{color:#ddd;float:right;}/*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+    /*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+    #rating>input:checked~label,
+    #rating:not(:checked)>label:hover,
+    #rating:not(:checked)>label:hover~label{color:#FFD700;}
+    /* Hover vào các sao phía trước ngôi sao đã chọn*/
+    #rating>input:checked+label:hover,
+    #rating>input:checked~label:hover,
+    #rating>label:hover~input:checked~label,
+    #rating>input:checked~label:hover~label{color:#FFED85;}
+</style>
+<form class="form-horizontal row padding10" role="form" name="dtttDvgAssign_detail_popupId"
+      id="dtttDvgAssign_detail_popupId">
+    <div class="border-gray">
+        <div class="clearfix" disable-all="true">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Mã WO</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.code"
+                                           ng-disabled="true"
+                                           id="insertDtttAssignCode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Cấp thực hiện</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.insertForm.levelAction"
+                                            ng-options="u.id as u.name for u in caller.levelActionArray">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertDtttAssignStartDate" id="insertDtttAssignStartDate"
+                                       ng-model="caller.insertForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertDtttAssignEndDate" id="insertDtttAssignEndDate"
+                                       ng-model="caller.insertForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="caller.clear('date_insert')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị giao việc</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive"
+                                           ng-click="caller.openPopupSysGroup('insert_dvg')"></i>
+                                        <input type="text" class="form-control width100"
+                                               ng-model="caller.insertForm.sysGroupDvgName"
+                                               id="insertDtttAssignSysGroupDvg" kendo-auto-complete
+                                               k-options="caller.sysGroupDvgOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('sysGroupDvgInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị nhận việc</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive"
+                                           ng-click="caller.openPopupSysGroup('insert_dvn')"></i>
+                                        <input type="text" class="form-control width100"
+                                               ng-model="caller.insertForm.sysGroupDvnName"
+                                               id="insertDtttAssignSysGroupDvn" kendo-auto-complete
+                                               k-options="caller.sysGroupDvnOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('sysGroupDvnInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung công việc</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="500" class="form-control width100"
+                                                  ng-model="caller.insertForm.description"
+                                                  id="insertDtttAssignDescription"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('descriptionInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="caption row margin-bottom margin-top10">
+                <span class="col-md-8 bold lowercase" translate>Danh sách công việc</span>
+            </div>
+            <div class="padding-width18">
+                <div class="border-gray">
+                    <div id="listDtttAssignDetailGrid" kendo-grid="caller.listDtttAssignDetailGrid"
+                         k-options="caller.listDtttAssignDetailGridOptions"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+                <div class="col-md-6">
+                    <div class="portlet-title margin-top">
+                        <div class="caption">
+                            <span class="caption-subject bold lowercase" translate>Đánh giá công việc</span>
+                        </div>
+                    </div>
+                    <div class="clearfix border-gray" >
+                        <div class="form-group col-md-12">
+                            <label class="col-md-4 control-label ">Chất lượng</label>
+                            <div class="col-md-8">
+                                <select k-option-label="'--Chọn--'" id="assessQuality" class="form-control width100"
+                                        ng-model="caller.insertForm.assessQuality" ng-change="caller.changeAssess()"
+                                        ng-options="u.code as u.name for u in caller.assessArray"
+                                >
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="col-md-4 control-label ">Tiến độ</label>
+                            <div class="col-md-8">
+                                <select k-option-label="'--Chọn--'" id="assessProgress" class="form-control width100"
+                                        ng-model="caller.insertForm.assessProgress" ng-change="caller.changeAssess()"
+                                        ng-options="u.code as u.name for u in caller.progressArray"
+                                >
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="col-md-4 control-label ">Thái độ</label>
+                            <div class="col-md-8">
+                                <select k-option-label="'--Chọn--'" id="assessAttitude" class="form-control width100"
+                                        ng-model="caller.insertForm.assessAttitude" ng-change="caller.changeAssess()"
+                                        ng-options="u.code as u.name for u in caller.attitudeArray"
+                                >
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix col-md-6 " >
+                    <div class="portlet-title margin-top">
+                        <div class="caption">
+                            <span class="caption-subject bold lowercase" translate>Cho điểm</span>
+                        </div>
+                    </div>
+                    <div class="clearfix border-gray" disable-all="true">
+                        <div class="form-group col-md-12">
+                            <div id="rating">
+<!--                                <input ng-model="caller.insertForm.assessGrade" type="radio" id="star5" name="rating" value="5" />-->
+<!--                                <label class = "full" for="star5" title="Awesome - 5 stars"></label>-->
+
+                                <input ng-model="caller.insertForm.assessGrade" type="radio" id="star4" name="rating" value="4" />
+                                <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                <input ng-model="caller.insertForm.assessGrade" type="radio" id="star3" name="rating" value="3" />
+                                <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                                <input ng-model="caller.insertForm.assessGrade" type="radio" id="star2" name="rating" value="2" />
+                                <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                <input ng-model="caller.insertForm.assessGrade" type="radio" id="star1" name="rating" value="1" />
+                                <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveDvgVerifyWork()"
+                    style="width: 200px" translate>Hoàn thành
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+

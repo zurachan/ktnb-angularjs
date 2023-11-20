@@ -1,0 +1,75 @@
+<form class="form-horizontal row" role="form">
+    <fieldset id ="disableFormTHList">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption ">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                </div>
+
+                <div id="impReqCollapse" class="collapse in from-search">
+                    <div class="clearfix position-relative">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label " translate>Khóa tìm kiếm: </label>
+                            <div class="col-md-8">
+                                <input class=" form-control width100" translate placeholder="Cho phép tìm kiếm theo tên lỗi vi phạm" type="text" ng-model="caller.formSearchListViolation.name"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Lĩnh vực:</label>
+                            <div class="col-md-8" >
+                                <select class="form-control width100" ng-model="caller.formSearchListViolation.field" ng-options="a.name as a.name for a in caller.listField">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix form-actions margin-top">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-qlk padding-search-right searchQLK" translate ng-click="caller.doSearchListViolation()"
+                                    id="doSearchCommonPopupId">Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+</form>
+
+<div class="portlet light bordered">
+    <div class="portlet-title background-title">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Kết quả tìm kiếm: </span>&nbsp;
+            <label class="control-label bold lowercase" id="countCommonPopup">{{caller.countListViolation}}</label>
+            <label class="control-label bold lowercase" translate>&nbsp;bản ghi</label>
+        </div>
+    </div>
+    <div >
+        <div id="listVio" kendo-grid="caller.listViolations" k-editable="false" k-options="caller.listViolationsOptions"></div>
+    </div>
+</div>
+
+<div class="clearfix form-actions margin-top">
+    <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+        <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveTempViolationList()" style="width: 110px" translate>Lựa chọn
+        </button>
+        <button id="cancel" class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+        </button>
+    </div>
+</div>
+<script type="text/javascript">
+    document.onkeydown= keyDown;
+    function keyDown(e){
+        switch(e.keyCode) {
+            case 13:
+                $("#doSearchSysUserPopupId").click();
+                break;
+        }
+    }
+
+</script>

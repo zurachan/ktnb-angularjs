@@ -1,0 +1,63 @@
+<form class="form-horizontal row padding10" role="form" name="taskManagePopupRejectId"
+      id="taskManagePopupRejectId">
+    <div class="form-body">
+        <div class="portlet light bordered">
+            <div class="clearfix">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3 control-label">Lý do từ chối:</label>
+                    <div class="col-md-9">
+                        <textarea rows="5" type="text" maxlength="500" class="form-control width100"
+                            ng-model="caller.formReject.woEmployeeNote" id="woEmployeeNote" name="woEmployeeNote"> </textarea>
+                        <span class="caption-subject lowercase" style="color: #d9001b"
+                              ng-if="caller.formReject.woEmployeeNote.length >= 500" translate>
+                            Lý do từ chối quá dài.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-body">
+        <div class="clearfix form-actions margin-top">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel"
+                        ng-click="caller.cancel()" translate>
+                        <i style="color:#d9001b;" class="fal fa-times ng-scope" aria-hidden="true"></i>
+                        Hủy bỏ
+                    </button>
+
+                    <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="reject"
+                        ng-click="caller.acceptOrRejectWork(caller.formReject, 2, null)" ng-disabled="!caller.formReject.woEmployeeNote || caller.formReject.woEmployeeNote.length >= 500" translate>
+                        <i style="color:#4b7902;" class="fal fa-save ng-scope" aria-hidden="true"></i>
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

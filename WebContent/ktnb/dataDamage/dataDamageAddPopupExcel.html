@@ -1,0 +1,494 @@
+<form class="form-horizontal row padding10" role="form" name="dataDamage_import_popupId" id="dataDamage_import_popupId">
+    <div class="border-gray">
+        <div class="form-body" >
+            <div class="portlet light bordered"  >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered" disable-all="caller.viewInfo">
+                <div class="clearfix">
+                    <div class="form-group col-md-6" ng-if="caller.viewInfo">
+                        <label class="col-md-4 control-label req" translate>Mã sự kiện</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text" disabled
+                                   id="insertDataDamageCode" name="insertDataDamageCode"
+                                   ng-model="caller.addForm.code"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Tên sự kiện</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.openPopupConfig()" style="cursor: pointer;"></i>
+                                <input class="form-control width100 " type="text"
+                                       id="insertDataDamageName" name="insertDataDamageName" ng-disabled="caller.addForm.dataDamageConfigId!=null"
+                                       ng-model="caller.addForm.name" placeholder="Nhập hoặc chọn từ cấu hình dữ liệu tổn thất"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('nameInsert')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Đơn vị phát sinh</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroup('psInsert')" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="insertDataDamageSysGroupPs" id="insertDataDamageSysGroupPs" ng-model="caller.addForm.sysGroupNamePs"
+                                       kendo-auto-complete k-options="caller.sysGroupPsInsertOptions" />
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupPsInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Đơn vị phát hiện</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroup('phInsert')" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="insertDataDamageSysGroupPh" id="insertDataDamageSysGroupPh" ng-model="caller.addForm.sysGroupNamePh"
+                                       kendo-auto-complete k-options="caller.sysGroupPhInsertOptions" />
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupPhInsert')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Đơn vị phát sinh trạm tuyến</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class=" form-control width100" type="text" name="insertDataDamageStation" id="insertDataDamageStation" ng-model="caller.addForm.station"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('stationInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Trụ kinh doanh</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" ng-model="caller.addForm.businessArea"
+                                        ng-options="u.code as u.name for u in caller.businessAreaOptions">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('businessArea')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Thời gian phát hiện</label>
+                        <div class="col-md-8">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                   name="insertDataDamageTimeDetect" id="insertDataDamageTimeDetect"
+                                   ng-model="caller.addForm.timeDetect" style="width: 100%;"
+                                   min-year="1000" ng-change="caller.checkValidateTimeDetect()"/>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('timeDetectInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Thời gian xảy ra</label>
+                        <div class="col-md-8">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                   name="insertDataDamageTimeHappened" id="insertDataDamageTimeHappened"
+                                   ng-model="caller.addForm.timeHappened" style="width: 100%;"
+                                   min-year="1000" ng-change="caller.checkValidateTimeHappened()"/>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('timeHappenedInsert')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req">Mô tả chi tiết:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                            <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.addForm.nameDescription"
+                                      id="insertDataDamageNameDescription"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('nameDescription')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered" ng-if="caller.showInfoGD2 || caller.showButtonConfirmGD2 || caller.showButtonComplete || caller.showButtonConfirmGD3 || caller.viewInfo || caller.isEditQTRR">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Nguyên nhân & Giải pháp</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered form-group" ng-if="caller.showInfoGD2 || caller.showButtonConfirmGD2 || caller.showButtonComplete || caller.showButtonConfirmGD3 || caller.viewInfo || caller.isEditQTRR" disable-all="caller.disableInfoGd2 || caller.viewInfo ">
+                <div class="clearfix col-md-6">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Nhóm rủi ro</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" ng-model="caller.addForm.riskType" ng-change="caller.changeRiskTypeInsert()"
+                                        ng-options="u.code as u.name for u in caller.riskTypeOptions">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('riskTypeInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Loại nguyên nhân</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" ng-model="caller.addForm.reasonType"
+                                        ng-options="u.code as u.name for u in caller.reasonTypeOptions">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('reasonTypeInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req">Mô tả nguyên nhân:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                            <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.addForm.reasonDescription"
+                                      id="insertDataDamageReasonDescription"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('reasonDescription')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Hậu quả tổn thất</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" ng-model="caller.addForm.consequence"
+                                        ng-options="u.code as u.name for u in caller.consequenceOptions">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('consequenceInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Loại tổn thất</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" ng-model="caller.addForm.damageType"
+                                        ng-options="u.code as u.name for u in caller.damageTypeOptions">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('damageTypeInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="caller.addForm.consequence == 1 || caller.addForm.consequence == 3">
+                        <label class="col-md-4 control-label req" translate>Giá trị tổn thất thực tế (tài chính)</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class=" form-control width100" name="insertDataDamageValueDamage" price-input ng-change="caller.changeValueDamage()"
+                                       id="insertDataDamageValueDamage" ng-model="caller.addForm.valueDamage"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valueDamageInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="caller.addForm.consequence == 1 || caller.addForm.consequence == 3">
+                        <label class="col-md-4 control-label" translate>Giá trị khắc phục tổn thất tài chính</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class=" form-control width100" name="insertDataDamageValueRemedies" price-input ng-change="caller.changeValueDamage()"
+                                       id="insertDataDamageValueRemedies" ng-model="caller.addForm.valueRemedies"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valueRemediesInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="caller.addForm.consequence == 1 || caller.addForm.consequence == 3">
+                        <label class="col-md-4 control-label" translate>Giá trị tổn thất tài chính thuần</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class=" form-control width100" name="insertDataDamageValueDamageOrigin" price-input disabled
+                                       id="insertDataDamageValueDamageOrigin" ng-model="caller.addForm.valueDamageOrigin"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="caller.addForm.consequence == 2 || caller.addForm.consequence == 3">
+                        <label class="col-md-4 control-label req" translate>Giá trị tổn thất thực tế (phi tài chính)</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class=" form-control width100" type="text" name="insertDataDamageValueDamageNon"
+                                       id="insertDataDamageValueDamageNon" ng-model="caller.addForm.valueDamageNon"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valueDamageNonInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-if="caller.addForm.consequence == 2 || caller.addForm.consequence == 3">
+                        <label class="col-md-4 control-label" translate>Đơn vị đo lường</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class=" form-control width100" type="text" name="insertDataDamageUnit"
+                                       id="insertDataDamageUnit" ng-model="caller.addForm.unit"/>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('unitInsert')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix col-md-6">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req">Biện pháp khắc phục:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                            <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.addForm.remedies"
+                                      id="insertDataDamageRemedies"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('remedies')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Đơn vị chịu trách nhiệm khắc phục</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroup('responeSysGroupInsert')" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="insertDataDamageSysGroupResponsible" id="insertDataDamageSysGroupResponsible" ng-model="caller.addForm.sysGroupResponsibleName"
+                                       kendo-auto-complete k-options="caller.sysGroupResponsibleInsertOptions" />
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupResponsibleInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label" translate>Đơn vị phối hợp khắc phục</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroup('togetherSysGroupInsert')" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="insertDataDamageSysGroupTogether" id="insertDataDamageSysGroupTogether" ng-model="caller.addForm.sysGroupTogetherName"
+                                       kendo-auto-complete k-options="caller.sysGroupTogetherInsertOptions" />
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupTogetherInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req" translate>Thời gian khắc phục</label>
+                        <div class="col-md-8">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                   name="insertDataDamageRemediesDate" id="insertDataDamageRemediesDate"
+                                   ng-model="caller.addForm.remediesDate" style="width: 100%;"
+                                   min-year="1000" ng-change="caller.checkValidateRemediesDateInsert()"/>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('remediesDateInsert')"></i>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label">Ghi chú:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                            <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.addForm.description"
+                                      id="insertDataDamageDescription"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon" style="margin-right: 15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('descriptionInsert')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-title margin-top15" ng-if="caller.showButtonComplete || caller.showButtonConfirmGD3 || caller.viewInfo || caller.isEditQTRR">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách file đính kèm</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content" ng-if="caller.showButtonComplete || caller.showButtonConfirmGD3 || caller.viewInfo || caller.isEditQTRR">
+                <div class="border-gray">
+                    <div ng-if="(!caller.showButtonConfirmGD3 && !caller.viewInfo) || caller.isEditQTRR">
+                        <center translate>Kéo thả các file vào đây hoặc click để chọn file</center>
+                    </div>
+                    <div class="clearfix" ng-if="(!caller.showButtonConfirmGD3 && !caller.viewInfo) || caller.isEditQTRR">
+                        <div class="col-md-12">
+                            <input class="file-input" name="dataDamageFiles" type="file"
+                                   kendo-upload id="dataDamageFiles" tabindex="10" k-select="caller.onSelect" />
+                        </div>
+                    </div>
+                    <center ng-if="(!caller.showButtonConfirmGD3 && !caller.viewInfo) || caller.isEditQTRR">
+                        <span style="color: gray" translate>Dung lượng &#60;&#61; 50MB, định dạng pdf, doc, docx, png, jpg</span>
+                    </center>
+                    <div id="dataDamageFileGrid" kendo-grid="caller.dataDamageFileGrid" k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+            <div class="portlet-title margin-top15" ng-if="caller.viewInfo">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Lý do từ chối</span>
+                </div>
+            </div>
+            <div class="portlet light bordered form-group" ng-if="caller.viewInfo">
+                <div class="clearfix form-group">
+                    <label class="col-md-3 control-label req">Lý do chỉ huy từ chối xác nhận GĐ2:</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right ">
+                            <textarea rows="5" type="text" class="form-control width100" ng-model="caller.addForm.rejectDvDescription"
+                                      disabled id="rejectDvDescription"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix form-group">
+                    <label class="col-md-3 control-label req">Lý do QTRR từ chối xác nhận GĐ3:</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right ">
+                            <textarea rows="5" type="text" class="form-control width100" ng-model="caller.addForm.rejectKtnbDescription"
+                                      disabled id="rejectKtnbDescription"> </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-body">
+                <div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonSaveUpdate">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel2"
+                                        ng-click="caller.cancel()" translate>Hủy bỏ
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveChange2"
+                                        ng-click="caller.save()" translate>Ghi lại
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonApproveGD1">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelGD1"
+                                        ng-click="caller.cancelApproveGd1()" translate>Từ chối
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveGD1"
+                                        ng-click="caller.saveApproveGD1()" translate>Duyệt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonApproveGD2">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelGD2"
+                                        ng-click="caller.cancelApproveGd1()" translate>Từ chối
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveGD2"
+                                        ng-click="caller.saveQtrrApproveGD2()" translate>Duyệt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showInfoGD2">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelInfoGD2"
+                                        ng-click="caller.cancel()" translate>Hủy bỏ
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveInfoGd2Temp"
+                                        ng-if="caller.addForm.statusApprovedDv == null || caller.addForm.statusApprovedDv == 2"
+                                        ng-click="caller.saveGD2Temp()" translate>Lưu nháp
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveInfoGd2"
+                                        ng-click="caller.saveGD2()" translate>Hoàn thành
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonConfirmGD2">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelConfirmGD2"
+                                        ng-click="caller.cancelApproveGd1()" translate>Từ chối
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="confirmGD2"
+                                        ng-click="caller.saveConfirmGD2()" translate>Duyệt
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonComplete">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelComplete"
+                                        ng-click="caller.cancel()" translate>Hủy bỏ
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveComplete"
+                                        ng-click="caller.saveComplete()" style="width: 150px;" translate>Hoàn thành
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions margin-top" ng-if="caller.showButtonConfirmGD3">
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelConfirmGd3"
+                                        ng-click="caller.cancelApproveGd1()" translate>Từ chối
+                                </button>
+                                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveConfirmGd3"
+                                        ng-click="caller.saveConfirmGd3()" style="width: 150px;" translate>Hoàn thành
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,316 @@
+<form class="form-horizontal row padding10" role="form" name="dataDamage_import_popupId" id="dataDamage_import_popupId">
+    <div class="border-gray">
+        <div class="form-body" >
+            <div class="portlet light bordered"  >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet light bordered">
+
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <a href="javascript:void(0);" ng-click="caller.exportFileDownload('Mau1.xlsx')">Tải file kê khai mẫu</a>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                        <a href="javascript:void(0);" ng-click="caller.exportFileDownload('Mau2.pdf')">Tải file nhóm rủi ro</a>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Tên sự kiện</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text"
+                                   id="name" name="name"
+                                   ng-model="caller.addForm.name"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('name')"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                        <label for="riskType" class="col-md-4 control-label req" translate>Nhóm rủi ro</label>
+                        <div class="col-md-8 position-relative">
+                            <select kendo-drop-down-list id="riskType"
+                                    style="width: 100%" name="riskType"
+                                    ng-model="caller.addForm.riskType">
+                                <option value="0" >---Chọn---</option>
+                                <option value="1" selected>Rủi ro hoạt động</option>
+                                <option value="2" selected>Rủi ro tuân thủ</option>
+                                <option value="3" selected>Rủi ro tài chính</option>
+                                <option value="4" selected>Rủi ro ATSKMT</option>
+                                <option value="5" selected>Rủi ro chiến lược</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Mô tả chi tiết</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="nameDescription" style="height: 95px;" ng-model="caller.addForm.nameDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div >
+                                <label class="col-md-4 control-label req"
+                                       translate>Thời gian phát hiện</label>
+                                <div class="col-md-8">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="timeDetect" id="timeDetect"
+                                           ng-model="caller.addForm.timeDetect" style="width: 100%;"
+                                           ng-change="vm.checkErr1()" date-time /> <span
+                                        data-for='timeDetect' id="errWO5S1"
+                                        class='k-invalid-msg'></span> <span style="color: red"
+                                                                            id="errWO5SMess1">{{vm.errMessage1}}</span>
+                                </div>
+                            </div>
+
+                            <div style="padding-top: 32px; padding-bottom: 32px">
+                                <label class="col-md-4 control-label req"
+                                       translate>Thời gian xảy ra</label>
+                                <div class="col-md-8">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="timeHappened" id="timeHappened"
+                                           ng-model="caller.addForm.timeHappened" style="width: 100%;"
+                                           ng-change="vm.checkErr1()" date-time /> <span
+                                        data-for='timeHappened' id="errWO5S2"
+                                        class='k-invalid-msg'></span> <span style="color: red"
+                                                                            id="errWO5SMess2">{{vm.errMessage1}}</span>
+                                </div>
+                            </div>
+
+                            <div >
+                                <label for="damageType" class="col-md-4 control-label req" translate>Loại tổn thất</label>
+                                <div class="col-md-8 position-relative">
+                                    <select kendo-drop-down-list id="damageType"
+                                            style="width: 100%" name="damageType"
+                                            ng-model="caller.addForm.damageType">
+                                        <option value="0" >---Chọn---</option>
+                                        <option value="1" selected>Tổn thất thực tế</option>
+                                        <option value="2" selected>Tổn thất tiềm ẩn</option>
+                                        <option value="3" selected>Cận tổn thất</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="form-group col-md-6" >
+                        <label for="reasonType" class="col-md-4 control-label req" translate>Loại nguyên nhân</label>
+                        <div class="col-md-8 position-relative">
+                            <select kendo-drop-down-list id="reasonType"
+                                    style="width: 100%" name="reasonType"
+                                    ng-model="caller.addForm.reasonType">
+                                <option value="0" >---Chọn---</option>
+                                <option value="1" selected>Khách quan</option>
+                                <option value="2" selected>Chủ quan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Tổng giá trị tổn thất (tài chính)</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="number"
+                                   id="valueDamage" name="valueDamage"
+                                   ng-model="caller.addForm.valueDamage"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valueDamage')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Mô tả nguyên nhân</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="reasonDescription" style="height: 95px;" ng-model="caller.addForm.reasonDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div >
+                                <label class="col-md-4 control-label req" translate>Tổng giá trị khắc phục thực tế (tài chính)</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100 " type="number"
+                                           id="valuePass" name="valuePass"
+                                           ng-model="caller.addForm.valuePass"/>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valuePass')"></i>
+                                </div>
+                            </div>
+
+                            <div style="padding-top: 32px; padding-bottom: 32px">
+                                <label class="col-md-4 control-label req" translate>Tổng giá trị tổn thất thuần (tài chính)</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100 " type="number"
+                                           id="totalValue" name="totalValue"
+                                           ng-model="caller.addForm.valueDamage - caller.addForm.valuePass" readonly/>
+                                </div>
+                            </div>
+
+                            <div >
+                                <label class="col-md-4 control-label req" translate>Tổng giá trị tổn thất thực tế (phi tài chính)</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100 " type="text" placeholder="Nhập không nếu không có"
+                                           id="valueDamageNon" name="valueDamageNon"
+                                           ng-model="caller.addForm.valueDamageNon"/>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valueDamageNon')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Đơn vị xảy ra sự cố</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroupLv2()" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="sysGroupIdLv2" id="sysGroupIdLv2" ng-model="caller.addForm.sysGroupNameLv2"  kendo-auto-complete k-options="caller.sysGroupLv2Options" />
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupIdLv2')"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Tổng giá trị khắc phục thực tế (phi tài chính)</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text" placeholder="Nhập không nếu không có"
+                                   id="valuePassNon" name="valuePassNon"
+                                   ng-model="caller.addForm.valuePassNon"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('valuePassNon')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Phòng ban/Cụm đội</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.selectSysGroupLv3()" style="cursor: pointer;"></i>
+                                <input class=" form-control width100" type="text" name="sysGroupIdLv3" id="sysGroupIdLv3" ng-model="caller.addForm.sysGroupNameLv3"  kendo-auto-complete k-options="caller.sysGroupLv3Options" />
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('sysGroupIdLv3')"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Tổng giá trị tổn thất thuần (phi tài chính)</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text" placeholder="Nhập không nếu không có"
+                                   id="totalValueNon" name="totalValueNon"
+                                   ng-model="caller.addForm.totalValueNon"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('totalValueNon')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Trạm tuyến</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text"
+                                   id="station" name="station"
+                                   ng-model="caller.addForm.station"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('station')"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Đơn vị đo lường</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text"
+                                   id="unit" name="unit"
+                                   ng-model="caller.addForm.unit"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('unit')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix" disable-all="caller.viewInfo">
+                    <div class="form-group col-md-12">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-label" translate>Ghi chú</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" id="description" style="height: 120px;" ng-model="caller.addForm.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-body">
+            <div>
+                <div class="clearfix form-actions margin-top" ng-if="!caller.viewInfo">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel2"
+                                    ng-click="caller.cancel()" translate>Hủy bỏ
+                            </button>
+                            <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveChange2"
+                                    ng-click="caller.saveByImportExcel()" translate>Ghi lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+<form class="form-horizontal row padding10" role="form" >
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="row">
+                <label class="col-md-4 control-label req">Tên công việc:</label>
+                <div class="col-md-8">
+                    <div class="input-icon right ">
+                        <input type="text" class="form-control width100" ng-model="caller.addDetailForm.workName"
+                               id="addDetailWorkName" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-4 control-label req">Nội dung chi tiết:</label>
+                <div class="col-md-8">
+                    <div class="input-icon right ">
+                        <textarea rows="3" type="text" maxlength="500" class="form-control width100" ng-model="caller.addDetailForm.description"
+                                  id="addDetailDescription"> </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveAddDetail()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

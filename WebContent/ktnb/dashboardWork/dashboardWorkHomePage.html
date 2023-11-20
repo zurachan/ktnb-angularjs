@@ -1,0 +1,585 @@
+<div data-ng-controller="dashboardWorkController as vm" id="dashboardWorkControllerId">
+    <p class="text-brecum">{{vm.breadcrumb}}</p>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate> Biểu đồ chi tiết</span>&nbsp;
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultDashboardContent" class="fa fa-chevron-circle-up"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultDashboardContent" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div class="col-md-12">
+                <h4 class="line_bottom">
+                    <div class="title_region col-md-4">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Báo cáo tình trạng WO theo bộ phận
+                        </a>
+                    </div>
+                </h4>
+                <div style="text-align: -webkit-center;">
+                    <div class="search_region row" style="padding-bottom: 20px">
+                        <div class="col-md-4">
+                            <label class="col-md-4 control-label" for="dateFromReport1" translate>Từ ngày</label>
+                            <div class="col-md-8">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                       name="dateFrom" id="dateFromReport1"
+                                       ng-model="vm.searchForm.dateFrom" style="width: 100%;"
+                                       min-year="1000" date-time/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-4 control-label" for="dateToReport1" translate>Đến ngày</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                           name="dateFrom" id="dateToReport1"
+                                           ng-model="vm.searchForm.dateTo" style="width: 100%;"
+                                           min-year="1000" date-time/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchReport1" ng-click="vm.doSearch1()"
+                                        class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-left: 0">
+                <div class="border-gray">
+                    <div id="reportOneTableGrid" kendo-grid="vm.reportOneTableGrid" k-editable="false"
+                         k-options="vm.reportOneTableGridOptions"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="border-gray">
+                    <div id="reportOneChart" style="height: 400px"></div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Báo cáo tình trạng WO theo đơn vị nhận việc
+                        </a>
+                    </div>
+                </h4>
+                <div style="text-align: -webkit-center;">
+                    <div class="search_region row" style="padding-bottom: 20px">
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="dateFromReport2" translate>Từ ngày</label>
+                            <div class="col-md-8">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                       name="dateFrom" id="dateFromReport2"
+                                       ng-model="vm.searchForm.dateFrom" style="width: 100%;"
+                                       min-year="1000" date-time/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="dateToReport2" translate>Đến ngày</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                           name="dateFrom" id="dateToReport2"
+                                           ng-model="vm.searchForm.dateTo" style="width: 100%;"
+                                           min-year="1000" date-time/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-3 control-label" for="multiSg" translate>Đơn vị</label>
+                            <div class="col-md-9" style="padding:0">
+                                <select id="multiSg" class="form-control width100" ng-model="vm.searchForm.listSysGroup"
+                                        multiple></select>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sg')"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchReport2" ng-click="vm.doSearch2()"
+                                        class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-gray">
+                    <div id="reportTwoChart" style="height: 500px"></div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Báo cáo tình trạng WO theo người giao việc
+                        </a>
+                    </div>
+                </h4>
+                <div style="text-align: -webkit-center;">
+                    <div class="search_region row">
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="dateFromReport3" translate>Từ ngày</label>
+                            <div class="col-md-8">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                       name="dateFrom" id="dateFromReport3"
+                                       ng-model="vm.searchForm.dateFrom" style="width: 100%;"
+                                       min-year="1000" date-time/>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="dateToReport3" translate>Đến ngày</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input kendo-date-picker k-format="'dd/MM/yyyy'"
+                                           name="dateFrom" id="dateToReport3"
+                                           ng-model="vm.searchForm.dateTo" style="width: 100%;"
+                                           min-year="1000" date-time/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="multiSu" translate>Nhân viên</label>
+                            <div class="col-md-8" style="padding:0">
+                                <select id="multiSu" class="form-control width100" ng-model="vm.searchForm.listSysUser"
+                                        multiple></select>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('su')"></i>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="col-md-4 control-label" for="searchWAState" translate>Tình trạng phê
+                                duyệt</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchWAState"
+                                        class="form-control width100" ng-model="vm.searchForm.stateApprove">
+                                    <option value="1">Trong hạn</option>
+                                    <option value="2">Quá hạn</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search_region row" style="padding-bottom: 20px; text-align: center">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchReport3" ng-click="vm.doSearch3()"
+                                        class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-gray">
+                    <div id="tblReportThree" kendo-grid="vm.tblReportThree" k-editable="false"
+                         k-options="vm.tblReportThreeOptions"></div>
+                </div>
+            </div>
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <div class="border-gray">
+                    <div id="reportThreeChart" style="height: 400px"></div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Báo cáo tiền phạt
+                        </a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-5 margin-top-15" style="padding-left:0;max-height:400px">
+                <div class="row col-md-12 margin-top-15" style="padding-left:0">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-5 control-label" for="monthPunish" translate>Tháng xét phạt</label>
+                        <div class="col-md-7">
+                            <div class="input-icon right ">
+                                <select kendo-drop-down-list class=" form-control width100"
+                                        style="padding-right: 0 !important" type="number" name="monthPunish"
+                                        id="monthPunish" ng-model="vm.searchForm4.monthPunish"
+                                        ng-options="a.value as a.name for a in vm.listMonth">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-5 control-label" for="yearPunish" translate>Năm xét phạt</label>
+                        <div class="col-md-7">
+                            <div class="input-icon right ">
+                                <select kendo-drop-down-list class=" form-control width100"
+                                        style="padding-right: 0 !important" type="number" name="yearPunish"
+                                        id="yearPunish" ng-model="vm.searchForm4.yearPunish"
+                                        ng-options="a.value as a.name for a in vm.listYear">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center margin-top-15">
+                            <button id="doSearchReport4" ng-click="vm.doSearch4()"
+                                    class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-top-15" style="padding-left:0">
+                    <div class="border-gray">
+                        <div id="tblReportFour" kendo-grid="vm.tblReportFour" k-editable="false"
+                             k-options="vm.tblReportFourOptions"></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-7 margin-top-15" style="padding-left:0">
+                <div class="border-gray">
+                    <div id="reportFourChart" style="height: 400px"></div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Bảng theo dõi kiến nghị Kiểm toán
+                        </a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-5 margin-top-15" style="padding-left:0">
+                <div class="row col-md-12 margin-top-15" style="padding-left:0">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-5 control-label" for="monthWo" translate>Tháng</label>
+                        <div class="col-md-7">
+                            <div class="input-icon right ">
+                                <select kendo-drop-down-list class=" form-control width100"
+                                        style="padding-right: 0 !important" type="number" name="monthPunish"
+                                        id="monthWo" ng-model="vm.searchForm5.month"
+                                        ng-options="a.value as a.name for a in vm.listMonth">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-5 control-label" for="yearWo" translate>Năm</label>
+                        <div class="col-md-7">
+                            <div class="input-icon right ">
+                                <select kendo-drop-down-list class=" form-control width100"
+                                        style="padding-right: 0 !important" type="number" name="yearPunish" id="yearWo"
+                                        ng-model="vm.searchForm5.year"
+                                        ng-options="a.value as a.name for a in vm.listYear">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label" for="sysGroupId" translate>Đơn vị</label>
+                        <div class="col-md-8">
+                            <input class=" form-control width100" type="text" name="sysGroupId" id="sysGroupId"
+                                   ng-model="vm.searchForm5.sysGroupLv2Name" kendo-auto-complete
+                                   k-options="vm.sysGroupSearchOptions"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupId_search')"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center margin-top-15">
+                            <button id="doSearchReport5" ng-click="vm.doSearch5()"
+                                    class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-top-15" style="padding-left:0">
+                    <div class="border-gray">
+                        <div id="tblReportFive" kendo-grid="vm.tblReportFive" k-editable="false"
+                             k-options="vm.tblReportFiveOptions"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 margin-top-15" style="padding-left:0">
+                <div class="border-gray">
+                    <div id="reportFiveChart" style="height: 400px"></div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Dashboard thống kê số lượng kiểm tra
+                        </a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <div style="display: flex; justify-content: center">
+                    <div class="col-md-5">
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Thời gian kiểm tra: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-timeclass="form-control width100"
+                                       name="startInspectionDate6" id="startInspectionDate6"
+                                       ng-model="vm.searchForm6.startInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate6('startInspectionDate6')"/>
+                            </div>
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-time class="form-control width100"
+                                       name="endInspectionDate6" id="endInspectionDate6"
+                                       ng-model="vm.searchForm6.endInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate6('endInspectionDate6')"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Đơn vị kiểm tra</label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm6.unitTestIds">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Đơn vị được kiểm tra</label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm6.groupIds">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="display: flex; justify-content: center">
+                            <button id="doSearchReport6" ng-click="vm.doSearch6()"
+                                    class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                            </button>
+                            <button id="doExportReport6" ng-click="vm.exportExcelGrid6()"
+                                    style="margin-left: 12px; padding-right: 8px"
+                                    class="btn btn-qlk padding-search-right" translate>Xuất excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row form-group">
+                        <div class="border-gray">
+                            <div id="tblReportSix" kendo-grid="vm.tblReportSix" k-editable="false"
+                                 k-options="vm.tblReportSixOptions"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Dashboard thống kê số lượng lỗi theo từng đơn vị
+                        </a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <div style="display: flex; justify-content: center">
+                    <div class="col-md-5">
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Thời gian kiểm tra: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-timeclass="form-control width100"
+                                       id="startInspectionDate7" name="startInspectionDate7"
+                                       ng-model="vm.searchForm7.startInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate7('startInspectionDate7')"/>
+                            </div>
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-timeclass="form-control width100"
+                                       id="endInspectionDate7" name="endInspectionDate7"
+                                       ng-model="vm.searchForm7.endInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate7('endInspectionDate7')"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Đơn vị kiểm tra</label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm7.unitTestIds">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Đơn vị được kiểm tra</label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm7.groupIds">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="display: flex; justify-content: center">
+                            <button id="doSearchReport7" ng-click="vm.doSearch7()"
+                                    class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                            </button>
+                            <button id="doExportReport7" ng-click="vm.exportExcelGrid7()"
+                                    style="margin-left: 12px; padding-right: 8px"
+                                    class="btn btn-qlk padding-search-right" translate>Xuất excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row form-group">
+                        <div class="border-gray">
+                            <div id="reportSevenChart" style="height: 400px"></div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="border-gray">
+                            <div id="tblReportSeven" kendo-grid="vm.tblReportSeven" k-editable="false"
+                                 k-options="vm.tblReportSevenOptions"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <h4 class="line_bottom">
+                    <div class="title_region">
+                        <a class="title_content">
+                            <img src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px"
+                                 height="24px" alt="" style="margin-right: 14px;"/>
+                            Dashboard báo cáo tổng hợp các loại vấn đề
+                        </a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-12 margin-top-15" style="padding-left:0">
+                <div style="display: flex; justify-content: center">
+                    <div class="col-md-5">
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Thời gian kiểm tra: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-time class="form-control width100"
+                                       id="startInspectionDate8" name="startInspectionDate8"
+                                       ng-model="vm.searchForm8.startInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate8('startInspectionDate8')"/>
+                            </div>
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker k-format="'dd/MM/yyyy'" date-timeclass="form-control width100"
+                                       id="endInspectionDate8" name="endInspectionDate8"
+                                       ng-model="vm.searchForm8.endInspectionDate"
+                                       ng-change="vm.ValidateInspectionDate8('endInspectionDate8')"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-md-4 control-label" translate>Đơn vị được kiểm tra</label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm8.groupIds">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group" style="display: flex; justify-content: center">
+                            <button id="doSearchReport8" ng-click="vm.doSearch8()"
+                                    class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                            </button>
+                            <button id="doExportReport8" ng-click="vm.exportExcelGrid8()"
+                                    style="margin-left: 12px; padding-right: 8px"
+                                    class="btn btn-qlk padding-search-right" translate>Xuất excel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 form-group">
+                    <div style="margin: 0 -15px">
+                        <div class="col-md-6">
+                            <div class="border-gray">
+                                <div id="tblReportEight" kendo-grid="vm.tblReportEight" k-editable="false"
+                                     k-options="vm.tblReportEightOptions"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border-gray">
+                                <div id="reportEightChart" style="height: 400px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #reportOneTableGrid {
+        font-family: "system-ui";
+    }
+
+    .title_region {
+        width: auto;
+        height: auto;
+        text-align: center;
+        background-color: #c9c6dd;
+        border-top-right-radius: 84px !important;
+        color: red;
+        margin-top: 7px;
+    }
+
+    .title_content {
+        text-decoration: none !important;
+        padding: 10px 15px;
+        display: block;
+    }
+
+    .search_region {
+        width: 74%;
+        font-size: 14px;
+        padding-top: 10px;
+    }
+
+    .line_bottom {
+        width: 100%;
+        height: 45px;
+        border-bottom: 4px solid #c9c6dd;
+        padding-bottom: 0;
+        margin-top: 35px;
+        display: flex;
+    }
+</style>

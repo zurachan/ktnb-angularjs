@@ -1,0 +1,95 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignStartDate"
+                                       ng-model="caller.insertForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignEndDate" id="insertWorkAssignEndDate"
+                                       ng-model="caller.insertForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()" ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'extend'}}"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="vm.clearDate()"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung công việc</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.description"
+                                                  id="insertWorkAssignDescription"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('descriptionInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách file giao việc</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div>
+                        <center translate>Kéo thả các file vào đây hoặc click để chọn file</center>
+                    </div>
+                    <div class="clearfix" ng-if="!caller.checkViewDetail">
+                        <div class="col-md-12">
+                            <input class="file-input" name="files" type="file"
+                                   kendo-upload id="files" tabindex="10" k-select="caller.onSelect" />
+                        </div>
+                    </div>
+                    <center ng-if="!caller.checkViewDetail">
+                        <span style="color: gray" translate>Dung lượng &#60;&#61; 50MB, định dạng pdf, doc, docx,xlxs,xls</span>
+                    </center>
+                    <div id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid" k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="caption row margin-bottom margin-top10">
+                <span class="col-md-8 bold lowercase" translate>Danh sách công việc</span>
+            </div>
+            <div class="padding-width18">
+                <div class="border-gray">
+                    <div id="listWorkAssignDetailGrid" kendo-grid="caller.listWorkAssignDetailGrid" k-options="caller.listWorkAssignDetailGridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" ng-if="!caller.checkViewDetail">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save()" style="width: 200px" translate>Lưu và chờ duyệt
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

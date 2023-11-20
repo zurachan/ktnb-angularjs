@@ -1,0 +1,71 @@
+<div data-ng-controller="dashboardPunishmentController as vm" id="dashboardWorkControllerId">
+    <p class="text-brecum">{{vm.breadcrumb}}</p>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate> Biểu đồ chi tiết</span>&nbsp;
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultDashboardContent" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultDashboardContent" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div class="col-md-12" style="padding-left:0" >
+                <h4 class="line_bottom">
+                    <div class="title_region" style="border-top-right-radius: 84px !important">
+                        <a style="cursor: pointer;text-decoration: none;height: 100%;padding-top: 9px;margin-top: 0px;display: block;" class="title-product"><img
+                                src="../../../../ktnb-web/assets/layouts/layout/img/audit.png" width="24px" height="24px"/><i style="margin-right: 7px" ></i><i style="margin-right: 7px"></i>Báo cáo số lượng lỗi vi phạm</a>
+                    </div>
+                </h4>
+            </div>
+            <div class="col-md-4 margin-top-15" style="padding-left:0;max-height:400px" >
+                <div class="row col-md-12 margin-top-15" style="padding-left:0" >
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label" translate>Tháng/năm xét:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input kendo-date-picker k-format="'MM/yyyy'" ng-change="vm.splitDate()" class="form-control width100 " ng-model="vm.searchForm.date" style="padding-right: 0 !important" id="monthYearSearch"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('dateSearch')"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center margin-top-15">
+                            <button id="doSearchReport1" ng-click="vm.doSearch1()" class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-top-15" style="padding-left:0" >
+                    <div class="border-gray">
+                        <div id="reportOneTableGrid" kendo-grid="vm.tblReportFour" k-editable="false"  k-options="vm.tblReport1Options" ></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 margin-top-15" style="padding-left:0" >
+                <div class="border-gray">
+                    <div id="reportOneChart" style="height: 400px"></div>
+                </div>
+            </div>
+            <div class="col-md-4 margin-top-15" style="padding-left:0" >
+                <div class="border-gray">
+                    <div id="reportOneChart2" style="height: 400px"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .line_bottom{
+        width: 100%;
+        height: 45px;
+        border-bottom: 4px solid #c9c6dd;
+        padding-bottom: 0;
+        margin-top: 35px;
+        display: flex;
+    }
+</style>

@@ -1,0 +1,162 @@
+<style>
+    html {
+        overflow-y: scroll; /*Fix rung màn hình*/
+    }
+    .form-group{
+        margin-top: 1em;
+    }
+</style>
+<div data-ng-controller="reportSummaryKriController as vm">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form" id="reportKri">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="workItem1" class="collapse in from-search">
+                    <div class="clearfix position-relative">
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Mã rủi ro:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <div class="input-icon right ">
+                                            <i class="fa fa-search directive" ng-click="vm.openPopupRiskProfile()"></i>
+                                            <input type="text" class="form-control width100" ng-model="vm.searchForm.riskProfileCode"
+                                                   id="insertRiskProfileCode" kendo-auto-complete k-options="vm.riskProfileOptions"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskProfileCode')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Mã KRI:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <div class="input-icon right ">
+                                            <i class="fa fa-search directive" ng-click="vm.openPopupRiskIndex()"></i>
+                                            <input type="text" class="form-control width100" ng-model="vm.searchForm.riskIndexCode"
+                                                   id="insertRiskIndexCode" kendo-auto-complete k-options="vm.riskIndexOptions"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskIndexCode')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label" translate>Tần suất đo:</label>
+                                <div class="col-md-3" >
+                                    <select class="form-control width100" ng-model="vm.searchForm.frequency" ng-change="vm.clearSearch()">
+                                        <option value="">---Chọn---</option>
+                                        <option value="1">Tháng</option>
+                                        <option value="2">Quý</option>
+                                        <option value="3">Năm</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" translate>Tháng:</label>
+                                <div class="col-md-3" >
+                                    <select class="form-control width100" ng-model="vm.searchForm.month" ng-disabled="vm.searchForm.frequency!=1"
+                                            ng-options="a.value as a.name for a in vm.listMonth">
+                                        <option value="">---Chọn---</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label" translate>Quý:</label>
+                                <div class="col-md-3" >
+                                    <select class="form-control width100" ng-model="vm.searchForm.season" ng-disabled="vm.searchForm.frequency!=2"
+                                            ng-options="a.value as a.name for a in vm.listSeason">
+                                        <option value="">---Chọn---</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label" translate>Năm:</label>
+                                <div class="col-md-3" >
+                                    <select class="form-control width100" ng-model="vm.searchForm.year" ng-disabled="vm.searchForm.frequency==null||vm.searchForm.frequency==''"
+                                            ng-options="a.value as a.name for a in vm.listYear">
+                                        <option value="">---Chọn---</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label" translate>Đánh giá:</label>
+                                <div class="col-md-3" >
+                                    <select class="form-control width100" ng-model="vm.searchForm.commentStatus">
+                                        <option value="">---Chọn---</option>
+                                        <option value="1">Đạt</option>
+                                        <option value="2">Vượt ngưỡng chú ý</option>
+                                        <option value="3">Vượt ngưỡng cảnh báo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix form-actions margin-top-10">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" id="doSearchQuantity" style="width: 125px;"
+                                            ng-click="vm.doSearch()"
+                                            class="btn btn-qlk padding-search-right searchQLK" translate>Xem trước</button>
+                                    <button type="button" style="width: 125px;"
+                                            ng-click="vm.exportReport()"
+                                            class="btn btn-qlk padding-search-right excelQLK " translate>Xuất excel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount1">{{vm.countRp1}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultGrid2" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div id="rp1" kendo-grid="vm.rp1" k-editable="false" k-options="vm.rp1GridOptions" ></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#reportKri')
+        .keypress(
+            function(event) {
+                $("input").change(function() {
+                    $(this).val($.trim($(this).val()));
+                });
+                document.onkeydown = keyDown;
+                function keyDown(e) {
+                    switch (e.keyCode) {
+                        case 27:
+                            $("#cancel").click();
+                            break;
+                        case 13:
+                            if ($('.k-widget.k-window.fix-footer').css(
+                                'display') !== 'block') {
+                                $("#doSearchQuantity").click();
+                            }
+                            break;
+                    }
+                }
+            });
+</script>

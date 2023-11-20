@@ -1,0 +1,50 @@
+/* here you can put your own css to customize and override the theme */
+.page-header.navbar {
+    background-color: #00918d;
+}
+
+.page-header.navbar .top-menu .navbar-nav>li.dropdown .dropdown-toggle>i {
+    color: #fff;
+}
+
+.page-header.navbar .page-logo {
+    background-color: white;
+}
+/* hungnx 20180616 start */
+input#keySearch {
+    font-style: normal;
+}
+input::placeholder {
+	font-style: italic !important;
+	color: #999 !important;
+}
+.loadersmall {
+  border: 5px solid #f3f3f3 !important;
+  -webkit-animation: spin 0.4s linear infinite !important;
+  animation: spin 0.4s linear infinite !important;
+  border-top: 2px solid #555 !important;
+  border-radius: 50% !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* hungnx 20180616 end */
+.margin_top label span {
+    font-weight: initial;
+}
+/*nhantv */
+.lateTaskClosed{
+	background-image: url(../img/grantt/gantt-close-lv2-red.png) !important;
+}
+.lateTaskExpanded{
+	background-image: url(../img/grantt/gantt-expaned-lv2-red.png) !important;
+}

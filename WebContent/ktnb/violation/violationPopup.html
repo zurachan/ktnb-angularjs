@@ -1,0 +1,161 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="portlet light bordered" >
+            <div class="portlet-title background-title">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase req" translate>Thông tin chung</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Tên lỗi vi phạm:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class="form-control width100" ng-model="caller.insertForm.name"
+                                       id="insertViolationName" style="text-indent: 1.3em;"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertName')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Đơn vị tính lỗi:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class="form-control width100" ng-model="caller.insertForm.unitType"
+                                       style="text-indent: 1.3em;" />
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertUnitType')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="row">-->
+<!--                        <label class="col-md-4 control-label req" translate>Loại lỗi:</label>-->
+<!--                        <div class="col-md-8" >-->
+<!--                            <select id="type" class="form-control width100" ng-change="caller.changeType()" ng-model="caller.insertForm.type" ng-options="a.value as a.name for a in caller.listType">-->
+<!--                                <option value="">-&#45;&#45;Chọn-&#45;&#45;</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req" translate>Mô tả hành vi vi phạm:</label>
+                        <div class="col-md-8">
+                            <textarea style="text-indent: 0.4em !important;" class="form-control" ng-model="caller.insertForm.description" id="promptPopup_txtReason" name="promptPopup_txtReason" maxlength = "2000" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req" translate>Mức độ vi phạm:</label>
+                        <div class="col-md-8" >
+                            <select k-option-label="'---Chọn---'" class="form-control width100" ng-model="caller.insertForm.seriousness" ng-change="caller.changeType()">
+                                <option ng-selected="caller.insertForm.seriousness==1" value="1">1</option>
+                                <option ng-selected="caller.insertForm.seriousness==2" value="2">2</option>
+                                <option ng-selected="caller.insertForm.seriousness==3" value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            <div class="row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="row">-->
+<!--                        <label class="col-md-4 control-label req" translate>Mô tả hành vi vi phạm:</label>-->
+<!--                        <div class="col-md-8">-->
+<!--                            <textarea style="text-indent: 0.4em !important;" class="form-control" ng-model="caller.insertForm.description" id="promptPopup_txtReason" name="promptPopup_txtReason" maxlength = "2000" rows="3"></textarea>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req" translate>Đơn vị xây dựng hành vi vi phạm:</label>
+                        <div class="col-md-8" >
+                            <select class="form-control width100" ng-change="caller.changeGroup('insert')" ng-model="caller.insertForm.groupName" ng-options="a.name as a.name for a in caller.listGroupName">
+                                <option value="">---Chọn---</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req" translate>Lĩnh vực:</label>
+                        <div class="col-md-8" >
+                            <select class="form-control width100" ng-model="caller.insertForm.field" ng-options="a.name as a.name for a in caller.listField">
+                                <option value="">---Chọn---</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mức chế tài (VNĐ):</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="number" class="form-control width100" ng-model="caller.insertForm.sanction" style="padding-right: 0px !important; text-indent: 1.3em;"
+                                       id="insertSanction" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button id="sav" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

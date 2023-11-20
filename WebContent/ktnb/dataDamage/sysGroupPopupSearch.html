@@ -1,0 +1,63 @@
+<div class="form-body ">
+	<form class="form-horizontal row" role="form" kendo-validator="validator" k-options="validatorOptions" ng-submit="caller.doSearchSysGroupSearchPopup()">
+	
+	<div class="portlet light clearfix">
+			<div class="col-md-10">
+				<label class="col-md-2 control-label" style="margin-top: 7px" translate>Mã/Tên đơn vị</label>
+				<div class="col-md-10">
+					<input id="objSearchGSearch" ng-model="caller.objSearchGSearch.keySearch" class="k-textbox input-menu-button form-control search-tree"
+					 placeholder="{{'Nhập mã/tên đơn vị' | translate}}" />
+				</div>
+			</div>
+			<div class="col-md-2">
+				<button id="findPopupSysGroup" type="button" uib-tooltip="Tìm kiếm" class="btn btn-qlk padding-search-right searchQLK" ng-click="caller.doSearchSysGroupSearchPopup()"
+				 translate>
+					<i class="fa fa-search" aria-hidden="true">Tìm kiếm</i>
+				</button>
+				<script type="text/javascript">
+					$("#objSearchGSearch") .change( function () { $("#objSearchGSearch") .val( $("#objSearchGSearch") .val() .trim()); });
+				</script>
+			</div>
+		</div>
+	
+		<fieldset >
+				<div class="collapse in from-search">
+					<div class="clearfix position-relative">
+						<div id="sysGGridSearch" kendo-grid="caller.sysGGridSearch" k-editable="false"
+						k-options="caller.gridSysGSearchOptions"
+						k-on-change="caller.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+					</div>
+				</div>
+			</fieldset>
+		
+	</form>
+</div>
+
+<script type="text/javascript">
+	document.onkeydown = keyDown;
+	function keyDown(e) {
+		switch (e.keyCode) {
+			case 13:
+				$("#findPopupSysGroup").click();
+				break;
+		}
+	}
+</script>
+<style>
+	.foot{
+		background-color: white;
+    	position: fixed;
+    	bottom: 0;
+    	left: 0;
+    	display: block;
+    	width: 100%;
+    	padding: 8px 16px 8px;
+    	text-align: right;
+    	border-top: 1px solid #e5e5e5;
+    	margin-bottom: 0px;
+	}
+	
+	#divListSignInfor i{
+		display: none;
+	}
+</style>

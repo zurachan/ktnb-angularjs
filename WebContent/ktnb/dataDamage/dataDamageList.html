@@ -1,0 +1,222 @@
+<style>
+    .red {
+        color: red;
+    }
+    .green {
+        color: green;
+    }
+    .orange {
+        color: orange;
+    }
+    .yellow {
+        color: #d0d04f;
+    }
+</style>
+<div data-ng-controller="dataDamageController as vm" id="ktnb_searchForm_dataDamageId">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#demo" class="fa fa-chevron-circle-up"
+                           aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="demo" class="collapse in from-search">
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label " translate>Đơn vị phát sinh</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <i class="fa fa-search directive" ng-click="vm.selectSysGroup('psSearch')" style="cursor: pointer;"></i>
+                                    <input class=" form-control width100" type="text" name="searchDataDamageSysGroupPs" id="searchDataDamageSysGroupPs" ng-model="vm.searchForm.sysGroupNamePs"
+                                           kendo-auto-complete k-options="vm.sysGroupPsSearchOptions" />
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupPsSearch')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Trạng thái chỉ huy duyệt GĐ2</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <select id="searchDataDamageStatusApprovedDv" class="form-control" ng-model="vm.searchForm.statusApprovedDv">
+                                        <option value="0">Chờ xác nhận</option>
+                                        <option value="1">Đã xác nhận</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('statusApprovedDvSearch')"></i>
+                            </div>
+                        </div>
+<!--                        <div class="form-group col-md-6" >-->
+<!--                            <label class="col-md-4 control-label ">Trạng thái chỉ huy duyệt GĐ1</label>-->
+<!--                            <div class="col-md-8">-->
+<!--                                <div class="input-icon right ">-->
+<!--                                    <select id="searchDataDamageStatusDv" class="form-control" ng-model="vm.searchForm.statusDv">-->
+<!--                                        <option value="0">Hết hiệu lực</option>-->
+<!--                                        <option value="1">Hiệu lực</option>-->
+<!--                                        <option value="2">Dự thảo</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="One_icon" style="margin-right: 15px;">-->
+<!--                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('statusDvSearch')"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Nhóm rủi ro</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <select id="searchDataDamageRiskType" class="form-control" ng-model="vm.searchForm.riskType">
+                                        <option value="1">Rủi ro hoạt động</option>
+                                        <option value="2">Rủi ro tuân thủ</option>
+                                        <option value="3">Rủi ro tài chính</option>
+                                        <option value="4">Rủi ro chiến lược</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskTypeSearch')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Trạng thái QTRR xác nhận GĐ3</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <select id="searchDataDamageStatusApprovedKtnb" class="form-control" ng-model="vm.searchForm.statusApprovedKtnb">
+                                        <option value="0">Chờ xác nhận</option>
+                                        <option value="1">Đã xác nhận</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('statusApprovedKtnbSearch')"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Thời gian phát hiện</label>
+                            <div class="col-md-8">
+                                <div class="col-md-5 no-padding position-relative">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="searchDataDamageTimeDetectFrom" id="searchDataDamageTimeDetectFrom"
+                                           ng-model="vm.searchForm.timeDetectFrom" style="width: 100%;"
+                                           min-year="1000" ng-change="vm.checkValidateTimeDetectFrom()"/>
+                                </div>
+                                <div class="col-md-2" style="text-align: center;"><label class="control-label" translate>đến</label></div>
+                                <div class="col-md-5 no-padding position-relative">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="searchDataDamageTimeDetectTo" id="searchDataDamageTimeDetectTo"
+                                           ng-model="vm.searchForm.timeDetectTo" style="width: 100%;"
+                                           min-year="1000" ng-change="vm.checkValidateTimeDetectTo()"/>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('timeDetectSearch')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Thời gian khắc phục</label>
+                            <div class="col-md-8">
+                                <div class="col-md-5 no-padding position-relative">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="searchDataDamageRemediesDateFrom" id="searchDataDamageRemediesDateFrom"
+                                           ng-model="vm.searchForm.remediesDateFrom" style="width: 100%;"
+                                           min-year="1000" ng-change="vm.checkValidateRemediesDateFrom()"/>
+                                </div>
+                                <div class="col-md-2" style="text-align: center;"><label class="control-label" translate>đến</label></div>
+                                <div class="col-md-5 no-padding position-relative">
+                                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                           name="searchDataDamageRemediesDateTo" id="searchDataDamageRemediesDateTo"
+                                           ng-model="vm.searchForm.remediesDateTo" style="width: 100%;"
+                                           min-year="1000" ng-change="vm.checkValidateRemediesDateTo()"/>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('remediesDateSearch')"></i>
+                            </div>
+                        </div>
+<!--                        <div class="form-group col-md-6" >-->
+<!--                            <label class="col-md-4 control-label ">Trạng thái QTRR duyệt GĐ1</label>-->
+<!--                            <div class="col-md-8">-->
+<!--                                <div class="input-icon right ">-->
+<!--                                    <select id="searchDataDamageStatusKtnb" class="form-control" ng-model="vm.searchForm.statusKtnb">-->
+<!--                                        <option value="0">Chờ duyệt</option>-->
+<!--                                        <option value="1">Đã duyệt</option>-->
+<!--                                        <option value="2">Từ chối</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="One_icon" style="margin-right: 15px;">-->
+<!--                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('statusKtnbSearch')"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6" >
+                            <label class="col-md-4 control-label ">Tình trạng</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <select id="searchStatus" class="form-control" ng-model="vm.searchForm.statusDamage">
+                                        <option value="0">Tất cả</option>
+                                        <option value="1">Trong hạn</option>
+                                        <option value="2">Quá hạn</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="One_icon" style="margin-right: 15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('searchStatus')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-actions margin-top">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button ng-click="vm.doSearch()" class="btn btn-qlk padding-search-right searchQLK"
+                                        translate>Tìm kiếm
+                                </button>
+                                <button ng-click="vm.exportexcel()" class="btn btn-qlk padding-search-right excelQLK"
+                                        translate>Xuất Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate>Kết quả tìm kiếm:  </span>&nbsp;<label
+                    class="control-label bold lowercase" >{{vm.count}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#demoGrid" class="fa fa-chevron-circle-up"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="demoGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div id="gridList" kendo-grid="vm.dataDamageGrid" k-editable="false" k-options="vm.dataDamageGridOptions"></div>
+        </div>
+    </div>
+</div>
+

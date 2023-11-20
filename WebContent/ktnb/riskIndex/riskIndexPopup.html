@@ -1,0 +1,299 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="portlet light bordered" >
+            <div class="portlet-title background-title">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase req" translate>Thông tin chung</span>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mã rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.openPopupRiskProfile()"></i>
+                                <input type="text" class="form-control width100" ng-model="caller.insertForm.riskProfileCode"
+                                       id="insertRiskProfileCode" kendo-auto-complete k-options="caller.riskProfileInsertOptions" ng-disabled="caller.type==='updateDetail'||caller.type==='view'"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertRiskProfile')"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Tên rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input style="text-indent: 0.8em" type="text" class="form-control width100" ng-model="caller.insertForm.riskProfileName"
+                                       id="insertRiskProfileName" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="row">-->
+<!--                        <label class="col-md-4 control-label req">Chủ sở hữu rủi ro:</label>-->
+<!--                        <div class="col-md-8">-->
+<!--                            <div class="input-icon right ">-->
+<!--                                <input type="text" class="form-control width100" ng-model="caller.insertForm.riskProfileGroupName"-->
+<!--                                       id="insertRiskProfileGroupName" disabled/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mã KRI:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input style="text-indent: 0.8em" type="text" class="form-control width100" ng-model="caller.insertForm.code"
+                                       id="insertCode" placeholder="Tự động gen code" disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Loại KRI:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" id="severityWo" style="width: 100%"  ng-model="caller.insertForm.typeKri"
+                                        ng-options="a.value as a.name for a in caller.listTypeKri" ng-disabled="caller.type==='updateDetail'||caller.type==='view'">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mô tả KRI:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <textarea rows="3" type="text" style="text-indent: 0.8em"
+                                          class="form-control width100" ng-model="caller.insertForm.description"
+                                          translate id="insertDescription" ng-disabled="caller.type==='updateDetail'||caller.type==='view'"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Ngưỡng cảnh báo:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="number" min="0" class="form-control width100" ng-model="caller.insertForm.alertValue"
+                                       id="insertAlertValue" ng-disabled="caller.type==='updateDetail'||caller.type==='view'" ng-change="caller.changeValue()"
+                                       style="padding-right: 0 !important;text-indent: 0.8em;"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertAlertValue')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Ngưỡng chú ý:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="number" min="0" class="form-control width100" ng-model="caller.insertForm.warningValue"
+                                       id="insertWarningValue" ng-disabled="caller.type==='updateDetail'||caller.type==='view'" ng-change="caller.changeValue()"
+                                       style="padding-right: 0 !important;text-indent: 0.8em"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertWarningValue')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mức chấp nhận ngưỡng:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" style="width: 100%"  ng-model="caller.insertForm.acceptanceValue"
+                                        ng-options="a.value as a.name for a in caller.listAcceptanceValue" ng-disabled="caller.type==='updateDetail'||caller.type==='view'">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Đơn vị đo lường KRI:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select class="form-control" id="measureUnit" style="width: 100%"  ng-model="caller.insertForm.measureUnit"
+                                        ng-options="a.value as a.name for a in caller.listMeasureUnit" ng-disabled="caller.type==='updateDetail'||caller.type==='view'">
+                                    <option value="">---Chọn---</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Tần suất đo:</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="frequency" style="width: 100%"  ng-model="caller.insertForm.frequency"
+                                    ng-options="a.value as a.name for a in caller.listFrequency" ng-disabled="caller.type==='updateDetail'||caller.type==='view'">
+                                <option value="">---Chọn---</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Phụ trách tính toán:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <i class="fa fa-search directive" ng-click="caller.openPopupSysGroup()"></i>
+                                <input type="text" class="form-control width100" ng-model="caller.insertForm.sysGroupName"
+                                       id="insertSysGroup" kendo-auto-complete k-options="caller.sysGroupInsertOptions" ng-disabled="caller.type==='updateDetail'||caller.type==='view'"/>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertSysGroup')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Hệ thống hỗ trợ tính toán:</label>
+                        <div class="col-md-8">
+                            <select class="form-control" style="width: 100%"  ng-model="caller.insertForm.calculatingSystem"
+                                    ng-options="a.value as a.name for a in caller.listSystem" ng-disabled="caller.type==='updateDetail'||caller.type==='view'">
+                                <option value="">---Chọn---</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Dữ liệu cần thu thập:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <textarea rows="3" type="text" style="text-indent: 0.8em"
+                                          class="form-control width100" ng-model="caller.insertForm.dataKri"
+                                          translate ng-disabled="caller.type==='updateDetail'||caller.type==='view'"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('dataKri')"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Công thức:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <textarea rows="3" type="text" style="text-indent: 0.8em"
+                                          class="form-control width100" ng-model="caller.insertForm.formula"
+                                          translate ng-disabled="caller.type==='updateDetail'||caller.type==='view'"> </textarea>
+                            </div>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('formula')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="portlet light bordered" ng-show="caller.type==='updateDetail'|| caller.type==='view'">
+            <div class="portlet-title background-title">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase req" translate>Giá trị KRI</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="demoGrid" class="collapse in " ng-show="caller.type==='updateDetail'|| caller.type==='view'">
+            <div ng-switch on="caller.insertForm.frequency">
+                <div ng-switch-when="1">
+                    <div id="kriValueGridThang" kendo-grid="caller.kriValueGrid"  k-options="caller.kriValueGridOptions"></div>
+                </div>
+
+                <div ng-switch-when="2">
+                    <div id="kriValueGridQuy" kendo-grid="caller.kriValueGrid"  k-options="caller.kriValueGridOptions"></div>
+                </div>
+
+                <div ng-switch-when="3">
+                    <div id="kriValueGridNam" kendo-grid="caller.kriValueGrid"  k-options="caller.kriValueGridOptions"></div>
+                </div>
+
+                <div ng-switch-when="4">
+                    <div id="kriValueGrid6Thang" kendo-grid="caller.kriValueGrid"  k-options="caller.kriValueGridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" ng-hide="{{caller.type==='view'}}">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save()" ng-hide="caller.type==='updateDetail'" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveIndex()" ng-show="caller.type==='updateDetail'" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,293 @@
+<form class="form-horizontal row padding10" role="form" name="dataDamage_import_popupId" id="dataDamage_import_popupId">
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Thông tin HSRR</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label " translate>Tên rủi ro</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right ">
+                            <i class="fa fa-search directive" ng-click="caller.selectRiskProfile('rpInsert')" style="cursor: pointer;" ng-hide="caller.isView"></i>
+                            <input class=" form-control width100" type="text" name="insertRiskProfileDetailSysGroupPs" id="insertRiskProfileDetailSysGroupPs" ng-model="caller.insertForm.name"
+                                   kendo-auto-complete k-options="caller.riskProfileInsertOptions"  ng-disabled="caller.isView" />
+                        </div>
+                    </div>
+                    <div class="One_icon" style="margin-right: 15px;" ng-hide="caller.isView">
+                        <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('riskProfileInsert')"></i>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Nguyên nhân cốt lõi</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea class="form-control width100" name="reasonDescriptionRisk" maxlength="2000" tabindex="10" id="reasonDescriptionRisk" type="text" ng-model="caller.insertForm.reasonDescription" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Phương án ứng phó hiện tại</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Giải pháp ứng phó hiện tại</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea class="form-control width100" name="solutionHt" maxlength="2000" tabindex="10" id="solutionHt" type="text" ng-model="caller.insertForm.solutionHt" ng-disabled="caller.isView || caller.haveProfileDetail"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Nhóm giải pháp của PA ứng phó hiện tại</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="groupSolution1" style="width: 100%" name="groupSolution1" required data-required-msg="Nhóm giải pháp của PA ứng phó hiện tại không được để trống" ng-model="caller.insertForm.groupSolutionHt" ng-disabled="caller.isView || caller.haveProfileDetail">
+                            <option value="1" translate>Phân quyền và phê duyệt</option>
+                            <option value="2" translate>Giám sát</option>
+                            <option value="3" translate>Liên tục học hỏi và cải tiến</option>
+                            <option value="4" translate>Chuyển giao</option>
+                            <option value="5" translate>Phân tích và đối chiếu</option>
+                            <option value="6" translate>An ninh vật lý</option>
+                            <option value="7" translate>An toàn máy móc thiết bị</option>
+                            <option value="8" translate>Chính sách và quy định</option>
+                            <option value="9" translate>Năng lực nhân sự</option>
+                            <option value="10" translate>Hệ thống CNTT</option>
+                            <option value="11" translate>Tránh né</option>
+                            <option value="12" translate>Khác</option>
+                        </select>
+                        <span data-for="groupSolution1" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Tác động của GP ứng phó hiện tại</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="impactSolutionHt" style="width: 100%" name="impactSolutionHt" required data-required-msg="Tác động của GP ứng phó hiện tại không được để trống" ng-model="caller.insertForm.impactSolutionHt" ng-disabled="caller.isView || caller.haveProfileDetail">
+                            <option value="1" translate>Giảm mức độ ảnh hưởng</option>
+                            <option value="2" translate>Giảm khả năng xảy ra</option>
+                            <option value="3" translate>Giảm mức độ ảnh hưởng và khả năng xảy ra</option>
+                        </select>
+                        <span data-for="impactSolutionHt" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Đơn vị thực hiện PA hiện tại</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right ">
+<!--                            <i class="fa fa-search directive" ng-click="caller.selectSysGroup('htInsert')" style="cursor: pointer;" ng-if="caller.isCreateForm || caller.isUpdateForm"></i>-->
+                            <input class=" form-control width100" type="text" name="insertImplementDvHt" id="insertImplementDvHt" ng-model="caller.insertForm.implementDvHtName"
+                                   kendo-auto-complete k-options="caller.sysGroupHtInsertOptions" ng-disabled="caller.isView || caller.haveProfileDetail"/>
+                        </div>
+                    </div>
+                    <div class="One_icon" style="margin-right: 15px;" ng-show="!caller.haveProfileDetail" ng-if="caller.isCreateForm|| caller.isUpdateForm ">
+                        <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('implementDvHtInsert')"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Phương pháp ứng phó bổ sung</span>
+        </div>
+    </div>
+    <div class="col-md-12"  style="text-align: center;margin-bottom: 10px">
+        <span id="text_err" style="color:red;font-size: 14px"></span>
+    </div>
+    <div class="padding-width18 " ng-show="caller.showSolutionBs || caller.isView">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Giải pháp ứng phó bổ sung</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea class="form-control width100" name="solutionBs" maxlength="2000" tabindex="10" id="solutionBs" type="text" ng-model="caller.insertForm.solutionBs" ng-disabled="caller.isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Nhóm giải pháp của PA ứng phó bổ sung</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="groupSolution2" style="width: 100%" name="groupSolution2" required data-required-msg="Nhóm giải pháp của PA ứng phó bổ sung không được để trống" ng-model="caller.insertForm.groupSolutionBs" ng-disabled="caller.isView">
+                            <option value="1" translate>Phân quyền và phê duyệt</option>
+                            <option value="2" translate>Giám sát</option>
+                            <option value="3" translate>Liên tục học hỏi và cải tiến</option>
+                            <option value="4" translate>Chuyển giao</option>
+                            <option value="5" translate>Phân tích và đối chiếu</option>
+                            <option value="6" translate>An ninh vật lý</option>
+                            <option value="7" translate>An toàn máy móc thiết bị</option>
+                            <option value="8" translate>Chính sách và quy định</option>
+                            <option value="9" translate>Năng lực nhân sự</option>
+                            <option value="10" translate>Hệ thống CNTT</option>
+                            <option value="11" translate>Khác</option>
+                        </select>
+                        <span data-for="groupSolution2" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Tác động của GP ứng phó bổ sung</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="impactSolutionBs" style="width: 100%" name="impactSolutionBs" required data-required-msg="Tác động của GP ứng phó bổ sung không được để trống" ng-model="caller.insertForm.impactSolutionBs" ng-disabled="caller.isView">
+                            <option value="1" translate>Giảm mức độ ảnh hưởng</option>
+                            <option value="2" translate>Giảm khả năng xảy ra</option>
+                            <option value="3" translate>Giảm mức độ ảnh hưởng và khả năng xảy ra</option>
+                        </select>
+                        <span data-for="impactSolutionBs" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Đơn vị thực hiện PA bổ sung</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right ">
+                            <i class="fa fa-search directive" ng-click="caller.selectSysGroup('bsInsert')" style="cursor: pointer;" ng-if="caller.isCreateForm|| caller.isUpdateForm"></i>
+                            <input class=" form-control width100" type="text" name="insertImplementDvBs" id="insertImplementDvBs" ng-model="caller.insertForm.implementDvBsName"
+                                   kendo-auto-complete k-options="caller.sysGroupBsInsertOptions" ng-disabled="caller.isView"/>
+                        </div>
+                    </div>
+                    <div class="One_icon" style="margin-right: 15px;" ng-if="caller.isCreateForm|| caller.isUpdateForm">
+                        <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('implementDvBsInsert')"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Tài liệu tham chiếu</label>
+                    <div class="col-md-8">
+                        <input class="form-control width100" type="text" maxlength="100" tabindex="8" id="monitoringDoc" name="monitoringDoc"
+                               ng-model="caller.insertForm.monitoringDoc" required data-required-msg="Tài liệu tham chiếu không được để trống" ng-disabled="caller.isView"/>
+                        <span data-for="monitoringDoc" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Thời gian dự kiến thực hiện</label>
+                    <div class="col-md-3">
+                        <input ng-blur="focusOut()" kendo-date-picker date-time name="expectedDate"
+                               id="expectedDate"
+                               ng-model="caller.insertForm.expectedDate" class="form-control width100"
+                               k-format="'dd/MM/yyyy'"
+                               ng-change="callser.validateExpectedDate()"
+                               ng-disabled="caller.isView"
+                        />
+                        <span data-for="exReqManaCreateFromDate" class="k-invalid-msg"></span>
+                        <span style="color:red">{{caller.errMessage1}}</span>
+                    </div>
+                    <label class="col-md-2 control-label req" translate>Thời gian đánh giá</label>
+                    <div class="col-md-3 position-relative">
+                        <input ng-blur="focusOut()" kendo-date-picker date-time name="evaluationDate" id="evaluationDate"
+                               ng-model="caller.insertForm.evaluationDate" class="form-control width100"
+                               k-format="'dd/MM/yyyy'"
+                               ng-change="caller.validateEvaluationDate()"
+                               ng-disabled="caller.isView"
+                        />
+                        <span data-for="exReqManaCreateToDate" class="k-invalid-msg"></span>
+                        <span style="color:red">{{caller.errMessage}}</span>
+                    </div>
+                    <div class="One_icon" style="margin-right: 15px;"  ng-hide="caller.isView">
+                        <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('evaluationDate')"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6"></div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label" translate>Ghi chú</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea class="form-control width100" name="note123" maxlength="2000" tabindex="10" id="note123" type="text" ng-model="caller.insertForm.note" ng-disabled="caller.isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-gray" style="margin-top: 20px;" ng-show="caller.isView" >
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Nguyên nhân từ chối</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content" >
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-12" >
+                            <div class="row">
+                                <label class="col-md-1 control-label req">Lý do từ chối</label>
+                                <div class="col-md-11">
+                                    <input class="form-control width100"
+                                           ng-model="caller.insertForm.cancelReason" ng-disabled="true"
+                                           id="cancelReason">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" style="padding-top: 10px;">
+        <div class="foot light" align="right"  ng-if="caller.showButtonSaveUpdate">
+            <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel11" tabindex="11" ng-click="caller.cancel()" translate>Hủy bỏ</button>
+            <button ng-disabled="!caller.showSolutionBs" type="button" id="sav" class="btn btn-qlk margin_right10 padding-search-right saveQLK" ng-click="caller.save()" tabindex="12"
+                    translate>Ghi lại</button>
+        </div>
+        <div class="foot light" align="right" ng-if="caller.showButtonApproveDv">
+            <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelDv"
+                    ng-click="caller.cancelApproveDv()" translate>Từ chối
+            </button>
+            <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveDv"
+                    ng-click="caller.saveApproveDv()" translate>Duyệt
+            </button>
+        </div>
+        <div class="foot light" align="right" ng-if="caller.showButtonApproveKtnb">
+            <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelKtnb"
+                    ng-click="caller.cancelApproveKtnb()" translate>Từ chối
+            </button>
+            <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveKtnb"
+                    ng-click="caller.saveApproveKtnb()" translate>Duyệt
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

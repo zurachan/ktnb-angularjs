@@ -1,0 +1,99 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6" ng-if="!caller.isCreateForm">
+                            <div class="row" >
+                                <label class="col-md-4 control-label">Mã WO gốc</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.code" ng-disabled="true"
+                                           id="insertWorkAssignCode"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung khắc phục</label>
+                                <div class="col-md-8">
+                                        <textarea disabled rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.overcomeContents"
+                                                  id="insertWorkAssignDescription"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('descriptionInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>File hoàn thành công việc</span>
+                </div>
+            </div>
+            <div class="portlet-title margin-top15">
+                <div id="fileCompleteGrid" kendo-grid="caller.fileCompleteGrid"
+                     k-editable="false" k-options="caller.fileCompleteGridOptions"></div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách WO khắc phục</span>
+                </div>
+            </div>
+            <div class="wrap body-content">
+                <div class="fleftdetail col-md-8" style="height: 450px;">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <center><div class="caption-subject bold lowercase ng-scope" translate>Danh sách Wo</div></center>
+                        </div>
+                        <div id="workAssignOvercomeGrid" kendo-grid="caller.workAssignOvercomeGrid"
+                             k-editable="false" k-options="caller.workAssignOvercomeGridOptions"></div>
+                    </div>
+
+                </div>
+                <div class="frightdetail col-md-8" style="height: 450px;">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <center><div class="caption-subject bold lowercase ng-scope">Danh sách công việc</div></center>
+                        </div>
+                        <div id="workAssignDetailOvercomeGrid" kendo-grid="caller.workAssignDetailOvercomeGrid"
+                             k-editable="false" k-options="caller.workAssignDetailOvercomeGridOptions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveCreateWo()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+

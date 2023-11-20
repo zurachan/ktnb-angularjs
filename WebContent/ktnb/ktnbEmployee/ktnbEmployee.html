@@ -1,0 +1,158 @@
+<style>
+    html {
+        overflow-y: scroll; /*Fix rung màn hình*/
+    }
+    .form-group{
+        margin-top: 1em;
+    }
+</style>
+<div data-ng-controller="ktnbEmployeeController as vm" id="ktnbEmployee">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form"
+          id="incidentReportForm">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchFormKtnbEmployee" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="collapseSearchFormKtnbEmployee" class="collapse in from-search">
+                    <div class="clearfix position-relative">
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Thông tin tìm kiếm: </label>
+                                <div class="col-md-8">
+                                    <input style="background-color: #fff" translate placeholder="Tên NV, mã NV, SĐT, Email"
+                                           class=" form-control width100" type="text" name="keySearch"
+                                           id="keySearch"
+                                           ng-model="vm.searchForm.keySearch"/>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('keySearch')"></i>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Đơn vị:</label>
+                                <div class="col-md-8">
+                                        <div class="input-icon right ">
+<!--                                            <i class="fa fa-search directive" ng-click="vm.openPopupSysGroup()"></i>-->
+<!--                                            <input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId" id="sysGroupDvgId"-->
+<!--                                                    ng-model="vm.sysGroupName" kendo-auto-complete-->
+<!--                                                    k-options="vm.sysGroupDvgOptions"/>-->
+                                            <input style="background-color: #fff" class=" form-control width100"
+                                                   id="sysGroupDvgId" type="text" name="sysGroupDvgId" ng-model="vm.searchForm.sysGroupName">
+                                        </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupDvg')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Loại nhân sự:</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="status" class="form-control width100"
+                                            ng-model="vm.searchForm.type" >
+                                        <option value="1">Nhân sự ngành dọc Pháp chế</option>
+                                        <option value="3">Nhân sự ngành dọc KSNB</option>
+                                        <option value="2">Trợ lý lãnh đạo Phòng/Trung tâm TCT</option>
+                                    </select>
+                                </div>
+                            </div>
+<!--                            <div class="form-group col-md-6" ng-show="vm.searchForm.type == 1">-->
+<!--                                <label class="col-md-4 control-label" translate>Loại nhân sự:</label>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <select kendo-drop-down-list k-option-label="'&#45;&#45;Tất cả&#45;&#45;'" class="form-control width100"-->
+<!--                                            ng-model="vm.searchForm.type" >-->
+<!--                                        <option value="1">Nhân sự ngành dọc PC&KTNB</option>-->
+<!--                                        <option value="2">Trợ lý lãnh đạo Phòng/Trung tâm TCT</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-4">-->
+<!--                                    <select kendo-drop-down-list k-option-label="'&#45;&#45;Tất cả&#45;&#45;'" id="lineDepartmentType" class="form-control width100"-->
+<!--                                            ng-model="vm.searchForm.lineDepartmentType" >-->
+<!--                                        <option value="1">Pháp chế</option>-->
+<!--                                        <option value="2">Kiểm soát nội bộ</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Trạng thái: </label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="statusConfirm" class="form-control width100" ng-model="vm.searchForm.status" >
+                                        <option value="0">Hết hiệu lực</option>
+                                        <option value="1">Hiệu lực</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix form-actions margin-top">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" style="width: 125px"
+                                            ng-click="vm.doSearch()" id="doSearch"
+                                            class="btn btn-qlk padding-search-right searchlQLK " translate>Xem trước</button>
+                                    <button type="button" style="width: 125px;background-color: #10e592"
+                                            ng-click="vm.create()"
+                                            class="btn btn-qlk padding-search-right searchlQLK " translate>Thêm mới</button>
+<!--                                    <button type="button" style="width: 125px;"-->
+<!--                                            ng-click="vm.openAdd()"-->
+<!--                                            ng-if="!vm.viewPermission"-->
+<!--                                            class="btn btn-qlk padding-search-right searchlQLK " translate>Thêm mới</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount2">{{vm.countKtnbEmployee}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseSearchFormKtnbEmployeeGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseSearchFormKtnbEmployeeGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div  id="ktnbEmployeeGrid" kendo-grid="vm.ktnbEmployeeGrid" k-editable="false"  k-options="vm.ktnbEmployeeOptions" ></div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $('#ktnbEmployee')
+        .keypress(
+            function(event) {
+                $("input").change(function() {
+                    $(this).val($.trim($(this).val()));
+                });
+                document.onkeydown = keyDown;
+                function keyDown(e) {
+                    switch (e.keyCode) {
+                        case 27:
+                            $("#cancel").click();
+                            break;
+                        case 13:
+                            $("#doSearch").click();
+                            break;
+                    }
+                }
+            });
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13){
+            $("#doSearch").click();
+        }
+    })
+</script>

@@ -1,0 +1,209 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Thông tin chung</span>
+                    </div>
+                </div>
+            </div>
+            <div id="general" class="collapse in from-search" disable-all="true">
+                <div class="body-content">
+                    <div class="border-gray" style="background-color: aliceblue;">
+                        <div class="row">
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Mã đề xuất thưởng:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" id="code" ng-model="caller.detailForm.code"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Tên đề xuất:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" type="text" ng-model="caller.detailForm.name"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Tháng xét phạt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" id="punishMonth" ng-model="caller.detailForm.punishMonth"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Năm xét phạt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" id="punishYear" ng-model="caller.detailForm.punishYear"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Lĩnh vực:</label>
+                                <div class="col-md-8" >
+                                    <select class="form-control width100" ng-model="caller.detailForm.field" ng-options="a.name as a.name for a in caller.listField">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20" hidden>
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Thông tin lỗi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="WorkOrderDV" class="collapse in from-search">
+                <div class="body-content">
+                    <div id="listViolation" kendo-grid="caller.listViolation" k-options="caller.listViolationOptions">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Danh sách CBNV được thưởng</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="fileSg" class="collapse in from-search">
+                <div class="body-content">
+                    <div class="border-gray" >
+                        <div id="listSg" kendo-grid="caller.listSg"  k-options="caller.listSgOptions">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20" disable-all="true">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Thông tin duyệt chỉ huy đơn vị</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse in from-search" >
+                <div class="body-content">
+                    <div class="border-gray" style="background-color: aliceblue;">
+                        <div class="row">
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Ngày từ chối:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.rejectDate"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Ngày duyệt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.approvedDate"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Người từ chối:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.rejectByName"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Người duyệt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.approvedByName"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-bottom-10">
+                                <label class="col-md-4 control-label req" translate>Lí do đơn vị từ chối:</label>
+                                <div class="col-md-8">
+                                <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.detailForm.rejectReason"
+                                          ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20" ng-hide="caller.detailForm.statusKtnb==null">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Thông tin duyệt P.PC&KSNB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse in from-search">
+                <div class="body-content">
+                    <div class="border-gray" style="background-color: aliceblue;">
+                        <div class="row">
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Ngày từ chối:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.rejectKtnbDate"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Ngày duyệt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.approvedKtnbDate"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Người từ chối:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.rejectKtnbByName"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Người duyệt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" ng-model="caller.detailForm.approvedKtnbByName"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-bottom-10">
+                                <label class="col-md-4 control-label req" translate>Lí do P.PC&KSNB từ chối:</label>
+                                <div class="col-md-8">
+                                <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.detailForm.rejectKtnbReason"
+                                          ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button ng-show="caller.type==='approve'" class="btn btn-qlk padding-search-right addQLK" ng-click="caller.approveAward()" style="width: 100px" translate>Duyệt
+            </button>
+            <button ng-show="caller.type==='approve'" class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.reject()" style="width: 110px" translate>Từ chối
+            </button>
+            <button ng-show="caller.type==='approveKtnb'" class="btn btn-qlk padding-search-right addQLK" ng-click="caller.approveAwardKtnb()" style="width: 100px" translate>Duyệt
+            </button>
+            <button ng-show="caller.type==='approveKtnb'" class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.rejectKtnb()" style="width: 110px" translate>Từ chối
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).keyup(function (e) {
+        if (e.keyCode === 27){
+            $("#cancel").click();
+            return false;
+        }
+    })
+</script>

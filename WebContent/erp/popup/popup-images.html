@@ -1,0 +1,24 @@
+<div id="workItemRpDailyTask" class="collapse in from-search" ng-if="caller.listImage.length > 0">
+	<div class="padding-width18">
+		<div class="border-gray">
+			<div class="clearfix position-relative">
+				<div>
+					<div style="width: 500px; height: 500px; margin: auto;">
+						<img class="image-cus" ng-src="data:image/jpg;base64,{{caller.imageSelected.base64String}}">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="padding-width18">
+		<div class="border-gray">
+			<div class="clearfix position-relative">
+				<div ng-repeat="image in caller.listImage">
+					<div class="wrap-image" ng-click="caller.changeImage(image)">
+						<img class="image-cus" ng-src="data:image/jpg;base64,{{image.base64String}}">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

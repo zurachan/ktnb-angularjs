@@ -1,0 +1,532 @@
+<!-- BEGIN PAGE HEADER-->
+
+<style>
+	.green_1 {
+		background-color: green;
+	}
+
+	.yellow_1 {
+		 background-color: yellow;
+	 }
+
+	.red_1 {
+		 background-color: red;
+	 }
+	.orange_1 {
+		 background-color: #FFA500;
+	 }
+	.black_1 {
+		 background-color: #000000;
+	 }
+	td.col_rp_2 {
+		height: 110px;
+		width: 150px;
+		border: 1px solid rgb(147, 147, 147);
+	}
+	td.col_rp_1 {
+		text-align: center;
+		font-weight: bold;
+		height: 70px;
+		width: 100px;
+		border: 1px solid rgb(147, 147, 147);
+	}
+	td.col_rp_3 {
+		height: 100px;
+		width: 70px;
+		border: 1px solid rgb(147, 147, 147);
+	}
+	td.col_rp_4 {
+		border: 1px solid rgb(147, 147, 147);
+	}
+	.circleRp1 {
+		padding: 3px;
+		margin: 1.5px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		border-radius: 50% !important;
+		font-size: 12px;
+		color: #fff;
+		text-align: center;
+		background: #32CD32
+	}
+	.circleRp2 {
+		padding: 3px;
+		margin: 1.5px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		border-radius: 50% !important;
+		font-size: 12px;
+		color: #fff;
+		text-align: center;
+		background: #1E90FF
+	}
+	.circleRp3 {
+		padding: 3px;
+		margin: 1.5px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		border-radius: 50% !important;
+		font-size: 12px;
+		color: #fff;
+		text-align: center;
+		background: #8B008B
+	}
+	.circleRp{
+		padding: 4px;
+		margin: 1.5px;
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		border-radius: 50% !important;
+		font-size: 12px;
+		color: #fff;
+		text-align: center;
+	}
+	#possibility {
+		color: #fff;
+		transform: rotate(270deg);
+		-webkit-transform: rotate(270deg);
+		-ms-transform: rotate(270deg);
+		-moz-transform: rotate(270deg);
+	}
+	.span_bottom_1 {
+		position: relative;
+		top: 20px;
+	}
+	.div_bottom_2 {
+		position: relative;
+		left: 40px;
+		bottom: 30px;
+	}
+	label.legend{
+		font-size: 15px !important;
+		font-weight: bold;
+	}
+	.result{
+		font-size: 15px;
+		font-style: italic
+	}
+	.labels.maps{
+		font-size: 13px;
+		font-style: italic;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	/*.highlight {*/
+	/*	border: 0 solid;*/
+	/*	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);*/
+	/*	outline: 1px solid;*/
+	/*	outline-color: rgba(255, 255, 255, .5);*/
+	/*	outline-offset: 0px;*/
+	/*	text-shadow: none;*/
+	/*	transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);*/
+	/*}*/
+
+	.highlight:hover {
+		border: 1px solid;
+		box-shadow: inset 0 0 20px 5px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+		outline-color: #fdfdfd;
+		outline-offset: 15px;
+		text-shadow: 1px 1px 2px #427388;
+	}
+
+</style>
+
+<script type="text/x-kendo-template" id="windowPromptTemplate">
+    <div class="modal-body">
+   		<label class="control-label" traslate>#= message #</label>
+		<div class="col-md-12">
+			<textarea class="form-control" id="promptPopup_txtReason" name="promptPopup_txtReason" maxlength = "2000" rows="5"></textarea>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button id="promptPopup_btnCancel" type="button" class="btn green btn-outline padding-search" translate>Bá»� qua</button>
+		<button id="promptPopup_btnConfirm" type="button" class="btn green border-button-tree padding-search-right" translate>XÃ¡c nháº­n</button>
+	</div>
+</script>
+
+<!--&lt;!&ndash; END PAGE HEADER&ndash;&gt;-->
+<!--&lt;!&ndash; BEGIN MAIN CONTENT &ndash;&gt;-->
+<!--<style>-->
+<!--#chartdiv, #chartdiv2, #chartdiv5 {-->
+<!--	width: 100%;-->
+<!--	height: 400px;-->
+<!--}-->
+
+<!--#chartdiv4, #chartdiv3 {-->
+<!--	width: 100%;-->
+<!--	height: 400px;-->
+<!--}-->
+
+<!--#lineBorder {-->
+<!--	border: 2px dotted #f39c12;-->
+<!--}-->
+
+<!--#dashA, #dashB {-->
+<!--	font-family: time new roman;-->
+<!--	font-size: 15px;-->
+<!--	margin: 3px;-->
+<!--	background: #ecf0f1;-->
+<!--	font-weight: bold;-->
+<!--	color: #1abc9c;-->
+<!--	font-style: italic;-->
+<!--	text-align: center;-->
+<!--}-->
+
+<!--.chart-display {-->
+<!--	width: 100%;-->
+<!--	height: 400px;-->
+<!--}-->
+
+<!--.title-dash {-->
+<!--	font-family: time new roman;-->
+<!--	font-size: 15px;-->
+<!--	padding: 6px 12px;-->
+<!--	background: #ecf0f1;-->
+<!--	font-weight: bold;-->
+<!--	color: #1abc9c;-->
+<!--	font-style: italic;-->
+<!--	text-align: center;-->
+<!--}-->
+
+<!--.amcharts-chart-div a {-->
+<!--	display: none !important;-->
+<!--}-->
+
+<!--.chart-box {-->
+<!--	background: #ffffff;-->
+<!--	box-shadow: 0px 5px 10px rgba(0,0,0,0.2);-->
+<!--	margin: 15px 0;-->
+<!--}-->
+<!--</style>-->
+
+<style>
+	html {
+		overflow-y: scroll; /*Fix rung màn hình*/
+	}
+	.form-group{
+		margin-top: 1em;
+	}
+</style>
+<div data-ng-controller="DashboardController as vm" id="ktnbEmployee">
+<!--	<p class="text-brecum">{{vm.String}}</p>-->
+	<form class="form-horizontal row" role="form"
+		  id="incidentReportForm">
+		<div class="form-body">
+			<div class="portlet light bordered">
+				<div class="portlet-title background-title">
+					<div class="caption">
+						<span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+					</div>
+					<div class="text-right margin-row-title">
+						<i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+					</div>
+				</div>
+				<div id="collapseSearchForm" class="collapse in from-search">
+					<div class="clearfix position-relative">
+						<div class="clearfix">
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label " translate>Đơn vị:</label>
+								<div class="col-md-8">
+									<div class="input-icon right ">
+										<i class="fa fa-search directive" ng-click="vm.openPopupSysGroup()"></i>
+										<input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId" id="sysGroupDvgId"
+												ng-model="vm.sysGroupName" kendo-auto-complete
+												k-options="vm.sysGroupDvgOptions"/>
+									</div>
+								</div>
+								<div class="One_icon">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupDvg')"></i>
+								</div>
+							</div>
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label " translate>Theo khu vực</label>
+								<div class="col-md-8">
+									<select kendo-drop-down-list id="areaCode" class="form-control width100" ng-model="vm.searchForm.areaCode">
+										<option value="KV1">Khu vực 1</option>
+										<option value="KV2">Khu vực 2</option>
+										<option value="KV3">Khu vực 3</option>
+									</select>
+								</div>
+								<div class="One_icon">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('areaCode')"></i>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix">
+							<div class="form-group col-md-6">
+								<label class="col-md-4 control-label" translate>Lọc theo ngày tháng</label>
+								<div class="col-md-8">
+									<select kendo-drop-down-list id="" class="form-control width100" ng-model="vm.searchForm.dateSearch" >
+										<option value="1">Lọc theo ngày tháng</option>
+										<option value="2">7 ngày trước</option>
+										<option value="3">1 tháng trước</option>
+										<option value="4">3 tháng trước</option>
+									</select>
+								</div>
+								<div class="One_icon">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('dateSearch')"></i>
+								</div>
+							</div>
+
+							<div class="form-group col-md-6" style="display:flex" ng-show="vm.searchDateToDate">
+								<label style="width:33.33%;text-align:right;margin-right: 15px" translate>Từ ngày: </label>
+								<input kendo-date-picker k-format="'dd/MM/yyyy'" style="width: 25%;" class="form-control"
+									   name="dateFrom" ng-model="vm.searchForm.dateFrom"
+									   id="dateFrom"
+								/>
+								<label style="width: 11%;text-align: right;margin-right: 15px" translate>Đến ngày: </label>
+								<input kendo-date-picker k-format="'dd/MM/yyyy'" class="form-control " style="width: 25%;"
+									   name="dateFrom"
+									   ng-model="vm.searchForm.dateTo"
+									   id="dateTo"
+								/>
+								<div class="One_icon">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('dateToDate')"></i>
+								</div>
+							</div>
+						</div>
+						<div class="clearfix form-actions margin-top">
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<button type="button" style="width: 125px"
+											ng-click="vm.doSearch()"
+											class="btn btn-qlk padding-search-right searchlQLK " translate>Tìm kiếm</button>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<div class="portlet light bordered">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>Biểu đồ báo cáo SKRR: </span>&nbsp;<label class="control-label bold lowercase" id="unitCount2">{{vm.String}}</label>
+			</div>
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div id="collapseResultGrid" class="collapse in ">
+			<div class=" margin_top_button"></div>
+			<div class="clearfix row" style="display: flex;">
+				<div id="chart1" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+				<div id="chart2" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+				<div id="chart3" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+			</div>
+			<div class="clearfix row" style="display: flex;">
+				<div id="chart4" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+				<div id="chart5" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+				<div id="chart6" style="width: 33%; height: 370px;border:1px silver solid;margin:2px"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="portlet light bordered">
+		<div class="portlet-title background-title">
+			<div class="caption">
+				<span class="caption-subject bold lowercase" translate>Bản đồ nhiệt rủi ro: </span>&nbsp;<label class="control-label bold lowercase" id="unitCount3">{{vm.String}}</label>
+			</div>
+			<div class="text-right margin-row-title">
+				<i data-toggle="collapse" data-target="#collapseMapsRisk" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div id="collapseMapsRisk" class="collapse in ">
+			<div class=" margin_top_button"></div>
+			<div class="clearfix row" style="display: flex;">
+				<div id="riskMatrix" class="col-md-7">
+					<table id="table_risk_heatmap">
+						<tr>
+							<td rowspan="6" style="background: green; width: 45px !important;"><p id="possibility" style="transform: rotate(180deg);writing-mode: vertical-lr;font-size: 20px;padding-right: 10px;">KHẢ NĂNG XẢY RA</p></td>
+							<td class="col_rp_3"><p class="labels maps">5-Rất cao</p></td>
+							<td class="col_rp_2 yellow_1" data-coords="5_1"></td>
+							<td class="col_rp_2 orange_1" data-coords="5_2"></td>
+							<td class="col_rp_2 orange_1" data-coords="5_3"></td>
+							<td class="col_rp_2 red_1" data-coords="5_4"></td>
+							<td class="col_rp_2 red_1" data-coords="5_5"></td>
+						</tr>
+						<tr>
+							<td class="col_rp_3"><p class="labels maps">4-Cao</p>
+							<td class="col_rp_2 yellow_1" data-coords="4_1"></td>
+							<td class="col_rp_2 yellow_1" data-coords="4_2"></td>
+							<td class="col_rp_2 orange_1" data-coords="4_3"></td>
+							<td class="col_rp_2 orange_1" data-coords="4_4"></td>
+							<td class="col_rp_2 red_1" data-coords="4_5"></td>
+						</tr>
+						<tr>
+							<td class="col_rp_3"><p class="labels maps">3-Trung bình</p></td>
+							<td class="col_rp_2 yellow_1" data-coords="3_1"></td>
+							<td class="col_rp_2 yellow_1" data-coords="3_2"></td>
+							<td class="col_rp_2 yellow_1" data-coords="3_3"></td>
+							<td class="col_rp_2 orange_1" data-coords="3_4"></td>
+							<td class="col_rp_2 orange_1" data-coords="3_5"></td>
+						</tr>
+						<tr>
+							<td class="col_rp_3"><p class="labels maps">2-Thấp</p></td>
+							<td class="col_rp_2 green_1" data-coords="2_1"></td>
+							<td class="col_rp_2 yellow_1" data-coords="2_2"></td>
+							<td class="col_rp_2 yellow_1" data-coords="2_3"></td>
+							<td class="col_rp_2 yellow_1" data-coords="2_4"></td>
+							<td class="col_rp_2 orange_1" data-coords="2_5"></td>
+						</tr>
+						<tr>
+							<td class="col_rp_3"><p class="labels maps">1-Rất thấp</p></td>
+							<td class="col_rp_2 green_1" data-coords="1_1"></td>
+							<td class="col_rp_2 green_1" data-coords="1_2"></td>
+							<td class="col_rp_2 yellow_1" data-coords="1_3"></td>
+							<td class="col_rp_2 yellow_1" data-coords="1_4"></td>
+							<td class="col_rp_2 black_1" data-coords="1_5"></td>
+						</tr>
+						<tr>
+							<td class="col_rp_4">&nbsp;</td>
+							<td class="col_rp_1"><p class="span_bottom_1 labels maps">Rất thấp</p><div class="div_bottom_2">1</div></td>
+							<td class="col_rp_1"><p class="span_bottom_1 labels maps">Thấp</p><div class="div_bottom_2">2</div></td>
+							<td class="col_rp_1"><p class="span_bottom_1 labels maps">Trung bình</p><div class="div_bottom_2">3</div></td>
+							<td class="col_rp_1"><p class="span_bottom_1 labels maps">Cao</p><div class="div_bottom_2">4</div></td>
+							<td class="col_rp_1"><p class="span_bottom_1 labels maps">Rất cao</p><div class="div_bottom_2">5</div></td>
+						</tr>
+						<tr>
+							<td class="col_rp_4"></td>
+							<td colspan="6" style="background: green; color: #fff; text-align: center;height: 45px; vertical-align: middle; font-size: 20px">MỨC ĐỘ ẢNH HƯỞNG</td>
+						</tr>
+					</table>
+				</div>
+				<div class="map_legend col-md-5 row">
+
+					<div class="portlet light bordered col-md-12" style="height: 25%">
+						<div class="portlet-title" style="background-color: #c9c275">
+							<div class="caption" style="color: #4449e5">
+								<span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm </span>
+							</div>
+							<div class="text-right margin-row-title">
+								<i data-toggle="collapse" data-target="#collapseSearchMapsRisk" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div id="collapseSearchMapsRisk" class="collapse in ">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-label " translate>Đơn vị:</label>
+								<div class="col-md-10">
+									<div class="input-icon right ">
+										<i class="fa fa-search directive" ng-click="vm.openPopupSysGroup()"></i>
+										<input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId" id="sysGroupRiskMap"
+												ng-model="vm.searchRiskMap.sysGroupName" kendo-auto-complete
+												k-options="vm.sysGroupRiskMapOptions"/>
+									</div>
+								</div>
+								<div class="One_icon">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupRiskMap')"></i>
+								</div>
+							</div>
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-label" translate>Hiệu lực: Từ ngày </label>
+								<div class="col-md-4">
+									<input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+										   ng-model="vm.searchRiskMap.startDate" style="width: 100%;"
+										   min-year="1000"/>
+								</div>
+
+								<label class="col-md-2 control-label" translate>đến </label>
+								<div class="col-md-4 position-relative">
+									<input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+										   ng-model="vm.searchRiskMap.endDate" style="width: 100%;"
+										   min-year="1000"/>
+								</div>
+								<div class="One_icon" style="margin-right: 15px;">
+									<i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('dateSearchRisk')"></i>
+								</div>
+							</div>
+							<div class="clearfix form-actions margin-top">
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<button type="button" style="width: 125px"
+												ng-click="vm.doSearchRiskMap()"
+												class="btn btn-qlk padding-search-right searchlQLK " translate>Tìm kiếm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="portlet light bordered col-md-12" style="height:75%">
+						<div class="portlet-title" style="background-color: #c9c275">
+							<div class="caption" style="color: #4449e5">
+								<span class="caption-subject bold lowercase" translate>Kết quả tìm kiếm:</span>
+							</div>
+							<div class="text-right margin-row-title">
+								<i data-toggle="collapse" data-target="#collapseResultMapsRisk" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div id="collapseResultMapsRisk" class="collapse in ">
+							<div class="form-group col-md-12" style="border: 1px solid #a7b34d;">
+								<div class="col-md-3"><label class="legend">Chú thích:</label></div>
+								<div class="chu_thich row col-md-9">
+									<div class="col-md-4" style="padding:0 !important">
+										<span class="circleRp1">----</span>
+										<span class="result" >Rủi ro tiềm ẩn</span>
+									</div>
+									<div class="col-md-4" style="padding:0 !important">
+										<span class="circleRp2">----</span>
+										<span class="result" >Rủi ro hiện tại</span>
+									</div>
+									<div class="col-md-4" style="padding:0 !important">
+										<span class="circleRp3">----</span>
+										<span class="result" >Rủi ro mục tiêu</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md-12" style="border: 1px solid #a7b34d;">
+								<label class="col-md-4 control-label legend" translate>Tên đơn vị ảnh hưởng:</label><span class="result" ng-bind-html="vm.sysGroupNameRisk"></span>
+							</div>
+							<div class="form-group col-md-12 row" style="border: 1px solid #a7b34d;">
+								<div class="col-md-6">
+									<label class="col-md-7 control-label legend" style="padding-left: 0" translate>Khả năng xảy ra:</label><p class="col-md-5 result" id="possibilityRiskMap" style="margin:0"></p>
+								</div>
+								<div class="col-md-6" >
+									<label class="col-md-7 control-label legend" style="padding-left: 0" translate >Mức độ ảnh hưởng:</label><p class="col-md-5 result" id="influenceRiskMap"style="margin:0"></p>
+								</div>
+							</div>
+							<div class="form-group col-md-12" style="border: 1px solid #a7b34d; padding-bottom: 10px">
+								<label class="col-md-12 control-label legend " translate>Danh sách rủi ro:</label>
+								<div id="regionCodeHover" class="clearfix" style=" height:290px;width:100%;overflow: scroll;overflow-x: unset;"></div>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+	$('#reportWoDtttId')
+			.keypress(
+					function(event) {
+						$("input").change(function() {
+							$(this).val($.trim($(this).val()));
+						});
+						document.onkeydown = keyDown;
+						function keyDown(e) {
+							switch (e.keyCode) {
+								case 27:
+									$("#cancel").click();
+									break;
+								case 13:
+									if ($('.k-widget.k-window.fix-footer').css(
+											'display') !== 'block') {
+										$("#doSearch").click();
+									}
+									break;
+							}
+						}
+					});
+</script>

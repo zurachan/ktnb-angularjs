@@ -1,0 +1,170 @@
+<div data-ng-controller="awardController as vm" id="award">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form" >
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="collapseSearchForm" class="collapse in from-search">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tên/Mã đề xuất:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.keySearch"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('keySearch')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Người tạo:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="vm.openPopupSysUser()"></i>
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.createByName"
+                                               kendo-auto-complete k-options="vm.sysUserSearchOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysUserSearch')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Đơn vị đề xuất thưởng:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="vm.openPopupSysGroup()"></i>
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.sysGroupName"
+                                               kendo-auto-complete k-options="vm.sysGroupSearchOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupSearch')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Trạng thái đơn vị đề xuất duyệt:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select kendo-drop-down-list k-option-label="'---Tất cả---'" id="type" style="width: 100%"  ng-model="vm.searchForm.statusApproved">
+                                        <option value="0">Chờ duyệt</option>
+                                        <option value="1">Đã duyệt</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tháng/năm đề xuất</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input kendo-date-picker k-format="'MM/yyyy'" ng-change="vm.splitDate()" class="form-control width100 " ng-model="vm.searchForm.date" style="padding-right: 0 !important" id="monthYearSearch"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('dateSearch')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Trạng thái P.PC&KSNB duyệt:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select kendo-drop-down-list k-option-label="'---Tất cả---'" style="width: 100%"  ng-model="vm.searchForm.statusKtnb">
+                                        <option value="0">Chờ duyệt</option>
+                                        <option value="1">Đã duyệt</option>
+                                        <option value="2">Từ chối</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Trạng thái bản ghi:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select kendo-drop-down-list k-option-label="'---Tất cả---'" style="width: 100%"  ng-model="vm.searchForm.status">
+                                        <option value="1">Hiệu lực</option>
+                                        <option value="0">Hết hiệu lực</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tổng tiền thưởng: Từ </label>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control width100" ng-model="vm.searchForm.fromSanction"
+                                    />
+                                </div>
+
+                                <label class="col-md-2 control-label" translate>đến</label>
+                                <div class="col-md-3 position-relative">
+                                    <input type="number" class="form-control width100" ng-model="vm.searchForm.toSanction"
+                                    />
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="vm.clear('sanction')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Lĩnh vực:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select class="form-control" style="width: 100%" ng-model="vm.searchForm.field" ng-options="a.name as a.name for a in vm.listField">
+                                        <option value="">-- Tất cả --</option>
+                                    </select>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('field')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix form-actions margin-top">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button ng-click="vm.doSearch()" class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount">{{vm.countAward}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div id="awardGrid" kendo-grid="vm.awardGrid" k-editable="false"  k-options="vm.awardGridOptions" ></div>
+        </div>
+    </div>
+</div>

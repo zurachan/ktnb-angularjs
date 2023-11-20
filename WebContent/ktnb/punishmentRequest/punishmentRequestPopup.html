@@ -1,0 +1,116 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Thông tin chung</span>
+                    </div>
+                </div>
+            </div>
+            <div id="general" class="collapse in from-search">
+                <div class="body-content">
+                    <div class="border-gray" style="background-color: aliceblue;">
+                        <div class="row">
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Mã chế tài phạt:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" id="code" ng-model="caller.insertForm.code"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Đơn vị áp chế tài:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control width100" ng-disabled="true" type="text" id="sysGroupRequest" ng-model="caller.insertForm.sysGroupNameRequest"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Tháng/năm xét:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input readonly kendo-date-picker k-format="'MM/yyyy'" class="form-control width100 " ng-model="caller.insertForm.date" style="padding-right: 0 !important" id="monthYearSearch"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 margin-top-10">
+                                <label class="col-md-4 control-label req" translate>Cá nhân vi phạm:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="caller.openPopupSysUserInsert()"></i>
+                                        <input type="text" class="form-control width100" ng-model="caller.insertForm.sysUserNameReceive"
+                                               kendo-auto-complete k-options="caller.sysUserInsertOptions" ng-disabled="caller.type==='view'"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysUserReceiveInsert')" ng-hide="caller.type==='view'"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Danh sách nội dung vi phạm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="WorkOrderDV" class="collapse in from-search">
+                <div class="body-content">
+                    <div id="listViolation" kendo-grid="caller.listViolation" k-options="caller.listViolationOptions">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix margin-top-20" ng-hide="{{caller.insertForm.rejectDescription==null||caller.insertForm.rejectDescription==undefined}}">
+            <div class="portlet light bordered" >
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase req" translate>Lý do từ chối</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse in from-search">
+                <div class="body-content">
+                    <div class="border-gray" style="background-color: aliceblue;">
+                        <div class="row">
+                            <label class="col-md-2 control-label req" translate>Lí do từ chối:</label>
+                            <div class="col-md-8">
+                                <textarea rows="5" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.rejectDescription"
+                                          ng-disabled="true"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix form-actions margin-top" ng-hide="caller.type==='view'">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button ng-show="caller.type==='create'" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save('new')" ng-disabled="caller.disabled" style="width: 100px" translate>Lưu
+            </button>
+            <button ng-show="caller.type==='update'" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save('update')" style="width: 110px" translate>Cập nhật
+            </button>
+            <button id="cancel" class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(document).keyup(function (e) {
+        if (e.keyCode == 27){
+            $("#cancel").click();
+            return false;
+        }
+    })
+</script>

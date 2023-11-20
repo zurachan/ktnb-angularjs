@@ -1,0 +1,157 @@
+<div data-ng-controller="riskIndexController as vm" id="shareHolder">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form" >
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchForm" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="collapseSearchForm" class="collapse in from-search">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Tên rủi ro:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.riskProfileName"
+                                               id="searchRiskProfileName" />
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskProfileName')"></i>
+                                </div>
+                            </div>
+
+<!--                            <div class="form-group col-md-6">-->
+<!--                                <label class="col-md-4 control-label" translate>Mã rủi ro:</label>-->
+<!--                                <div class="col-md-8">-->
+<!--                                    <div class="input-icon right ">-->
+<!--                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.riskProfileCode"-->
+<!--                                               id="searchRiskProfileCode" />-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="One_icon">-->
+<!--                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskProfileCode')"></i>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Chủ sở hữu rủi ro</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="vm.openPopupSysGroupSearchAutocomplete()"></i>
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.riskProfileGroupName"
+                                               kendo-auto-complete k-options="vm.sysGroupSearchOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('riskProfileGroup')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Mã KRI:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input style="text-indent: 0.8em" type="text" class="form-control width100" ng-model="vm.searchForm.code"
+                                               id="searchCode" />
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('code')"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Phụ trách tính toán</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="vm.openPopupSysGroupKriAutocomplete()"></i>
+                                        <input type="text" class="form-control width100" ng-model="vm.searchForm.sysGroupName"
+                                               kendo-auto-complete k-options="vm.sysGroupKriSearchOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroup')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Hiệu lực KRI:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select kendo-drop-down-list k-option-label="'---Tất cả---'" id="status" style="width: 100%"  ng-model="vm.searchForm.status">
+                                        <option value="1">Hiệu lực</option>
+                                        <option value="0">Hết hiệu lực</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label " translate>Tần suất đo:</label>
+                                <div class="col-md-8 position-relative" >
+                                    <select kendo-drop-down-list k-option-label="'---Tất cả---'" id="frequency" style="width: 100%"  ng-model="vm.searchForm.frequency">
+                                        <option value="1">Tháng</option>
+                                        <option value="2">Quý</option>
+                                        <option value="3">Năm</option>
+                                        <option value="4">6 tháng</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label" translate>Ngày tạo: Từ ngày </label>
+                                <div class="col-md-3">
+                                    <input kendo-date-picker class="form-control width100"
+                                           name="startDate" ng-model="vm.searchForm.fromCreateDate" k-format="'dd/MM/yyyy'"
+                                           date-time />
+                                </div>
+
+                                <label class="col-md-2 control-label" translate>đến</label>
+                                <div class="col-md-3 position-relative">
+                                    <input kendo-date-picker class="form-control width100"
+                                           name="endDate" ng-model="vm.searchForm.toCreateDate" k-format="'dd/MM/yyyy'"
+                                           date-time/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix form-actions margin-top">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchTestField" ng-click="vm.doSearch()" class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase" id="unitCount">{{vm.countRiskIndex}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseResultGrid" class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseResultGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div id="riskIndexGrid" kendo-grid="vm.riskIndexGrid" k-editable="false"  k-options="vm.riskIndexGridOptions" ></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<form class="form-horizontal row padding10" role="form" name="dtttDvnAssign_assignWorkPopupId" id="dtttDvnAssign_assignWorkPopupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="clearfix">
+                        <div class="form-group col-md-6" >
+                            <div class="row" >
+                                <label class="col-md-4 control-label">Mã WO</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.assignForm.code" ng-disabled="true"
+                                           id="insertWorkAssignCode" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Cấp thực hiện</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.assignForm.levelAction" disabled
+                                            ng-options="u.id as u.name for u in caller.levelActionArray" >
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" ng-disabled="true"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignStartDate"
+                                       ng-model="caller.assignForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" ng-disabled="true"
+                                       name="insertWorkAssignEndDate" id="insertWorkAssignEndDate"
+                                       ng-model="caller.assignForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị nhận công việc</label>
+                                <div class="col-md-8">
+                                        <input type="text" class="form-control width100" ng-model="caller.assignForm.sysGroupDvnName" ng-disabled="true"
+                                               id="assignWorkSysGroup" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nhân viên trưởng ban</label>
+                                <div class="col-md-8">
+                                        <input k-options="caller.performerOptions" kendo-auto-complete type="text" class="form-control width100" ng-model="caller.assignForm.performerName"
+                                               id="assignWorkPerformer" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Chức vụ</label>
+                                <div class="col-md-8">
+                                        <input kendo-auto-complete type="text" class="form-control width100" ng-model="caller.assignForm.positionName" disabled
+                                               id="assignWorkPosition" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix padding-width18">
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <label class="col-md-2 control-label req">Nội dung công việc</label>
+                                <div class="col-md-10">
+                                    <textarea ng-disabled="true" type="text" style="padding: 13px;border-radius: 5px" class="form-control width100" ng-model="caller.assignForm.description"
+                                              id="insertWorkAssignDescription"> </textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div >
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách file đính kèm</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid" k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-if="caller.typeCreate == 'assignWork' " ng-click="caller.saveItem()" style="width: 200px" translate>Giao việc
+            </button>
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-if="caller.typeCreate == 'editAssignWork' " ng-click="caller.saveItem()" style="width: 200px" translate>Lưu
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+

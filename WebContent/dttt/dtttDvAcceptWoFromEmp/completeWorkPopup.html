@@ -1,0 +1,178 @@
+<form class="form-horizontal row padding10" role="form" name="completeWork_popupId" id="completeWork_popupId">
+    <div class="border-gray">
+        <div class="clearfix" disable-all="caller.checkViewDetail">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Mã WO</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.completeForm.code"
+                                           ng-disabled="true"
+                                           id="completeManaWoEmployCode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label ">Cấp thực hiện</label>
+                                <div class="col-md-8">
+                                    <select ng-disabled="true" class="form-control width100"
+                                            ng-model="caller.completeForm.levelAction"
+                                            ng-options="u.id as u.name for u in caller.levelActionArray">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label " translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" disabled
+                                       name="completeManaWoEmployStartDate" id="completeManaWoEmployStartDate"
+                                       ng-model="caller.completeForm.startDate" style="width: 100%;"
+                                       min-year="1000"/>
+                            </div>
+
+                            <label class="col-md-2 control-label " translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" disabled
+                                       name="completeManaWoEmployEndDate" id="completeManaWoEmployEndDate"
+                                       ng-model="caller.completeForm.closeDate" style="width: 100%;"
+                                       min-year="1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label ">Nhân viên thực hiện</label>
+                            <div class="col-md-8">
+                                <input disabled type="text"
+                                       class="form-control width100" ng-model="caller.completeForm.performerName"
+                                       id="completeManaWoEmployPerformerId">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label ">Tên công việc</label>
+                            <div class="col-md-8">
+                                <input disabled type="text"
+                                       class="form-control width100" ng-model="caller.completeForm.workName"
+                                       id="completeManaWoEmployWorkName">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label ">Người giao việc</label>
+                            <div class="col-md-8">
+                                    <input disabled type="text"
+                                              class="form-control width100"
+                                              ng-model="caller.completeForm.assignDvnByName"
+                                              id="completeManaWoEmployAssignDvnByName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label ">Nội dung chi tiết</label>
+                            <div class="col-md-8">
+                                    <textarea disabled rows="5" type="text" maxlength="500"
+                                              class="form-control width100"
+                                              ng-model="caller.completeForm.description"
+                                              id="completeManaWoEmployDescription"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label ">Nội dung hoàn thành công việc</label>
+                            <div class="col-md-8">
+                                    <textarea disabled rows="5" type="text" maxlength="500"
+                                              class="form-control width100"
+                                              ng-model="caller.completeForm.commentComplete"
+                                              id="completeManaWoEmployCommentComplete"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+<!--                    <div class="clearfix margin-top15 ">-->
+<!--                        <div class="row">-->
+<!--                            <label class="col-md-2 control-label">Lý do đơn vị từ chối xác nhận</label>-->
+<!--                            <div class="col-md-10">-->
+<!--                                <textarea class="form-control" id="rejectDvnDescription" style="padding: 13px;border-radius: 5px" disabled ng-model="caller.completeForm.rejectDvnDescription"></textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="clearfix margin-top15 ">-->
+<!--                        <div class="row">-->
+<!--                            <label class="col-md-2 control-label">Đơn vị giao từ chối đóng việc</label>-->
+<!--                            <div class="col-md-10">-->
+<!--                                <textarea class="form-control" id="rejectDvgDescription" style="padding: 13px;border-radius: 5px" disabled ng-model="caller.completeForm.rejectDvgDescription"></textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                </div>
+            </div>
+        </div>
+
+<!--        <div class="clearfix margin-top15 padding-width18">-->
+<!--                <div class="row">-->
+<!--                    <label class="col-md-2 control-label req">Nội dung hoàn thành</label>-->
+<!--                    <div class="col-md-10">-->
+<!--                        <textarea class="form-control" id="commentComplete" type="text" disabled-->
+<!--                                  style="padding: 13px;border-radius: 5px" class=" form-control width100"-->
+<!--                                  ng-model="caller.completeForm.commentComplete"></textarea>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        </div>-->
+
+        <div>
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách file hoàn thành công việc</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid"
+                         k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix form-actions margin-top">
+            <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;"
+                 ng-if="caller.typeCreate == 'completeWork' ">
+                <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveItem()"
+                        style="width: 200px" translate>Phê duyệt
+                </button>
+                <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+                </button>
+            </div>
+            <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;"
+                 ng-if="caller.typeCreate == 'detail' ">
+                <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Đóng
+                </button>
+            </div>
+        </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+

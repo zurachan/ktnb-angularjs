@@ -1,0 +1,120 @@
+/*.k-task-single{background-color:#87BCEB !important;}*/
+.k-task-complete{background: #5FA2DD 0 -257px none repeat-x !important;}
+.k-task-summary-complete{background: #34D075 !important;}
+.k-task-summary{background: #80EDC4 !important;}
+
+
+/*change icon*/
+
+.k-icon .k-i-collapse:before{
+    font-family: FontAwesome !important;
+    display: inline-block !important;
+    padding-right: 6px !important;
+    vertical-align: middle !important;
+}
+.k-icon .k-i-collapse:before{content: "\f07c" !important;}
+
+
+#gantt .k-gantt-toolbar,.k-gantt-toolbar .k-button{background: #3F51B5 !important;}
+.k-gantt > .k-header .k-link{color: #fff !important;}
+.k-gantt-toolbar > ul > li:first-child + li {border-left-width: 0px !important;}
+.k-grid-header th.k-header{vertical-align: middle}
+.k-grid tr td{border-width: 1px 0px 0px 1px !important;}
+.k-grid-content tr td{border-left-width: 1px !important;}
+
+button.k-gantt-toggle {display: none !important;float: left !important;  margin-right: .5em !important;}
+.k-gantt-toolbar>.k-gantt-views>li.k-current-view {display: none !important;}
+#gantt .k-gantt-toolbar .k-button{background-color: #3f51b5 !important;border-color: #3f51b5 !important;}
+.k-gantt-toolbar .k-button{color: #fff !important;box-shadow: none !important;}
+.k-icon{margin-top: 0px !important;}
+
+/*button*/
+.k-gantt-toolbar .k-button{color: #fff !important;}
+
+/*right*/
+/*.k-header{background-color: #3f51b5 !important;border-color: #e6e6e6 !important;font-weight: 500 !important;color: #fff !important;}*/
+#gantt .k-gantt>.k-header li{color: #fff !important;background-color: #3f51b5 !important;border-color: #3f51b5 !important;-webkit-box-shadow: none !important;box-shadow: none !important;}
+.k-gantt-toolbar>.k-gantt-views>li.k-state-selected{border-bottom-color: #fff !important;}
+.k-state-selected{background-image: none !important;}
+.k-gantt-toolbar>.k-gantt-views>li.k-state-selected a:active{text-decoration: none !important;}
+#gantt .k-gantt-toolbar li .k-link{color: #fff !important;background-color: #3f51b5 !important;border-color: #3f51b5 !important;-webkit-box-shadow: none !important;box-shadow: none !important;}
+
+/*task*/
+.k-gantt .k-task-summary-complete:after, .k-gantt .k-task-summary-complete:before, .k-gantt .k-task-summary:after, .k-gantt .k-task-summary:before{    border-width: 0 !important;}
+.k-task-summary-complete:before, .k-task-summary:before{left: 0 !important;border-left-color: inherit !important;}
+.k-task-summary-complete:after, .k-task-summary-complete:before, .k-task-summary:after, .k-task-summary:before{content: "" !important;position: absolute !important;top: 0 !important;width: 0 !important;height: 0 !important;border-style: solid !important;border-width: 8px !important;border-color: transparent !important;}
+
+/*search*/
+/*.k-widget{position: inherit !important;}*/
+.grantt-search{position: absolute;margin: 0px auto 0px 13%;top:1.5%;z-index: 9999 !important;}
+.input-grantt{background: transparent !important;color: #fff;}
+::placeholder {
+    color: #fff !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #fff !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #fff !important;
+}
+.grantt-statistic{float: right;margin-top: 7px}
+.badge{font-weight: bold !important;}
+/*cusbutton*/
+.k-gantt-actions{margin-top: 6px}
+
+/*search*/
+.view-grantt{position: relative !important}
+/*style button*/
+.k-edit-buttons .k-state-default .k-primary{color: #000 !important;background: #ccc 1px solid !important;}
+
+.k-edit-form-container .k-button{color: #000 !important;}
+
+#gantt .k-grid-content .k-auto-scrollable{height: 300px !important;}
+
+/*change icon*/
+/*.k-icon .k-i-collapse{background-image: url("iconOpen.png") !important;}*/
+.gantt-expanded-lv-1{
+    background: url('../img/grantt/gantt-expanded-lv-1.png');
+    background-repeat: no-repeat;
+
+    width: 35px;
+    height: 17px;
+}
+.gantt-close-lv-1{
+    background: url('../img/grantt/gantt-close-lv-1.png');
+    background-repeat: no-repeat;
+
+    width: 35px;
+    height: 17px;
+}
+.gantt-expaned-lv2{
+    background: url('../img/grantt/gantt-expaned-lv2.png');
+    background-repeat: no-repeat;
+
+    width: 30px;
+    height: 17px;
+}
+.gantt-close-lv2{
+    background: url('../img/grantt/gantt-close-lv2.png');
+    background-repeat: no-repeat;
+
+    width: 30px;
+    height: 17px;
+}
+.gantt-dot-lv4{
+    background: url('../img/grantt/gantt-dot-red-lv4.png');
+    background-repeat: no-repeat;
+
+    width: 14px;
+	height: 14px;
+}
+.gantt-dot-red-lv4{
+    background: url('../img/grantt/gantt-dot-lv4.png');
+    background-repeat: no-repeat;
+
+    width: 14px;
+    height: 14px;
+}

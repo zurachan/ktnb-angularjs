@@ -1,0 +1,41 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="clearfix margin-top-20">
+                <div id="reasonReject" class="collapse in from-search">
+                    <div class="body-content">
+                        <div class="border-gray" style="background-color: aliceblue;">
+                            <div class="row">
+                                <div class="form-group col-md-12 margin-top-10">
+                                    <label class="col-md-3 control-label req" translate>Lý do từ chối:</label>
+                                    <div class="col-md-8">
+                                    <textarea rows="2" type="text" maxlength="5000"
+                                              class="form-control width100" ng-model="caller.insertForm.rejectDescription"
+                                              translate
+                                              id="reasonReject_text"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.rejectRequest()" translate>Từ chối
+            </button>
+            <button id="cancel" class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).keyup(function (e) {
+        if (e.keyCode == 27){
+            $("#cancel").click();
+            return false;
+        }
+    })
+</script>

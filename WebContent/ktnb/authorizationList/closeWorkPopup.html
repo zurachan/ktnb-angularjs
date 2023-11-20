@@ -1,0 +1,301 @@
+<form class="form-horizontal row padding10" role="form" name="authorizationList_add_popupId"
+      id="authorizationList_add_popupId">
+    <div class="portlet-title ">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+        </div>
+    </div>
+    <div class="border-gray">
+        <div class="clearfix">
+<!--            <div class="col-md-6">-->
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req">Kiểu tạo</label>
+                        <div class="col-md-8">
+                            <select kendo-drop-down-list k-option-label="'--Chọn--'" class="form-control width100" disabled
+                                    k-data-source="caller.typeCreateArray" ng-model="caller.closeForm.typeCreate"
+                                    k-data-text-field="'name'" k-data-value-field="'id'"
+                            >
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req" translate>Ngày có hiệu lực: Từ</label>
+                        <div class="col-md-3">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" disabled
+                                   name="authorization_startDate_closeForm" id="authorization_startDate_closeForm"
+                                   ng-model="caller.closeForm.startDate" style="width: 100%;"
+                                   min-year="1000" ng-change="caller.checkValidateStartDate()"/>
+                        </div>
+
+                        <label class="col-md-2 control-label req" translate>đến </label>
+                        <div class="col-md-3 position-relative">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'" disabled
+                                   name="authorization_closeDate_closeForm" id="authorization_closeDate_closeForm"
+                                   ng-model="caller.closeForm.closeDate" style="width: 100%;"
+                                   min-year="1000" ng-change="caller.checkValidateEndDate()"/>
+                        </div>
+                        <div class="One_icon">
+                            <i class="fa fa-times" aria-hidden="true"
+                               ng-click="vm.clearDate()"></i>
+                        </div>
+                    </div>
+                </div>
+            <div class="clearfix">
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req">Loại giấy ủy quyền</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list k-option-label="'--Chọn--'" class="form-control width100" disabled
+                                k-data-source="caller.paperAuthTypeArray" ng-model="caller.closeForm.paperAuthType"
+                                k-data-text-field="'name'" k-data-value-field="'id'"
+                        >
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req">Trình ký</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list k-option-label="'--Chọn--'" class="form-control width100" disabled
+                                k-data-source="caller.signTypeArray" ng-model="caller.closeForm.signType"
+                                k-data-text-field="'name'" k-data-value-field="'id'"
+                        >
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6" ng-if="caller.closeForm.typeCreate == 2 ">
+                    <label class="col-md-4 control-label req">Mã ủy quyền thay thế</label>
+                    <div class="col-md-8">
+                        <input class="form-control width100" kendo-auto-complete disabled
+                               k-options="caller.codeAuthReplaceOptions" ng-model="caller.closeForm.oldCode"
+                        >
+
+                    </div>
+                </div>
+            </div>
+<!--            </div>-->
+        </div>
+        <div class="clearfix">
+            <div class="col-md-6">
+                <div class="portlet-title margin-top">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Giấy ủy quyền</span>
+                    </div>
+                </div>
+                <div class="clearfix border-gray" >
+                    <div class="form-group col-md-12">
+                        <label for="authorization_paperAuthNo_closeForm" class="col-md-4 control-label req">Số</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control width100" ng-model="caller.closeForm.paperAuthNo" disabled
+                                       id="authorization_paperAuthNo_closeForm">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_dateRelease_closeForm" class="col-md-4 control-label req">Ngày ban hành</label>
+                        <div class="col-md-8">
+                            <input date-time type="text" class="form-control width100" disabled
+                                   ng-model="caller.closeForm.dateRelease"
+                                   id="authorization_dateRelease_closeForm"
+                                   k-format="'dd/MM/yyyy'" min-year="1000"
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_description_closeForm" class="col-md-4 control-label req">Tóm tắt nội dung</label>
+                        <div class="col-md-8">
+                                <textarea type="text" style="height: 95px;" class="form-control width100" ng-model="caller.closeForm.description" disabled
+                                          id="authorization_description_closeForm"></textarea>
+
+                        </div>
+                    </div>
+<!--                </div>-->
+            </div>
+                <div class="form-group col-md-12 margin-top-15">
+                    <label class="col-md-4 control-label ">Ghi chú</label>
+                    <div class="col-md-8">
+                                <textarea type="text" style="height: 95px;" class="form-control width100" ng-model="caller.closeForm.note" disabled
+                                          id="authorization_note_closeForm"></textarea>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix col-md-6 " >
+                <div class="portlet-title margin-top">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Người ủy quyền</span>
+                    </div>
+                </div>
+                <div class="clearfix border-gray">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req">Họ và tên</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control width100" ng-model="caller.closeForm.sysUserName" disabled
+                                       kendo-auto-complete k-options="caller.sysUserAddOptions"
+                                       id="authorization_sysUserName_closeForm">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_positionName_closeForm" class="col-md-4 control-label req">Chức danh</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control width100" ng-model="caller.closeForm.positionName" disabled
+                                       id="authorization_positionName_closeForm">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req">Đơn vị
+                            thuộc</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input type="text" class="form-control width100" ng-model="caller.closeForm.sysGroupName" disabled
+                                       id="authorization_sysGroupName_closeForm">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label class="col-md-4 control-label req">Loại chứng thực cá nhân</label>
+                        <div class="col-md-8">
+                            <select kendo-drop-down-list k-option-label="'--Chọn--'" class="form-control width100" disabled
+                                    k-data-source="caller.identificationTypeArray" ng-model="caller.closeForm.identificationType"
+                                    k-data-text-field="'name'" k-data-value-field="'parOrder'"
+                            >
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_identificationNo_closeForm" class="col-md-4 control-label req">Số chứng thực cá nhân</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control width100" disabled
+                                       ng-model="caller.closeForm.identificationNo"
+                                       id="authorization_identificationNo_closeForm">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_issueDate_closeForm" class="col-md-4 control-label req">Ngày cấp</label>
+                        <div class="col-md-8">
+                                <input date-time type="text" class="form-control width100" disabled
+                                       ng-model="caller.closeForm.issueDate"
+                                       id="authorization_issueDate_closeForm"
+                                       k-format="'dd/MM/yyyy'" min-year="1000"
+                                >
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="authorization_issuePlace_closeForm" class="col-md-4 control-label req">Nơi cấp</label>
+                        <div class="col-md-8">
+                                <input type="text" class="form-control width100" ng-model="caller.closeForm.issuePlace" disabled
+                                       id="authorization_issuePlace_closeForm">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách cá nhân được ủy quyền</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="uqPeopleListGrid" kendo-grid="caller.uqPeopleListGrid"
+                         k-options="caller.uqPeopleListGridOptions"></div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>File đính kèm</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid" k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Nội dung báo cáo</span>
+                </div>
+            </div>
+
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <label class="col-md-2 control-label ">Thông tin nội dung</label>
+                        <div class="col-md-10">
+                             <textarea style="padding: 13px;border-radius: 5px" disabled
+                                       class=" form-control width100" type="text"
+                                       ng-model="caller.closeForm.contentReports"
+                             ></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix margin-top15 padding-width18">
+            <div class="row">
+                <label class="col-md-2 control-label ">Lý do từ chối</label>
+                <div class="col-md-10">
+                       <textarea style="padding: 13px;border-radius: 5px" disabled
+                                 class=" form-control width100" type="text"
+                                 ng-model="caller.closeForm.rejectDescription"
+                       ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveItem()" translate>Xác nhận
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.openRejectCloseWork()" translate>Từ chối
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input[type=text]").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+<div class="" style="padding: 16px;">
+    <div>Lí do từ chối</div>
+    <textarea maxlength="500" data-required-msg="Lí do từ chối không được để trống" class="col-md-12" rows="5"  ng-required style="resize: none;outline: none;" ng-model="caller.rejectReason">
+    </textarea>
+</div>
+<div class="clearfix form-actions margin-top">
+    <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+        <button id="sav" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.reject()" translate>
+            Lưu
+        </button>
+        <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+        </button>
+    </div>
+</div>

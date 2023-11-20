@@ -1,0 +1,172 @@
+<style>
+    .flex {display: flex;}
+    .justify-center {justify-content: center;}
+</style>
+<div data-ng-controller="assignmentManagementController as vm" id="assignmentManagementController">
+    <p class="text-brecum">{{vm.string}}</p>
+    <form class="form-horizontal row" role="form">
+        <div class="form-body">
+            <div class="portlet light bordered ">
+
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#timkiem" class="fa fa-chevron-circle-up"
+                            aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="timkiem" class="collapse in from-search">
+
+                    <div class="flex justify-center form-group col-md-12">
+                        <label class="col-md-2 control-label " translate>Đơn vị:</label>
+                        <div class="col-md-8">
+                            <input style="background-color: #fff" class=" form-control width100" type="text"
+                                name="sysGroupDvgId" id="sysGroupDvgId" ng-model="vm.searchForm.woEmployeeGroupName" kendo-auto-complete
+                                k-options="vm.sysGroupDvgOptions" />
+                        </div>
+                        <div class="col-1" style="margin-right: -15px;">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="vm.searchForm.woEmployeeGroupId = null;vm.searchForm.woEmployeeGroupName = null"
+                                style="font: normal normal normal 16px/1 FontAwesome;"></i>
+                        </div>
+                    </div>
+
+
+                    <div class="flex justify-center form-group col-md-12">
+                        <label class="col-md-2 control-label" translate>Thông tin tìm kiếm</label>
+                        <div class="col-md-3">
+                            <div class="input-icon right ">
+                                <input type="text" class="form-control width100" ng-model="vm.searchForm.keySearch"
+                                    style="padding: 0 8px!important;" placeholder="Nhập thông tin tìm kiếm (mã WO, nội dung WO)" />
+                            </div>
+                            <div class="One_icon col-1" style="margin-right: -15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.searchForm.keySearch = null"></i>
+                            </div>
+                        </div>
+
+
+                        <label class="col-md-2 control-label text-right" translate>Người tạo</label>
+                        <div class="col-md-3">
+                            <div class="input-icon right col-md-12" style="padding:0">
+                                <input class=" form-control width100" type="text" name="createBy" id="createBy"
+                                    ng-model="vm.searchForm.creatorName" kendo-auto-complete
+                                    k-options="vm.createBySearchOptions" />
+                            </div>
+                            <div class="One_icon col-1" style="margin-right: -15px;">
+                                <i class="fa fa-times" aria-hidden="true"
+                                    ng-click="vm.searchForm.creatorName = null; vm.searchForm.createBy = null"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="flex justify-center form-group col-md-12">
+                        <label class="col-md-2 control-label" translate>Trạng thái WO</label>
+                        <div class="col-md-3">
+                            <select k-data-source="vm.listTrangThaiWO" k-data-text-field="'name'"
+                                k-data-value-field="'value'" kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                class="form-control width100" ng-model="vm.searchForm.woStatus">
+                            </select>
+
+                        </div>
+
+
+                        <label class="col-md-2 control-label text-right" translate>Tình trạng WO</label>
+                        <div class="col-md-3">
+                            <select k-data-source="vm.listTinhTrangWO" k-data-text-field="'name'"
+                                k-data-value-field="'value'" kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                class="form-control width100" ng-model="vm.searchForm.woDateStatus">
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="flex justify-center form-group col-md-12">
+                        <label class="col-md-2 control-label" translate>Ngày giao việc: Từ ngày </label>
+                        <div class="col-md-3">
+                            <input kendo-date-picker k-format="'dd/MM/yyyy'" name="dateFrom" id="dateFromReport1"
+                                ng-model="vm.searchForm.startDate" style="width: 100%;" min-year="1000" date-time />
+                            <div class="One_icon col-1" style="margin-right: -15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.searchForm.startDate = null"></i>
+                            </div>
+                        </div>
+
+                        <label class="col-md-2 control-label text-right" translate>Đến ngày </label>
+                        <div class="col-md-3 position-relative">
+                            <input kendo-date-picker k-format="'dd/MM/yyyy'" name="dateEnd" id="dateEndReport1"
+                                ng-model="vm.searchForm.endDate" style="width: 100%;" min-year="1000" date-time />
+                            <div class="One_icon col-1" style="margin-right: -15px;">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.searchForm.endDate = null"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="flex justify-center form-group col-md-12">
+                        <label class="col-md-2 control-label" translate>Tình trạng duyệt đóng WO của P.TCLĐ</label>
+                        <div class="col-md-3">
+                            <select k-data-source="vm.listTinhTrangDuyetDongWO" k-data-text-field="'name'"
+                                k-data-value-field="'value'" kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                class="form-control width100" ng-model="vm.searchForm.woVerifyStatus">
+                            </select>
+
+                        </div>
+                        <label class="col-md-2 control-label" translate>Loại WO</label>
+                        <div class="col-md-3">
+                            <select k-data-source="vm.listLoaiWO" k-data-text-field="'name'"
+                                k-data-value-field="'value'" kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                class="form-control width100" ng-model="vm.searchForm.woType">
+                                <option value="GIAOVIEC">Giao việc ngành dọc P.TCLĐ</option>
+                                <option value="CAPNHAT">Cập nhật thông tin CBNV mới</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix form-actions margin-top">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchRiskProfile" ng-click="vm.doSearch()" class="btn btn-qlk padding-search-right searchQLK" translate>
+                                    Tìm kiếm
+                                </button>
+
+                                <button id="doSearchRiskProfile" ng-click="vm.exportFile()" class="btn btn-qlk padding-search-right excelQLK" style="width: 100px;" translate>
+                                    Xuất excel
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+                <span class="caption-subject bold lowercase" translate>Kết quả tìm kiếm: </span>&nbsp;<label
+                    class="control-label bold lowercase">{{vm.count || 0}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#reportAssignGrid" class="fa fa-chevron-circle-up"
+                    aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="reportAssignGrid" class="collapse in ">
+            <div class=" margin_top_button"></div>
+            <div id="assignmentManagementList" kendo-grid="vm.reportAssignmentWOGrid" k-editable="false"
+                k-options="vm.reportAssignmentWOGridOptions"
+                k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+        </div>
+    </div>
+</div>

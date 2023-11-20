@@ -1,0 +1,723 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+
+        <!--Thông tin chung-->
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6" ng-if="!caller.isCreateForm">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Mã WO:</label>
+                                <div class="col-md-8">
+                                    <input disabled type="text" class="form-control width100"
+                                           ng-model="caller.assignForm.code" ng-disabled="true"
+                                           id="insertWorkAssignCode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Loại WO</label>
+                                <div class="col-md-8">
+                                    <select disabled class="form-control width100" ng-model="caller.assignForm.typeWo"
+                                            ng-options="u.id as u.name for u in caller.typeWoArray">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input disabled kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignStartDate"
+                                       ng-model="caller.assignForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input disabled kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignEndDate" id="insertWorkAssignEndDate"
+                                       ng-model="caller.assignForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị thực hiện</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <input disabled type="text" class="form-control width100"
+                                               ng-model="caller.assignForm.sysGroupLv2Name"
+                                               id="insertWorkAssignSysGroup" kendo-auto-complete
+                                               k-options="caller.sysGroupOptions"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung công việc</label>
+                                <div class="col-md-8">
+                                        <textarea disabled rows="5" type="text" maxlength="500"
+                                                  class="form-control width100" ng-model="caller.assignForm.description"
+                                                  id="insertWorkAssignDescription"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="caller.assignForm.typeWo == 2">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Số văn bản</label>
+                                <div class="col-md-8">
+                                    <input disabled type="text" class="form-control width100"
+                                           ng-model="caller.assignForm.nameDocument"
+                                           id="insertWorkAssignNameDocument"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Người ký</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="caller.openPopupSignedBy()"></i>
+                                        <input disabled type="text" class="form-control width100"
+                                               ng-model="caller.assignForm.signedByName"
+                                               id="insertWorkAssignSignedBy" kendo-auto-complete
+                                               k-options="caller.signedByOptions"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="caller.assignForm.typeWo == 2">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Ngày ban hành</label>
+                            <div class="col-md-8">
+                                <input disabled kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignDateIssued"
+                                       ng-model="caller.assignForm.dateIssued" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateDateIssued()"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req">Chức vụ</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <i class="fa fa-search directive" ng-click="caller.openPopupPosition()"></i>
+                                    <input disabled type="text" class="form-control width100"
+                                           ng-model="caller.assignForm.positionName"
+                                           id="insertWorkAssignPosition" kendo-auto-complete
+                                           k-options="caller.positionOptions"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="caller.assignForm.typeWo == 2">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req">Nhóm lỗi</label>
+                            <div class="col-md-8">
+                                <select disabled class="form-control" ng-model="caller.assignForm.errorGroup"
+                                        ng-options="u.code as u.name for u in caller.listErrorGroup">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req">Nội dung văn bản</label>
+                            <div class="col-md-8">
+                                    <textarea disabled rows="3" type="text" maxlength="500"
+                                              class="form-control width100" ng-model="caller.assignForm.textContent"
+                                              id="insertWorkAssignTextContent"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Thông tin phê duyệt-->
+        <div class="clearfix" ng-if="caller.typeCreate == 'detail'" disable-all="true">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin phê duyệt</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row form-group">
+                        <label class="col-md-4 control-label">Lý do PC & KTNB từ chối đóng việc:</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" id="rejectKtnbDescription" style="height: 95px;"
+                                      ng-model="caller.assignForm.rejectKtnbDescription"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-4 control-label">Đánh giá công việc của phòng PC & KTNB</label>
+                        <div class="col-md-8">
+                             <textarea class="form-control" id="commentKtnb" style="height: 95px;"
+                                       ng-model="caller.assignForm.commentKtnb"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-4 control-label">Đánh giá công việc của chỉ huy đơn vị</label>
+                        <div class="col-md-8">
+                             <textarea class="form-control" id="commentDv" style="height: 95px;"
+                                       ng-model="caller.assignForm.commentDv"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Danh sách file đính kèm-->
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Danh sách file đính kèm</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div disabled id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid"
+                         k-options="caller.gridFileOptions"
+                         k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--Danh sách công việc-->
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption ">
+                    <span class="caption-subject bold lowercase" translate>Danh sách công việc</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div disabled id="listDvWorkAssignDetailGrid" kendo-grid="caller.listDvWorkAssignDetailGrid"
+                         k-options="caller.listDvWorkAssignDetailGridOptions"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--Thông tin chi tiết-->
+        <div class="clearfix" ng-if="caller.newTypeWo">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chi tiết</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row form-group" style="display: flex; justify-content: center;">
+                        <div class="col-md-6">
+                            <label class="col-md-4 control-label req">Mục đích công tác:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" ng-model="caller.assignForm.typeInspectionInformation"
+                                        ng-options="u.code as u.name for u in caller.listType"
+                                        ng-disabled="{{caller.checkViewDetail||caller.typeCreate === 'detail'}}">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group" style="display: flex; justify-content: center;"
+                         ng-if="caller.assignForm.typeInspectionInformation == 2">
+                        <div class="col-md-6 col-xs-6">
+                            <label class="col-md-4 col-xs-4 control-label req">Nội dung:</label>
+                            <div class="col-md-8 col-xs-8">
+                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                    {{caller.assignForm.inspectionInformationDTOs[0].content}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="caller.assignForm.typeInspectionInformation == 1">
+                        <div ng-repeat="item in caller.assignForm.inspectionInformationDTOs">
+                            <div style="margin: 1%">
+                                Trang
+                                {{caller.assignForm.inspectionInformationDTOs.indexOf(item) + 1}}/{{caller.assignForm.inspectionInformationDTOs.length}}
+
+                                <div id="detail_{{item.inspectionInformationId}}" style="border: 1px solid #cccccc;"
+                                     ng-if="caller.typeCreate == 'detail'">
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-lg-12 col-12">
+                                            <div class="col-md-12">
+                                                <span style="text-transform: uppercase">tổng công ty cp công trình viettel</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span style="text-transform: uppercase">phòng pháp chế và kiểm soát nội bộ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12 col-lg-12 col-xs-12"
+                                             style="display: flex; justify-content: center;">
+                                            <h4 style="text-transform: uppercase;font-weight: bold;">
+                                                thêm mới thông tin kiểm tra
+                                            </h4>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xs-12">
+                                            <div class="col-md-12 col-lg-12 col-xs-12">
+                                                <div style="border: 1px solid #cccccc; background-color: #f1fddf; padding: 5px 0; margin-bottom: 12px">
+                                                    <span style="font-weight: bold;">Thêm mới thông tin kế hoạch kiểm tra</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xs-12">
+                                            <div class="col-md-12 col-lg-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Tài liệu đính kèm
+                                                            </label>
+                                                            <div class="col-md-8 col-xs-8 ">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.attachFileInspectionPlan.name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Số hiệu kế hoạch kiểm tra
+                                                            </label>
+                                                            <div class="col-md-8 col-xs-8 ">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.testPlanNumber}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Ngày ban
+                                                                hành</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.dateIssued}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Người ký kế hoạch</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.planSignerName}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Chức
+                                                                danh</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.positionName}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Đơn vị
+                                                                kiểm
+                                                                tra</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.unitTestName}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Đơn vị được kiểm tra
+                                                            </label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                <span ng-repeat="unit in item.inspectionUnits.split(',')">
+                                                                      {{unit}}<br>
+                                                                </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Văn bản
+                                                                được
+                                                                kiểm
+                                                                tra</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.inspectionDocument}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Nội dung
+                                                                kiểm
+                                                                tra</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.inspectionContent}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 col-xs-2 control-label req"
+                                                                           translate>
+                                                                        Thời gian kiểm tra: Từ ngày
+                                                                    </label>
+                                                                    <div class="col-md-3 col-xs-4">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{item.startInspectionDate}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <label class="col-md-2 col-xs-2 control-label req"
+                                                                           translate>đến </label>
+                                                                    <div class="col-md-3 col-xs-4">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{item.endInspectionDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 col-xs-2 control-label req"
+                                                                           translate>
+                                                                        Giai đoạn kiểm tra: Từ ngày
+                                                                    </label>
+                                                                    <div class="col-md-3 col-xs-4">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{item.startInspectionPhase}}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <label class="col-md-2 col-xs-2 control-label"
+                                                                           translate>đến </label>
+                                                                    <div class="col-md-3 col-xs-4">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{item.endInspectionPhase}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xs-12">
+                                            <div class="col-md-12 col-lg-12 col-xs-12">
+                                                <div style="border: 1px solid #cccccc; background-color: #f1fddf; padding: 5px 0; margin-bottom: 12px">
+                                                    <span style="font-weight: bold;">Thêm mới thông tin hoàn thành kiểm tra</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 col-lg-12 col-xs-12">
+                                            <div class="col-md-12 col-lg-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <!--Tài liệu đính kèm báo cáo-->
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Tài liệu đính kèm
+                                                            </label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.attachFileCompleteInspection.name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Số hiệu báo cáo-->
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">
+                                                                Số hiệu báo cáo
+                                                            </label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.reportNumber}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Ngày ban hành-->
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Ngày ban
+                                                                hành</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.completedIssuanceDate}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Người ký báo cáo-->
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Người ký
+                                                                báo
+                                                                cáo</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.reportSignerName}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Chức danh người ký-->
+                                                    <div class="col-md-6 col-xs-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 col-xs-4 control-label req">Chức
+                                                                danh</label>
+                                                            <div class="col-md-8 col-xs-8">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{item.reportSignerPositionName}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-4 col-xs-4 control-label"
+                                                                           style="font-weight: bold">
+                                                                        Vấn đề phát hiện
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--Đơn vị được kiểm tra-->
+                                                    <div class="col-md-12 col-xs-12"
+                                                         ng-repeat="child in item.problemDiscoveredDTOList">
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-2 col-xs-2 control-label req">
+                                                                Đơn vị được kiểm tra
+                                                            </label>
+                                                            <div class="col-md-2 col-xs-10">
+                                                                <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                    {{child.groupName}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8 col-xs-12"
+                                                                 style="float: right"
+                                                                 ng-repeat="grandChild in child.problemDiscoveredDetailDTOList">
+                                                                <div class="row-default">
+
+                                                                    <!--Vấn đề cấp 1-->
+                                                                    <div class="col-md-4 col-xs-6">
+                                                                        <div class="row-default">
+                                                                            <label class="col-md-5 col-xs-4 control-label req">
+                                                                                Vấn đề cấp 1
+                                                                            </label>
+                                                                            <div class="col-md-7 col-xs-8">
+                                                                                <select class="form-control width100"
+                                                                                        ng-model="grandChild.levelOneProblem"
+                                                                                        ng-disabled="true"
+                                                                                        ng-options="u.id as u.name for u in caller.typeLevelOneProblem">
+                                                                                    <option value="" hidden disabled
+                                                                                            selected>
+                                                                                        --Chọn--
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!--Vấn đề chi tiết-->
+                                                                    <div class="col-md-8 col-xs-6">
+                                                                        <div ng-if="grandChild.levelOneProblem != 1 && grandChild.levelOneProblem">
+                                                                            <div class="row-default">
+                                                                                <label class="col-md-3 col-xs-4 control-label req">
+                                                                                    Vấn đề chi tiết
+                                                                                </label>
+                                                                                <div class="col-md-9 col-xs-8">
+                                                                                    <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px; overflow-wrap: anywhere ">
+                                                                                        {{grandChild.issueOfDetails}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-xs-2 control-label">
+                                                                        Lãnh đạo PPC & KTNB duyệt
+                                                                    </label>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.approveKtnbDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.approveKtnbByName}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-xs-2 control-label">
+                                                                        Cá nhân nhận WO
+                                                                    </label>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.listWorkAssignDetail[0].approveNvDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.listWorkAssignDetail[0].performerName}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-xs-2 control-label">
+                                                                        PPC&KSNB XN hoàn thành
+                                                                    </label>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.verifyKtnbDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.verifyKtnbByName}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <label class="col-md-2 col-xs-2 control-label">
+                                                                        PPC&KSNB XN từ chối
+                                                                    </label>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.rejectKtnbDate}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 col-xs-2">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.rejectKtnbByName}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-2 col-xs-2 control-label">
+                                                                        Lý do từ chối WO
+                                                                    </label>
+                                                                    <div class="col-md-10 col-xs-10">
+                                                                        <div style="border: 1px solid #cccccc; background-color: #eef1f5; padding: 5px 12px; min-height: 25px">
+                                                                            {{caller.assignForm.rejectKtnbDescription}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="display: flex; justify-content: center;"
+                                 ng-if="caller.assignForm.statusKtnbVerify == 1">
+                                <button class="btn btn-info" ng-click="caller.onPrint(item.inspectionInformationId)"
+                                        style="border-radius: 8px">
+                                    In thông tin kiểm tra
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Đóng
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+

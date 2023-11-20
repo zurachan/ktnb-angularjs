@@ -1,0 +1,84 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+         version="2.5">
+    
+    <display-name>Quản lý hoàn công</display-name>
+	<description>Quản lý hoàn công điện tử</description>
+	
+<!-- 	<filter> 
+        <filter-name>VSA Filter</filter-name>
+        <filter-class>com.viettel.web.filter.UserInfoFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>VSA Filter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>VSA Filter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>VSA Filter</filter-name>
+        <url-pattern>*.json</url-pattern>
+    </filter-mapping> -->
+ <!--    
+    <servlet>
+    	<servlet-name>userInfo</servlet-name>
+    	<servlet-class>com.viettel.web.servlet.UserInfoServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+    	<servlet-name>logout</servlet-name>
+    	<servlet-class>com.viettel.web.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+    	<servlet-name>userInfo</servlet-name>
+    	<url-pattern>/user-info</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+    	<servlet-name>logout</servlet-name>
+    	<url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    
+    <error-page>
+	  <exception-type>java.lang.Exception</exception-type>
+	  <location>/error.jsp</location>
+	 </error-page> -->
+	
+	<welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+  <error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	   <!-- <error-page>
+		<error-code>500</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	 <error-page>
+		<error-code>400</error-code>
+		<location>/error.jsp</location>
+	</error-page> -->
+	<security-constraint>
+	    <web-resource-collection>
+	        <web-resource-name>Disable unneeded HTTP methods by 403 Forbidden them</web-resource-name>
+	        <url-pattern>/*</url-pattern>
+	       
+	        
+	        <http-method-omission>GET</http-method-omission>
+	        <http-method-omission>HEAD</http-method-omission>
+	        <http-method-omission>POST</http-method-omission>
+	        <http-method-omission>DELETE</http-method-omission> 
+	    </web-resource-collection>
+	    <auth-constraint />
+	</security-constraint>
+</web-app>

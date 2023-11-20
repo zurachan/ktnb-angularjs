@@ -1,0 +1,412 @@
+<style>
+    .flex {
+        display: flex
+    }
+    .pb-2 {
+        padding-bottom: 8px
+    }
+    .ml-0 {
+        margin-left: 0 !important;
+    }
+    .p-4 {
+        padding: 1rem;
+    }
+    .justify-end {
+        justify-content: flex-end;
+    }
+    .items-center {
+        align-items: center;
+    }
+    .pr-30 {
+        padding-right: 30px;
+    }
+    .bg-gray {
+        background: #f5f5f5;
+    }
+    .width100 {
+        width: 100%;
+    }
+    .width50 {
+        width: 50%;
+    }
+    .p-0 {
+        padding: 0;
+    }
+    .pb-4 {
+        padding-bottom: 16px;
+    }
+</style>
+<form class="form-horizontal row padding10" role="form" name="taskManage_callerId" id="taskManage_callerId">
+    <div class="border-gray">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet light bordered">
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Mã WO</label>
+                        <div class="col-md-8">
+                            <input class="form-control width100 " type="text" disabled
+                                   id="woCode" name="woCode"
+                                   ng-model="caller.formGetWork.woCode"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Người giao WO</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class="form-control width100 " type="text" disabled
+                                       id="creatorName" name="creatorName"
+                                       ng-model="caller.formGetWork.creatorName"
+                                       placeholder="Nhập tên người giao"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Ngày giao việc</label>
+                        <div class="col-md-8" style="display: flex; align-items: center; min-width: 56px;">
+                            <span style="width: 64px;" translate>Từ ngày: </span>
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                   name="startDate" id="startDate" disabled
+                                   ng-model="caller.formGetWork.startDate" style="width: 100%; background-color: #eef1f5 !important; color: black; opacity: 1;"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Đến ngày:</label>
+                        <div class="col-md-8">
+                            <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                   name="endDate" id="endDate" disabled
+                                   ng-model="caller.formGetWork.endDate" style="width: 100%; background-color: #eef1f5 !important; color: black; opacity: 1;"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Nhân viên thực hiện</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class=" form-control width100" type="text" name="woEmployeeName"
+                                       id="woEmployeeName" ng-model="caller.formGetWork.woEmployeeName" disabled
+                                       kendo-auto-complete k-options="caller.sysGroupPsInsertOptions"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label" translate>Đơn vị</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input class=" form-control width100" type="text" name="woEmployeeGroupName"
+                                       id="woEmployeeGroupName" ng-model="caller.formGetWork.woEmployeeGroupName"
+                                       disabled kendo-auto-complete k-options="caller.sysGroupPhInsertOptions"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label" style="padding-right: 2rem;">Nội dung công vệc</label>
+                        <div class="col-md-10" style="width: 80.8%; padding-left: 1rem;">
+                            <textarea rows="5" type="text" maxlength="500" class="form-control width100"
+                                      ng-model="caller.formGetWork.woName" disabled id="woName"> </textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div ng-if="caller.isViewPopUp === 1">
+                <div class="portlet-title margin-top15">
+                    <div class="caption">
+                        <span class=" bold lowercase" translate>Thông tin chi tiết</span>
+                    </div>
+                </div>
+                <div class="border-gray">
+                    <div class="clearfix">
+                        <div class="form-group col-md-12 flex">
+                            <div class="col-md-6 width50 p-0">
+                                <label class="col-md-4 control-label" translate>Lãnh đạo P.TCLĐ duyệt</label>
+                                <div class="col-md-8">
+                                    <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                        <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                            {{caller.formGetWork.woApproveStatus == 1 ? caller.formGetWork.woApproveDate: ''}}
+                                        </div>
+                                        <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                            {{caller.formGetWork.woApproveStatus == 1 ? caller.formGetWork.woApproveName: ''}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 width50 p-0">
+                                <div class="col-md-12" style="padding-bottom: 8px;">
+                                    <label class="col-md-4 control-label" translate>Lãnh đạo P.TCLĐ từ chối </label>
+                                    <div class="col-md-8">
+                                        <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                            <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                                {{caller.formGetWork.woApproveStatus == 2 ? caller.formGetWork.woApproveDate: ''}}
+                                            </div>
+                                            <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                                {{caller.formGetWork.woApproveStatus == 2 ? caller.formGetWork.woApproveName: ''}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="col-md-4 control-label" translate>Lý do từ chối </label>
+                                    <div class="col-md-8">
+                                        <textarea rows="3" class="form-control width100 bg-gray"
+                                                  ng-model="caller.formGetWork.woApproveNote"
+                                                  disabled style="cursor: text !important;"
+                                                  id="woApproveNote" name="woApproveNote"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 flex">
+                            <div class="col-md-6 width50 p-0">
+                                <label class="col-md-4 control-label" translate>Nhân viên nhận WO</label>
+                                <div class="col-md-8">
+                                    <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                        <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                            {{caller.formGetWork.woEmployeeStatus !== 2 ? caller.formGetWork.woEmployeeDate: ''}}
+                                        </div>
+                                        <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                            {{caller.formGetWork.woEmployeeStatus !== 2 ? caller.formGetWork.woEmployeeName: ''}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 width50 p-0 ">
+                                <div class="col-md-12 " style="padding-bottom: 8px;">
+                                    <label class="col-md-4 control-label" translate>
+                                        Nhân viên từ chối nhận WO
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                            <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                                {{caller.formGetWork.woEmployeeStatus == 2 ? caller.formGetWork.woEmployeeDate: ''}}
+                                            </div>
+                                            <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                                {{caller.formGetWork.woEmployeeStatus == 2 ? caller.formGetWork.woEmployeeName: ''}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="col-md-4 control-label" translate>Lý do từ chối </label>
+                                    <div class="col-md-8">
+                                        <textarea rows="3" class="form-control width100 bg-gray"
+                                                  ng-model="caller.formGetWork.woEmployeeNote"
+                                                  disabled style="cursor: text !important;"
+                                                  id="woEmployeeNote" name="woEmployeeNote"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12 flex ">
+                            <div class="col-md-6 width50 p-0 ">
+                                <label class="col-md-4 control-label" translate>P.TCLĐ xác nhận hoàn thành</label>
+                                <div class="col-md-8">
+                                    <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                        <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                            {{caller.formGetWork.woVerifyStatus == 1 ? caller.formGetWork.woVerifyDate: ''}}
+                                        </div>
+                                        <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                            {{caller.formGetWork.woVerifyStatus == 1 ? caller.formGetWork.woVerifyName: ''}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 width50 p-0">
+                                <div class="col-md-12" style="padding-bottom: 8px;">
+                                    <label class="col-md-4 control-label" translate>
+                                        P.TCLĐ từ chối hoàn thành
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="  width100" style="display: flex; gap: 8px;padding: 0;">
+                                            <div class="form-control flex items-center bg-gray" style="width: 100px;">
+                                                {{caller.formGetWork.woVerifyStatus == 2 ? caller.formGetWork.woVerifyDate: ''}}
+                                            </div>
+                                            <div class="form-control flex items-center bg-gray" style="width: inherit;">
+                                                {{caller.formGetWork.woVerifyStatus == 2 ? caller.formGetWork.woVerifyName: ''}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="col-md-4 control-label" translate>Lý do từ chối </label>
+                                    <div class="col-md-8">
+                                        <textarea rows="3" class="form-control width100 bg-gray"
+                                                  ng-model="caller.formGetWork.woVerifyNote"
+                                                  disabled style="cursor: text !important;"
+                                                  id="woVerifyNote" name="woVerifyNote"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="bold lowercase" translate>Danh sách file giao việc</span>
+                </div>
+            </div>
+            <div class="border-gray">
+                <div class="clearfix">
+                    <div id="demoGrid2" class="collapse in ">
+                        <div class=" margin_top_button"></div>
+                        <div id="dvThucHienList2" kendo-grid="caller.listFileGiaoViecGrid" k-editable="false"
+                             k-options="caller.listFileGiaoViecOptions"
+                             k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="caller.formGetWork.woType === 1">
+                <div class="portlet-title margin-top15">
+                    <div class="caption">
+                        <span class="bold lowercase" translate>Danh sách công việc </span>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="border-gray">
+                        <div class="clearfix">
+                            <div id="demoGrid" class="collapse in ">
+                                <div class=" margin_top_button"></div>
+                                <div id="listJobs" kendo-grid="caller.listJobsGrid" k-editable="false"
+                                     k-options="caller.listJobsGridOptions"
+                                     k-on-change="vm.onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="caller.formGetWork.woType === 2">
+                <div class="portlet-title margin-top15">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Danh sách thông tin cần cập nhật:</span>
+                        <span class="caption-subject lowercase" style="font-style: italic; color: #d9001b" translate ng-if="caller.isViewPopUp !== 1">
+                            Đồng chí lưu ý: Hoàn thành thực hiện cập nhật đầy đủ thông tin trên các PM có liên quan trước khi xác nhận đóng việc
+                        </span>
+                    </div>
+                </div>
+
+                <div class="border-gray">
+                    <div class="clearfix">
+                        <div class="form-group col-md-12">
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase" translate>1. Tiểu sử (SAP): </span>
+                                <span>Ảnh (theo mẫu TCT) - Quan hệ gia đình</span>
+                            </p>
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase"
+                                      translate>2. Thông tin công tác (VHR): </span>
+                                <span>Quá trình công tác - Quá trình diện đối tượng:</span>
+                            </p>
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase"
+                                      translate>3. Thông tin định danh (SAP): </span>
+                                <span>CCCD/ CMND kèm Bản Scan 2 mặt  - Địa chỉ: hộ khẩu kèm Bản Scan sổ hộ khẩu; Giấy xác nhận cư trú)</span>
+                            </p>
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase"
+                                      translate>4. Trình độ chuyên môn (SAP): </span>
+                                <span>Trình độ đào tạo cao nhất kèm Bản Scan bằng tốt nghiệp+ bảng điểm - Chứng chỉ yêu vầu: (nếu có theo MTCV) kèm bản Scan chứng chỉ</span>
+                            </p>
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase"
+                                      translate>5. Thông tin tài khoản (SAP): </span>
+                                <span>Tài khoản ViettelPay gói không giới hạn.</span>
+                            </p>
+
+                            <p class="flex">
+                                <span class="caption-subject bold lowercase" translate>6. Thuế thu nhập cá nhân: </span>
+                                <span>Thông tin mã số thuế.</span>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portlet-title margin-top15">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Nội dung cập nhật công việc của nhân viên:</span>
+                    </div>
+                </div>
+
+                <div class="portlet bordered">
+                    <div class="clearfix">
+                        <div class="form-group col-md-12">
+                            <textarea rows="5" type="text" maxlength="1000" class="form-control width100"
+                                      ng-model="caller.formGetWork.listWorkAssignTCLDDetail[0].woDetailComment"
+                                      ng-disabled="caller.isViewPopUp === 1" style="cursor: text !important;"
+                                      id="woDetailComment" name="woDetailComment"> </textarea>
+                            <span class="caption-subject lowercase" style="color: #d9001b"
+                                  ng-if="caller.formGetWork.listWorkAssignTCLDDetail[0].woDetailComment.length >= 1000" translate>
+                                Nội dung cập nhật công việc của nhân viên quá dài.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-body">
+                <div class="clearfix form-actions margin-top">
+                    <div class="row">
+                        <div class="col-md-12 text-right" ng-if="caller.isViewPopUp !== 1">
+                            <button type="button" class="btn btn-qlk padding-search-right saveQLK"
+                                    id="finishBtn" ng-click="caller.save(caller.formGetWork.woType === 1 ? 1 : 2)" translate
+                                    ng-disabled="caller.formGetWork.listWorkAssignTCLDDetail[0].woDetailComment.length >= 1000"
+                                    style="width: 170px;">
+                                    Lưu và chờ duyệt
+                            </button>
+
+                            <button type="button" class="btn btn-qlk padding-search-right closeQLK"
+                                    id="cancel" ng-click="caller.cancel()" translate>
+                                    Hủy bỏ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>

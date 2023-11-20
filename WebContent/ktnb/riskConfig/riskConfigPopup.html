@@ -1,0 +1,162 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="caption row margin-bottom margin-top10">
+            <span class="col-md-8 bold lowercase" translate>Thông tin chi tiết</span>
+        </div>
+        <div class="border-gray">
+        <div class="clearfix">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Mã rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input ng-disabled="true" type="text" style="text-indent: 0.8em" class="form-control width100" ng-model="caller.insertForm.code"
+                                       id="insertViolationName" placeholder="Mã rủi ro tự động sinh"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        <label class="col-md-4 control-label req">Tên rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <input ng-disabled="caller.type=='detail'" style="text-indent: 0.8em" type="text" class="form-control width100" ng-model="caller.insertForm.name"
+                                />
+                            </div>
+                        </div>
+                        <div class="One_icon" ng-hide="caller.type=='detail'">
+                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertName')"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req">Loại rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select ng-disabled="caller.type=='detail' || caller.type === 'update'" kendo-drop-down-list k-option-label="'---Chọn---'" style="width: 100%"
+                                        ng-model="caller.insertForm.riskType" k-data-source="caller.listRiskType"
+                                        k-data-text-field="'name'" k-data-value-field="'code'" ng-change="caller.changeType()">
+                                </select>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                        <label class="col-md-4 control-label req">Nhóm rủi ro:</label>
+                        <div class="col-md-8">
+                            <div class="input-icon right ">
+                                <select ng-disabled="caller.type=='detail' || caller.type === 'update' || caller.insertForm.riskType==null" kendo-drop-down-list k-option-label="'---Chọn---'" style="width: 100%"
+                                        ng-model="caller.insertForm.groupType"
+                                        k-data-source="caller.listGroupType"
+                                        k-data-text-field="'name'" k-data-value-field="'code'" ng-change="caller.genCode()">
+                                </select>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+<!--            <div class="row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <label class="col-md-4 control-label req">Cấp đơn vị:</label>-->
+<!--                    <div class="col-md-8">-->
+<!--                        <div class="input-icon right ">-->
+<!--                            <select ng-disabled="caller.type=='detail'" kendo-drop-down-list k-option-label="'-&#45;&#45;Chọn-&#45;&#45;'" style="width: 100%"-->
+<!--                                    ng-model="caller.insertForm.riskLevel" k-data-source="caller.listRiskLevel"-->
+<!--                                    k-data-text-field="'name'" k-data-value-field="'code'" ng-change="caller.genRiskConfigGroup()">-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <div class="row">-->
+<!--                        <label class="col-md-4 control-label req">Mô tả rủi ro:</label>-->
+<!--                        <div class="col-md-8">-->
+<!--                            <div class="input-icon right ">-->
+<!--                                <textarea ng-disabled="caller.type=='detail'" style="text-indent: 0.8em" rows="3" type="text" class="form-control width100" ng-model="caller.insertForm.descriptionRisk"-->
+<!--                                          id="insertDescriptionRisk"></textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="One_icon" ng-hide="caller.type=='detail'">-->
+<!--                            <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('insertDes')"></i>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        </div>
+
+<!--        <div class="caption row margin-bottom margin-top10">-->
+<!--            <span class="col-md-8 bold lowercase" translate>Đơn vị thực hiện</span>-->
+<!--        </div>-->
+<!--        <div class="border-gray">-->
+<!--            <div class="clearfix" ng-hide="caller.type=='detail'">-->
+<!--                <div class="form-group col-md-12">-->
+<!--                    <div>-->
+<!--                        <file-input list-file-type="xls,xlsx"-->
+<!--                                    size="104857600" input-id="fileChangeSg"-->
+<!--                                    model-label="File import"-->
+<!--                                    msg="Không được để trống file"></file-input>-->
+
+<!--                    </div>-->
+<!--                    <button class="col-md-2" ng-click="caller.submitImportNewTargetsSg()"-->
+<!--                            id="upfile">Tải lên-->
+<!--                    </button>-->
+
+<!--                    <div class="form-group col-md-4" align="right" id="hiden11">-->
+<!--                        <a id="templateLink" href="" ng-click="caller.getExcelTemplateSg()">Tải-->
+<!--                            biểu mẫu</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-5" align="right" id="hiden12">-->
+<!--                    <i style="color: gray; margin-right:  50px;">Dung lượng <= 100MB, định dạng xls,xlsx</i>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="padding-width18">-->
+<!--                <div id="listDepartmentReceiveGrid" kendo-grid="caller.listDepartmentReceiveGrid" k-options="caller.listDepartmentReceiveGridOptions"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" ng-show="caller.type!=='detail'">
+            <button id="sav" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

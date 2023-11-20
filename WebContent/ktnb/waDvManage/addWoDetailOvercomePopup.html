@@ -1,0 +1,57 @@
+<form class="form-horizontal row padding10" role="form" name="waDvManage_add_popupId" id="waDvManage_reject_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="form-group col-md-6">
+                <label class="col-md-4 control-label " translate>Người thực hiện:</label>
+                <div class="col-md-8">
+                    <input class=" form-control width100" type="text" name="createBy" id="createBy"
+                           ng-model="caller.workAssignOvercomeInsertForm.performerName" kendo-auto-complete
+                           k-options="caller.performerIdOptions"/>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class="col-md-4 control-label req" translate>Hạn hoàn thành:</label>
+                <div class="col-md-8">
+                    <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                           ng-model="caller.workAssignOvercomeInsertForm.deadline" style="width: 100%;"
+                           min-year="1000"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix">
+            <div class="form-group col-md-6">
+                <label class="col-md-4 control-label req">Tên công việc:</label>
+                <div class="col-md-8">
+                     <textarea style="padding: 13px;border-radius: 5px"
+                               class=" form-control width100" type="text"
+                               ng-model="caller.workAssignOvercomeInsertForm.workName"
+                     ></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveItemDetail()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancelPopup()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input[type=text]").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>

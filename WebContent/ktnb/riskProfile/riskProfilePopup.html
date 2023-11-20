@@ -1,0 +1,405 @@
+<form class="form-horizontal row padding10" role="form" name="riskProfile_import_popupId" id="dataDamage_import_popupId">
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Nhận diện rủi ro</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mã hồ sơ rủi ro</label>
+                    <div class="col-md-8">
+                        <input class=" form-control width100"  type="text" required maxlength="50" tabindex="1" data-required-msg="Mã rủi ro không được để trống"
+                               name="code123" ng-model="caller.insertForm.code" placeholder="Mã hồ sơ rủi ro sinh tự động" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Cấp đơn vị</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn cấp đơn vị--'"  tabindex="2"
+                                style="width: 100%" name="groupType123"  ng-model="caller.insertForm.riskLevel"
+                                k-data-source="caller.listRiskLevel" ng-disabled="caller.isView"
+                                k-data-text-field="'name'" k-data-value-field="'code'" ng-change="caller.changeLevel()">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mã rủi ro</label>
+                    <div class="col-md-8">
+                        <input class=" form-control width100"  type="text" required maxlength="50" tabindex="1" data-required-msg="Mã rủi ro không được để trống"
+                               id="code123" name="code123" ng-model="caller.insertForm.configCode" placeholder="Mã rủi ro sinh tự động" disabled />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Nhóm rủi ro</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Nhóm rủi ro sinh tự động--'"  tabindex="2"
+                                id="groupType123" style="width: 100%" name="groupType123"  ng-model="caller.insertForm.groupType"
+                                k-data-source="caller.listGroupType"
+                                k-data-text-field="'name'" k-data-value-field="'code'" disabled >
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Tên rủi ro</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right ">
+                            <i class="fa fa-search directive" ng-click="caller.openPopupRisk()" ng-disabled="caller.isView"></i>
+                            <input type="text" class="form-control width100" ng-model="caller.insertForm.name"
+                                   kendo-auto-complete k-options="caller.riskSearchOptions" ng-disabled="caller.isView"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Loại rủi ro</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Loại rủi ro sinh tự động--'" tabindex="2"
+                                id="riskType123" style="width: 100%" name="riskType123" ng-model="caller.insertForm.riskType" disabled>
+                            <option value="1" translate>Rủi ro hoạt động</option>
+                            <option value="2" translate>Rủi ro tuân thủ</option>
+                            <option value="3" translate>Rủi ro tài chính</option>
+                            <option value="4" translate>Rủi ro chiến lược</option>
+                        </select>
+                        <span data-for="riskType123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mô tả rủi ro</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea style="text-indent: 0.8em;" class="form-control width100" name="descriptionRisk" maxlength="2000" tabindex="10" id="descriptionRisk" type="text" ng-model="caller.insertForm.descriptionRisk"  ng-disabled="caller.isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Đơn vị sở hữu rủi ro</label>
+                    <div class="col-md-8">
+                            <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'"  tabindex="2"
+                                    style="width: 100%" name="groupType123"  ng-model="caller.insertForm.sysGroupId"
+                                    k-data-source="caller.listSysGroup" ng-disabled="caller.insertForm.riskLevel==null || caller.isView" ng-change="caller.genCode()"
+                                    k-data-text-field="'name'" k-data-value-field="'sysGroupId'">
+                            </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Thời gian hiệu lực: Từ ngày </label>
+                    <div class="col-md-3">
+                        <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                               ng-model="caller.insertForm.startDate" style="width: 100%;"
+                               min-year="1000" ng-disabled="caller.isView"/>
+                    </div>
+
+                    <label class="col-md-2 control-label req" translate>đến </label>
+                    <div class="col-md-3 position-relative">
+                        <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                               ng-model="caller.insertForm.endDate" style="width: 100%;"
+                               min-year="1000" ng-disabled="caller.isView"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Rủi ro tiềm ẩn</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mức độ ảnh hưởng</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="influenceLevelTa123" style="width: 100%" name="influenceLevelTa123" required data-required-msg="Mức độ ảnh hưởng không được để trống" ng-model="caller.insertForm.influenceLevelTa" ng-change="caller.riskProfile('ta')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="influenceLevelTa123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Trạng thái rủi ro</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="statusTa123" style="width: 100%" name="statusTa123" required data-required-msg="Trạng thái rủi ro không được để trống" ng-model="caller.insertForm.statusTa" readonly disabled>
+                            <option value="1" translate>Thấp</option>
+                            <option value="2" translate>Trung bình</option>
+                            <option value="3" translate>Cao</option>
+                            <option value="4" translate>Rất cao</option>
+                            <option value="5" translate>Thiên nga đen</option>
+                        </select>
+                        <span data-for="statusTa123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Khả năng xảy ra</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="possibilityTa123" style="width: 100%" name="possibilityTa123" required data-required-msg="Khả năng xảy ra không được để trống" ng-model="caller.insertForm.possibilityTa" ng-change="caller.riskProfile('ta')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="possibilityTa123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Rủi ro thực tế</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mức độ ảnh hưởng</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="influenceLevelTt123" style="width: 100%" name="influenceLevelTt123" required data-required-msg="Mức độ ảnh hưởng không được để trống" ng-model="caller.insertForm.influenceLevelTt" ng-change="caller.riskProfile('tt')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="influenceLevelTt123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Trạng thái rủi ro</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="statusTt123" style="width: 100%" name="statusTt123" required data-required-msg="Trạng thái rủi ro không được để trống" ng-model="caller.insertForm.statusTt" readonly disabled>
+                            <option value="1" translate>Thấp</option>
+                            <option value="2" translate>Trung bình</option>
+                            <option value="3" translate>Cao</option>
+                            <option value="4" translate>Rất cao</option>
+                            <option value="5" translate>Thiên nga đen</option>
+                        </select>
+                        <span data-for="statusTt123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Khả năng xảy ra</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="possibilityTt123" style="width: 100%" name="possibilityTt123" required data-required-msg="Khả năng xảy ra không được để trống" ng-model="caller.insertForm.possibilityTt" ng-change="caller.riskProfile('tt')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="possibilityTt123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portlet-title margin-top15">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Mức độ chấp nhận rủi ro</span>
+        </div>
+    </div>
+    <div class="padding-width18">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Mức độ ảnh hưởng</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="influenceLevelCn123" style="width: 100%" name="influenceLevelCn123" required data-required-msg="Mức độ ảnh hưởng không được để trống" ng-model="caller.insertForm.influenceLevelCn" ng-change="caller.riskProfile('cn')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="influenceLevelCn123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Trạng thái rủi ro</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="statusTtCn123" style="width: 100%" name="statusTtCn123" required data-required-msg="Trạng thái rủi ro không được để trống" ng-model="caller.insertForm.statusTtCn" readonly disabled>
+                            <option value="1" translate>Thấp</option>
+                            <option value="2" translate>Trung bình</option>
+                            <option value="3" translate>Cao</option>
+                            <option value="4" translate>Rất cao</option>
+                            <option value="5" translate>Thiên nga đen</option>
+                        </select>
+                        <span data-for="statusTtCn123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Khả năng xảy ra</label>
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list="applySelect" class="form-control" k-option-label="'--Chọn--'" ng-blur="focusOut($index)" tabindex="2"
+                                id="possibilityCn123" style="width: 100%" name="possibilityCn123" required data-required-msg="Khả năng xảy ra không được để trống" ng-model="caller.insertForm.possibilityCn" ng-change="caller.riskProfile('cn')" ng-disabled="caller.isView">
+                            <option value="1" translate>1</option>
+                            <option value="2" translate>2</option>
+                            <option value="3" translate>3</option>
+                            <option value="4" translate>4</option>
+                            <option value="5" translate>5</option>
+                        </select>
+                        <span data-for="possibilityCn123" class="k-invalid-msg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label req" translate>Nguyên nhân rủi ro</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea style="text-indent: 0.8em" class="form-control width100" name="reasonDescription" maxlength="2000" tabindex="10" id="reasonDescription" type="text" ng-model="caller.insertForm.reasonDescription" ng-disabled="caller.isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label" translate>Ghi chú</label>
+                    <div class="col-md-8">
+                        <div class="input-icon right">
+                            <textarea style="text-indent: 0.8em" class="form-control width100" name="note123" maxlength="2000" tabindex="10" id="note123" type="text" ng-model="caller.insertForm.note" ng-disabled="caller.isView"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="portlet-title margin-top15" ng-show="{{caller.isView && caller.insertForm.cancelDvDescription!==null}}">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Lí do đơn vị từ chối</span>
+        </div>
+    </div>
+    <div class="padding-width18" ng-show="{{caller.isView && caller.insertForm.cancelDvDescription!==null}}">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="row">
+                    <label class="col-md-2 control-label" translate>Ngày từ chối:</label>
+                    <div class="col-md-3">
+                        <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                               name="cancelDateDv" id="cancelDateDv"
+                               ng-model="caller.insertForm.cancelDvDate" style="width: 100%;"
+                               min-year="1000" ng-disabled="caller.isView"/>
+                    </div>
+                    <label class="col-md-2 control-label" translate>Lí do từ chối:</label>
+                    <div class="col-md-5">
+                        <textarea rows="3" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.cancelDvDescription"
+                                  id="cancelReasonDv" ng-disabled="caller.isView"> </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portlet-title margin-top15" ng-show="{{caller.isView && caller.insertForm.cancelKtnbDescription!==null}}">
+        <div class="caption">
+            <span class="caption-subject bold lowercase" translate>Lí do KTNB từ chối</span>
+        </div>
+    </div>
+    <div class="padding-width18" ng-show="{{caller.isView && caller.insertForm.cancelKtnbDescription!==null}}">
+        <div class="border-gray">
+            <div class="clearfix">
+                <div class="row">
+                    <label class="col-md-2 control-label" translate>Ngày từ chối:</label>
+                    <div class="col-md-3">
+                        <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                               name="cancelDateKtnb" id="cancelDateKtnb"
+                               ng-model="caller.insertForm.cancelKtnbDate" style="width: 100%;"
+                               min-year="1000" ng-disabled="caller.isView"/>
+                    </div>
+                    <label class="col-md-2 control-label" translate>Lí do từ chối:</label>
+                    <div class="col-md-5">
+                        <textarea rows="3" type="text" maxlength="500" class="form-control width100" ng-model="caller.insertForm.cancelKtnbDescription"
+                                  id="cancelReasonKtnb" ng-disabled="caller.isView"> </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-body" style="padding-top: 30px">
+        <div class="clearfix">
+            <div class="foot light" align="right" ng-if="caller.showButtonSaveUpdate">
+                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel11" tabindex="11" ng-click="caller.cancel()" translate>Hủy bỏ</button>
+                <button type="button" id="sav" class="btn btn-qlk margin_right10 padding-search-right saveQLK" ng-click="caller.save()" tabindex="12"
+                        translate>Ghi lại</button>
+            </div>
+            <div class="foot light" align="right" ng-if="caller.showButtonApproveDv">
+                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelDv"
+                        ng-click="caller.cancelApproveDv()" translate>Từ chối
+                </button>
+                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveDv"
+                        ng-click="caller.saveApproveDv()" translate>Duyệt
+                </button>
+            </div>
+            <div class="foot light" align="right" ng-if="caller.showButtonApproveKtnb">
+                <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancelKtnb"
+                        ng-click="caller.cancelApproveKtnb()" translate>Từ chối
+                </button>
+                <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="approveKtnb"
+                        ng-click="caller.saveApproveKtnb()" translate>Duyệt
+                </button>
+            </div>
+
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

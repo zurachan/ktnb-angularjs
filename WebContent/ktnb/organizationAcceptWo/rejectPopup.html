@@ -1,0 +1,46 @@
+<form class="form-horizontal row padding10" role="form" name="organizationAcceptWo_add_popupId" id="organizationAcceptWo_reject_popupId">
+    <div class="border-gray">
+         <div class="row">
+        <label class="col-md-2 control-label req">Lí do từ chối:</label>
+        <div class="col-md-10">
+                     <textarea style="padding: 13px;border-radius: 5px"
+                               class=" form-control width100" type="text"
+                               ng-model="caller.completeForm.rejectDvDescription"
+                     ></textarea>
+        </div>
+    </div>
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.saveItem()" translate>Ghi lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("input[type=text]").change(function () {
+        $(this).val($.trim($(this).val()));
+    });
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

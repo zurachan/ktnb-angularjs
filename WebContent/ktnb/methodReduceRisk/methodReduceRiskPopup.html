@@ -1,0 +1,188 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray" style="background:{{caller.color}};">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row" >
+                                <label class="col-md-4 control-label req">Mã WO</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.woRiskCode" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Mã KRI</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.kriCode" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Mã rủi ro</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.riskCode" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Giải pháp ứng phó hiện tại</label>
+                                <div class="col-md-8">
+                                    <input type ="text" class="form-control width100" ng-model="caller.insertForm.solutionHt" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Giải pháp ứng phó bổ sung</label>
+                                <div class="col-md-8">
+                                    <input type ="text" class="form-control width100" ng-model="caller.insertForm.solutionBs" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Thời hạn đóng WO</label>
+                                <div class="col-md-8">
+                                    <input type ="text" class="form-control width100" ng-model="caller.insertForm.closeDuration" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-gray" style="margin-top: 20px;">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Điều phối cho nhân viên</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content" style="background:{{caller.color}}">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Điều phối nhân viên:</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="caller.openPopupSysUserId()"></i>
+                                        <input type="text" class="form-control width100" ng-model="caller.insertForm.sysUserName"
+                                               id="PDV" kendo-auto-complete k-options="caller.sysUserOptions" ng-disabled="{{caller.type == 'process' || caller.type == 'approved' || caller.type == 'detail'}}"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon" ng-show="{{caller.type == 'coordinateNV'}}">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('PDV')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label">Đơn vị</label>
+                                <div class="col-md-8">
+                                    <input type = "text" class="form-control width100" ng-model="caller.insertForm.sysGroupName" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-gray" style="margin-top: 20px;" ng-show="{{caller.type == 'process' || caller.type == 'detail' }}" >
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Nguyên nhân từ chối</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content" style="background:{{caller.color}};">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-12" >
+                            <div class="row">
+                                <label class="col-md-1 control-label req">Lý do từ chối</label>
+                                <div class="col-md-11">
+                                    <input class="form-control width100"
+                                           ng-model="caller.insertForm.cancelReason" ng-disabled="{{caller.type == 'approved' || caller.type == 'process' || caller.type == 'detail'}}"
+                                           id="cancelReason">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-gray" style="margin-top: 20px;" ng-show="{{caller.type == 'process' || caller.type == 'approved' || caller.type == 'detail' }}">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Tiến trình thực hiện</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Kế hoạch thực hiện</label>
+                                <div class="col-md-8">
+                                    <textarea
+                                            class="form-control width100" rows="5"
+                                            ng-model="caller.insertForm.methodPlan" ng-disabled="{{caller.type == 'approved' || caller.type == 'detail'}}"
+                                           id="methodPlan"></textarea>
+
+                                </div>
+                                <div class="One_icon" ng-show="{{caller.type == 'process'}}">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('methodPlan')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Kết quả thực hiện</label>
+                                <div class="col-md-8">
+                                    <textarea
+                                            class="form-control width100" rows="5"
+                                            ng-model="caller.insertForm.result" ng-disabled="{{caller.type == 'approved' || caller.type == 'detail'}}"
+                                            id="result"></textarea>
+                                </div>
+                                <div class="One_icon" ng-show="{{caller.type == 'process'}}">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('result')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button ng-show="{{caller.type == 'coordinateNV'}}" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.doCoordinate()" style="width: 120px" translate>Điều phối
+            </button>
+            <button ng-show="{{caller.type == 'approved'}}" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.doCloseWork()" style="width: 120px" translate>Đóng việc
+            </button>
+            <button ng-show="{{caller.type == 'approved'}}" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.dontCloseWork()" style="width: 120px" translate>Từ chối
+            </button>
+            <button ng-show="{{caller.type == 'process'}}" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.doProcess()" style="width: 120px" translate>Lưu lại
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

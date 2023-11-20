@@ -1,0 +1,368 @@
+<style>
+    #workAssignGrid .k-grid-content.k-auto-scrollable {
+        height: 500px !important;
+        overflow-x: scroll !important;
+    }
+</style>
+<div data-ng-controller="workAssignController as vm" id="workAssign">
+    <p class="text-brecum">{{vm.String}}</p>
+    <form class="form-horizontal row" role="form">
+        <div class="form-body">
+            <div class="portlet light bordered">
+                <div class="portlet-title background-title">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Thông tin tìm kiếm</span>
+                    </div>
+                    <div class="text-right margin-row-title">
+                        <i data-toggle="collapse" data-target="#collapseSearchFormWA123" class="fa fa-chevron-circle-up"
+                           aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div id="collapseSearchFormWA123" class="collapse in from-search">
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Thông tin tìm kiếm</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input type="text" class="form-control width100" ng-model="vm.searchForm.keySearch"
+                                           id="searchWorkAssignKeySearch"/>
+                                </div>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('search_keySearch')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Trạng thái WO</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchWorkAssignStatus"
+                                        class="form-control width100" ng-model="vm.searchForm.status">
+                                    <option value="2">Dự thảo</option>
+                                    <option value="1">Hiệu lực</option>
+                                    <option value="0">Hết hiệu lực</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Ngày giao việc: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày tạo không hợp lệ"
+                                       name="startDate" ng-model="vm.searchForm.startDate"
+                                       data-required-msg="Ngày tạo không được để trống" k-format="'dd/MM/yyyy'"
+                                       id="searchWorkAssignStartDate" ng-change="vm.checkErr1()" date-time
+                                       min-year="1000" data-minyear-msg="Ngày tạo không hợp lệ"/>
+                                <span data-for="startDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage1}}</span>
+                            </div>
+
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày đến không hợp lệ"
+                                       name="endDate" ng-model="vm.searchForm.closeDate" k-format="'dd/MM/yyyy'"
+                                       id="searchWorkAssignEndDate" ng-change="vm.checkErr()" date-time min-year="1000"
+                                       data-minyear-msg="Ngày đến không hợp lệ"/>
+                                <span data-for="endDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage}}</span>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="vm.clear('search_date')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Tình trạng duyệt của ĐV</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchWorkAssignState"
+                                        class="form-control width100" ng-model="vm.searchForm.state">
+                                    <option value="1">Trong hạn</option>
+                                    <option value="2">Quá hạn</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Trạng thái đơn vị xác nhận</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                        id="searchWorkAssignStatusDvApprove" class="form-control width100"
+                                        ng-model="vm.searchForm.statusDvApprove">
+                                    <option value="0">Chưa nhận việc</option>
+                                    <option value="1">Đã nhận việc</option>
+                                    <option value="2">Từ chối nhận việc</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Trạng thái duyệt của P.PC&KSNB</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'"
+                                        id="searchWorkAssignStatusKtnbVerify" class="form-control width100"
+                                        ng-model="vm.searchForm.statusKtnbVerify">
+                                    <option value="0">Chờ duyệt</option>
+                                    <option value="1">Đã duyệt</option>
+                                    <option value="2">Từ chối</option>
+                                    <option value="3">Trống</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Loại WO</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchWorkAssignTypeWo"
+                                        class="form-control width100" ng-model="vm.searchForm.typeWo"
+                                        ng-change="vm.onChangeTypeWo()">
+                                    <option value="1">Giao việc ngành dọc PC&KTNB</option>
+                                    <option value="2">Thực hiện kết luận sau thanh kiểm tra</option>
+                                    <option value="3">Cơ quan/ Đơn vị TCT giám sát ngành dọc</option>
+                                    <option value="4">Thông tin công tác kiểm tra các đơn vị</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label " translate>Đơn vị</label>
+                            <div class="col-md-8">
+                                <input class=" form-control width100" type="text" name="sysGroupId" id="sysGroupId"
+                                       ng-model="vm.searchForm.sysGroupLv2Name" kendo-auto-complete
+                                       k-options="vm.sysGroupSearchOptions"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('sysGroupId_search')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Bộ phận giao WO</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" class="form-control width100"
+                                        ng-model="vm.searchForm.departmentCode"
+                                        k-data-source="vm.departmentCodeArray" k-data-text-field="'name'"
+                                        k-data-value-field="'code'"
+                                >
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label " translate>Người tạo</label>
+                            <div class="col-md-8">
+                                <input class=" form-control width100" type="text" name="createBy" id="createBy"
+                                       ng-model="vm.searchForm.createByName" kendo-auto-complete
+                                       k-options="vm.createBySearchOptions"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('createBy_search')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Tình trạng phê duyệt của P.PC&KSNB</label>
+                            <div class="col-md-8">
+                                <select kendo-drop-down-list k-option-label="'--Tất cả--'" id="searchWAState"
+                                        class="form-control width100" ng-model="vm.searchForm.stateApprove">
+                                    <option value="1">Trong hạn</option>
+                                    <option value="2">Quá hạn</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Số văn bản</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="vm.searchForm.nameDocument"
+                                           id="nameDocument"/>
+                                </div>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('nameDocument')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- chỉ hiển thị khi chọn typeWo == 4-->
+                    <div class="clearfix" ng-if="vm.searchForm.typeWo == 4">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Thời gian kiểm tra: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày tạo không hợp lệ"
+                                       name="startInspectionDate" ng-model="vm.searchForm.startInspectionDate"
+                                       data-required-msg="Ngày tạo không được để trống" k-format="'dd/MM/yyyy'"
+                                       id="startInspectionDate" ng-change="vm.checkErr1()" date-time
+                                       min-year="1000" data-minyear-msg="Ngày bắt đầu không hợp lệ"/>
+                                <span data-for="startDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage1}}</span>
+                            </div>
+
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày đến không hợp lệ"
+                                       name="endInspectionDate" ng-model="vm.searchForm.endInspectionDate"
+                                       k-format="'dd/MM/yyyy'"
+                                       id="endInspectionDate" ng-change="vm.checkErr()" date-time min-year="1000"
+                                       data-minyear-msg="Ngày đến không hợp lệ"/>
+                                <span data-for="endDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage}}</span>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="vm.clear('check_date')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Văn bản được kiểm tra</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="vm.searchForm.inspectionDocument" placeholder="   Nhập văn bản được kiểm tra"
+                                           id="inspectionDocument"/>
+                                </div>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('inspectionDocument')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix" ng-if="vm.searchForm.typeWo == 4">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Giai đoạn kiểm tra: Từ ngày </label>
+                            <div class="col-md-4">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày tạo không hợp lệ"
+                                       name="startInspectionPhase" ng-model="vm.searchForm.startInspectionPhase"
+                                       data-required-msg="Ngày tạo không được để trống" k-format="'dd/MM/yyyy'"
+                                       id="startInspectionPhase" ng-change="vm.checkErr1()" date-time
+                                       min-year="1000" data-minyear-msg="Ngày bắt đầu không hợp lệ"/>
+                                <span data-for="startDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage1}}</span>
+                            </div>
+
+                            <label class="col-md-1 control-label" translate>đến</label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker class="form-control width100"
+                                       data-date-msg="Ngày đến không hợp lệ"
+                                       name="endInspectionPhase" ng-model="vm.searchForm.endInspectionPhase"
+                                       k-format="'dd/MM/yyyy'"
+                                       id="endInspectionPhase" ng-change="vm.checkErr()" date-time min-year="1000"
+                                       data-minyear-msg="Ngày đến không hợp lệ"/>
+                                <span data-for="endDate" class="k-invalid-msg"></span>
+                                <span style="color:red">{{vm.errMessage}}</span>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="vm.clear('check_period_date')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Nội dung kiểm tra</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="vm.searchForm.inspectionContent"
+                                           id="inspectionContent" placeholder="   Nhập nội dung kiểm tra"/>
+                                </div>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('inspectionContent')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix" ng-if="vm.searchForm.typeWo == 4">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Đơn vị kiểm tra </label>
+
+                            <div class="col-md-8">
+                                <input class=" form-control width100" type="text" name="unitTestId" id="unitTestId"
+                                       ng-model="vm.searchForm.unitTestName" kendo-auto-complete
+                                       k-options="vm.unitTestSearchOptions"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('checkUnit')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Số hiệu báo cáo sau kiểm tra</label>
+                            <div class="col-md-8">
+                                <div class="input-icon right ">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="vm.searchForm.reportNumber"
+                                           id="reportNumber" placeholder="   Nhập số hiệu báo cáo sau kiểm tra"/>
+                                </div>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('reportNumber')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix" ng-if="vm.searchForm.typeWo == 4">
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label" translate>Đơn vị được kiểm tra </label>
+                            <div class="col-md-8">
+                                <select kendo-multi-select filter="'contains'" k-data-text-field="'codeName'"
+                                        k-data-value-field="'sysGroupId'" k-data-source="vm.unitDatasource"
+                                        ng-model="vm.searchForm.groupIds">
+                                    <option value="" selected>View current values</option>
+                                </select>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true" ng-click="vm.clear('checkedUnit')"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="clearfix form-actions margin-top">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button id="doSearchWorkAssign" ng-click="vm.doSearch(vm.currentPage)"
+                                        class="btn btn-qlk padding-search-right searchQLK" translate>Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="portlet light bordered">
+        <div class="portlet-title background-title">
+            <div class="caption">
+				<span class="caption-subject bold lowercase" translate>
+				Kết quả tìm kiếm:  </span>&nbsp;<label class="control-label bold lowercase"
+                                                       id="unitCount">{{vm.countWorkAssign}}</label>
+                <label class="control-label bold lowercase">&nbsp;bản ghi</label>
+            </div>
+            <div class="text-right margin-row-title">
+                <i data-toggle="collapse" data-target="#collapseSearchFormWA123Grid" class="fa fa-chevron-circle-up"
+                   aria-hidden="true"></i>
+            </div>
+        </div>
+        <div id="collapseSearchFormWA123Grid" class="collapse in ">
+            <div class="margin_top_button"></div>
+            <div id="workAssignGrid" kendo-grid="vm.workAssignGrid" k-editable="false"
+                 k-options="vm.workAssignGridOptions"></div>
+        </div>
+    </div>
+</div>
+
+
+
+

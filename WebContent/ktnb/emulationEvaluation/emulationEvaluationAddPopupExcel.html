@@ -1,0 +1,52 @@
+<form class="form-horizontal row padding10" role="form" name="emulationEvaluation_import_popupId" id="emulationEvaluation_import_popupId">
+    <div class="border-gray">
+        <div class="form-body" >
+            <div class="portlet light bordered">
+
+                <div class="clearfix">
+                    <div id="emulationEvaluationAddGrid" kendo-grid="caller.emulationEvaluationAddGrid" k-editable="true" k-options="caller.emulationEvaluationAddGridOptions"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-body">
+            <div>
+                <div class="clearfix form-actions margin-top" ng-if="!caller.viewInfo">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="button" class="btn btn-qlk padding-search-right closeQLK" id="cancel2"
+                                    ng-click="caller.cancel()" translate>Hủy bỏ
+                            </button>
+                            <button type="button" class="btn btn-qlk padding-search-right saveQLK" id="saveChange2"
+                                    ng-click="caller.saveByImportExcel()" translate>Ghi lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    document.onkeydown = keyDown;
+
+    function keyDown(e) {
+        switch (e.keyCode) {
+            case 27:
+                $("#cancel").click();
+                break;
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+

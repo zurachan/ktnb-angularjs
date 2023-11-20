@@ -1,0 +1,467 @@
+<form class="form-horizontal row padding10" role="form" name="indicator_add_popupId" id="indicator_add_popupId">
+    <div class="border-gray">
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row" >
+                                <label class="col-md-4 control-label">Mã sự kiện:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.code"
+                                           id="insertIncidentCode" ng-disabled="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label">Mã trạm:</label>
+                                <div class="col-md-8 row">
+                                    <div class="input-icon right ">
+                                        <!--                                        <i class="fa fa-search directive" ng-click="caller.openPopupSysGroup()"></i>-->
+                                        <input  style="background-color: #fff" class=" form-control width100" type="text" name="catStationId" id="catStationId"
+                                                ng-model="caller.catStationName" kendo-auto-complete
+                                                k-options="caller.catStationOptions" ng-disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị:</label>
+                                <div class="col-md-8 row">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive" ng-click="caller.openPopupSysGroup()"></i>
+                                        <input  style="background-color: #fff" class=" form-control width100" type="text" name="sysGroupDvgId" id="sysGroupDvgId"
+                                                ng-model="caller.sysGroupName" kendo-auto-complete
+                                                k-options="caller.sysGroupDvgOptions" ng-disabled="true"/>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Loại vụ việc:</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list class="form-control width100" ng-model="caller.insertForm.incidentType" ng-disabled="true">
+                                        <option value="1">Tai nạn lao động</option>
+                                        <option value="2">Tai nạn giao thông</option>
+                                        <option value="3">Trộm cắp tài sản</option>
+                                        <option value="4">Cháy nổ</option>
+                                        <option value="5">Vụ việc khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Địa điểm:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.areaName"
+                                           id="insertIncidentArea"  ng-disabled="true"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian báo cáo: </label>
+                            <div class="col-md-8">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignStartDate" id="insertWorkAssignStartDate"
+                                       ng-model="caller.insertForm.timeReport" style="width: 100%;"
+                                       min-year="1000" ng-disabled="true"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian xảy ra vụ việc: </label>
+                            <div class="col-md-8 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertWorkAssignEndDate" id="insertWorkAssignEndDate"
+                                       ng-model="caller.insertForm.timeHappened" style="width: 100%;"
+                                       min-year="1000" ng-disabled="true" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Tóm tắt vụ việc:</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="5000" class="form-control width100" ng-model="caller.insertForm.summaryIncident"
+                                                  id="summaryIncidentDescription" ng-disabled="true"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('summaryIncidentInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.incidentType == 5">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Ghi chú:</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="5000" class="form-control width100" ng-model="caller.insertForm.note"
+                                                  id="note" ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Tình trạng và thiệt hại của vụ việc</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row" >
+                                <label class="col-md-4 control-label req">Thiệt hại về người (CBNV)</label>
+                                <div class="col-md-8">
+                                    <div class="col-md-6">
+                                        <label class="col-md-8 control-label req">Số người chết</label>
+                                        <input type="number" class="form-control width100 "
+                                               ng-disabled="true"
+                                               ng-model="caller.insertForm.damagesEmployee"
+                                               id="damagesEmployeeInsert"
+                                        />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-10 control-label req">Số người bị thương</label>
+                                        <input type="number" class="form-control width100 "
+                                               ng-disabled="true"
+                                               ng-model="caller.insertForm.hurtEmployee"
+                                               id="hurtEmployeeInsert"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Thiệt hại về người dân</label>
+                                <div class="col-md-8">
+                                    <div class="col-md-6">
+                                        <label class="col-md-8 control-label req">Số người chết</label>
+                                        <input type="number" class="form-control width100 "
+                                               ng-disabled="true"
+                                               ng-model="caller.insertForm.damagesPerson"
+                                               id="damagesPersonInsert"
+                                        />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="col-md-10 control-label req">Số người bị thương</label>
+                                        <input type="number" class="form-control width100 "
+                                               ng-disabled="true"
+                                               ng-model="caller.insertForm.hurtPerson"
+                                               id="hurtPersonInsert"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Loại nguyên nhân</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="caller.insertForm.reasonName" class="form-control width100" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Trình trạng vụ việc</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-disabled="true" ng-model="caller.insertForm.statusIncidentName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Loại thiệt hại</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list class="form-control width100" ng-model="caller.insertForm.damageType" ng-disabled="true">
+                                        <option value="1">Mạng lưới</option>
+                                        <option value="2">Bằng tiền</option>
+                                    </select>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('damagesAssetInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.reasonType == 1">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nguyên nhân khách quan</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list class="form-control width100" ng-model="caller.insertForm.objectiveReason" ng-disabled="true">
+                                        <option value="1">Do dối tượng bên ngoài thực hiện</option>
+                                        <option value="2">Do vị trí trạm</option>
+                                        <option value="3">Do người dân vi phạm luật giao thông</option>
+                                        <option value="4">Do điều kiện giao thông</option>
+                                        <option value="5">Do điều kiện thời tiết</option>
+                                        <option value="6">Do điều kiện đảm bảo</option>
+                                        <option value="7">Do lỗi hệ thống</option>
+                                        <option value="8">Nguyên nhân khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.objectiveReason == 8 && caller.insertForm.reasonType == 1">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nguyên nhân khách quan khác</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text"
+                                                  id="otherObjectiveReason" maxlength="1000"
+                                                  class="form-control width100"
+                                                  translate
+                                                  placeholder="Nhập nguyên nhân khách quan khác"
+                                                  ng-model="caller.insertForm.otherObjectiveReason" ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.reasonType == 2">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nguyên nhân chủ quan</label>
+                                <div class="col-md-8">
+                                    <select kendo-drop-down-list class="form-control width100" ng-model="caller.insertForm.subjectiveReason" ng-disabled="true">
+                                        <option value="1">Do CBNV quản lý trạm</option>
+                                        <option value="2">Do uống rượu bia</option>
+                                        <option value="3">Do thiếu quan sát, không làm chủ tốc độ</option>
+                                        <option value="4">Do thực hiện sai quy trình, hướng dẫn ATLĐ</option>
+                                        <option value="5">Do thực hiện sai quy trình bảo dưỡng, VHKT</option>
+                                        <option value="6">Nguyên nhân khác</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.subjectiveReason == 6 && caller.insertForm.reasonType == 2">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nguyên nhân chủ quan khác</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text"
+                                                  id="otherSubjectiveReason" maxlength="1000"
+                                                  class="form-control width100"
+                                                  translate
+                                                  placeholder="Nhập nguyên nhân chủ quan khác"
+                                                  ng-model="caller.insertForm.otherSubjectiveReason" ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nguyên nhân cụ thể</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text"
+                                                  id="insertReasonDescription" maxlength="5000"
+                                                  class="form-control width100"
+                                                  translate
+                                                  placeholder="Nhập nguyên nhân cụ thể"
+                                                  ng-disabled="true"
+                                                  ng-model="caller.insertForm.reasonDescription"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.damageType == 2">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Thiệt hại bằng tiền</label>
+                                <div class="col-md-8">
+                                    <input type="number" translate placeholder="Số tiền thiệt hại" class="form-control width100 " ng-model="caller.insertForm.convertMoney" id="convertMoneyInsert"  min="0" ng-disabled="true"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.damageType == 1">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Thiệt hại về tài sản</label>
+                                <div class="col-md-8">
+                                    <textarea rows="4" type="text"
+                                              id="assetDamage" maxlength="1000"
+                                              class="form-control width100"
+                                              translate
+                                              placeholder="Thiệt hại về tài sản"
+                                              ng-model="caller.insertForm.assetDamage" ng-disabled="true"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" ng-if="caller.insertForm.damageType == 1">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Thiệt hại quy đổi ra tiền</label>
+                                <div class="col-md-8">
+                                    <input type="number" translate placeholder="Thiệt hại quy đổi ra tiền" class="form-control width100 " ng-model="caller.insertForm.convertAssetMoney" id="convertAssetMoney"  min="0" ng-disabled="true"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Cấp báo cáo</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="caller.insertForm.levelReportName" class="form-control width100" ng-disabled="true">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin thiệt hại về CBNV</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div id="listEmployeeGrid" kendo-grid="caller.listEmployeeGrid"
+                         k-options="caller.listEmployeeGridOptions"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix" ng-if="caller.insertForm.statusApproved == 1">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Hậu quả của vụ việc</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div class="row" >
+                                <label class="col-md-4 control-label req">Thu hồi</label>
+                                <div class="col-md-8">
+                                    <input type="number" class="form-control width100 "
+                                           ng-model="caller.insertForm.recall"
+                                           ng-change = "caller.caculator()"
+                                           id="recall"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Thiệt hại tài sản tồn</label>
+                                <div class="col-md-8">
+                                    <input type="number"
+                                           class="form-control width100 "
+                                           ng-disabled="true"
+                                           ng-model="caller.insertForm.backlogAsset"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6" >
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Kỷ luật</label>
+                                <div class="col-md-8">
+                                   <textarea rows="4" type="text" maxlength="5000"
+                                             class="form-control width100" ng-model="caller.insertForm.discipline"
+                                             id="discipline"
+                                            > </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('discipline')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Giải quyết hình sự</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text" maxlength="5000"
+                                                  class="form-control width100"
+                                                  ng-model="caller.insertForm.criminalSettlement"
+                                                  id="criminalSettlement"
+
+                                            > </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('criminalSettlement')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Giải quyết dân sự</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text" maxlength="5000"
+                                                  class="form-control width100"
+                                                  id="civilSettlement"
+                                                  ng-model="caller.insertForm.civilSettlement"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('civilSettlement')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label ">Ghi chú</label>
+                                <div class="col-md-8">
+                                        <textarea rows="4" type="text" maxlength="5000"
+                                                  class="form-control width100"
+                                                  ng-model="caller.insertForm.note"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true" ng-click="caller.clear('note')"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix" ng-if="caller.insertForm.statusApproved == 2">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Lý do từ chối</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <div class="row">
+                                <label class="col-md-4 control-label ">Lý do từ chối</label>
+                                <div class="col-md-8">
+                                        <textarea rows="3" type="text" maxlength="5000"
+                                                  class="form-control width100"
+                                                  ng-disabled="true"
+                                                  ng-model="caller.insertForm.cancelDescription"> </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;" >
+            <button ng-if="!caller.disabled" class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save('result')" style="width: 200px" translate>Lưu và chờ duyệt
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>

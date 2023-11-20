@@ -1,0 +1,270 @@
+<form class="form-horizontal row padding10" role="form" name="dtttDvgAssign_detail_popupId"
+      id="dtttDvgAssign_detail_popupId">
+    <div class="border-gray">
+        <div class="clearfix" disable-all="(caller.checkViewDetail)">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chung</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6" ng-if="!caller.isCreateForm">
+                            <div class="row">
+                                <label class="col-md-4 control-label">Mã WO</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control width100" ng-model="caller.insertForm.code"
+                                           ng-disabled="true"
+                                           id="insertDtttAssignCode"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Cấp thực hiện</label>
+                                <div class="col-md-8">
+                                    <select class="form-control width100" ng-model="caller.insertForm.levelAction"
+                                            ng-options="u.id as u.name for u in caller.levelActionArray">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <label class="col-md-4 control-label req" translate>Thời gian thực hiện: Từ ngày </label>
+                            <div class="col-md-3">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertDtttAssignStartDate" id="insertDtttAssignStartDate"
+                                       ng-model="caller.insertForm.startDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateStartDate()"/>
+                            </div>
+
+                            <label class="col-md-2 control-label req" translate>đến </label>
+                            <div class="col-md-3 position-relative">
+                                <input kendo-date-picker date-time k-format="'dd/MM/yyyy'"
+                                       name="insertDtttAssignEndDate" id="insertDtttAssignEndDate"
+                                       ng-model="caller.insertForm.closeDate" style="width: 100%;"
+                                       min-year="1000" ng-change="caller.checkValidateEndDate()"/>
+                            </div>
+                            <div class="One_icon">
+                                <i class="fa fa-times" aria-hidden="true"
+                                   ng-click="caller.clear('date_insert')"></i>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị giao việc</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive"
+                                           ng-click="caller.openPopupSysGroup('insert_dvg')"></i>
+                                        <input type="text" class="form-control width100"
+                                               ng-model="caller.insertForm.sysGroupDvgName"
+                                               id="insertDtttAssignSysGroupDvg" kendo-auto-complete
+                                               k-options="caller.sysGroupDvgOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('sysGroupDvgInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Đơn vị nhận việc</label>
+                                <div class="col-md-8">
+                                    <div class="input-icon right ">
+                                        <i class="fa fa-search directive"
+                                           ng-click="caller.openPopupSysGroup('insert_dvn')"></i>
+                                        <input type="text" class="form-control width100"
+                                               ng-model="caller.insertForm.sysGroupDvnName"
+                                               id="insertDtttAssignSysGroupDvn" kendo-auto-complete
+                                               k-options="caller.sysGroupDvnOptions"/>
+                                    </div>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('sysGroupDvnInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!--            </div>-->
+                        <!--            <div class="row">-->
+                        <div class="form-group col-md-6">
+                            <div class="row">
+                                <label class="col-md-4 control-label req">Nội dung công việc</label>
+                                <div class="col-md-8">
+                                        <textarea rows="5" type="text" maxlength="500" class="form-control width100"
+                                                  ng-model="caller.insertForm.description"
+                                                  id="insertDtttAssignDescription"> </textarea>
+                                </div>
+                                <div class="One_icon">
+                                    <i class="fa fa-times" aria-hidden="true"
+                                       ng-click="caller.clear('descriptionInsert')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix" ng-if="caller.checkViewDetail" disable-all="true">
+            <div class="portlet-title margin-top15">
+                <div class="caption">
+                    <span class="caption-subject bold lowercase" translate>Thông tin chi tiết</span>
+                </div>
+            </div>
+            <div class="padding-width18 body-content">
+                <div class="border-gray">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Chỉ huy đơn vị xác nhận WO</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvgDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvgByName"/>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Chỉ huy đơn vị từ chối WO</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.cancelDvgDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.cancelDvgByName"/>
+                                </div>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Đơn vị nhận xác nhận WO</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvnDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvnByName"/>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Đơn vị nhận từ chối WO</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.cancelDvnDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.cancelDvnByName"/>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Đơn vị giao xác nhận</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.approveDvByName"/>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="col-md-4 control-label">Đơn vị giao từ chối</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.rejectDvgDate"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control width100"
+                                           ng-model="caller.insertForm.rejectDvgByName"/>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label">Lý do chỉ huy đơn vị từ chối</label>
+                        <div class="col-md-9">
+                            <textarea type="text" class="form-control" style="height: 95px;"
+                                   ng-model="caller.insertForm.cancelDvgDescription"/></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label">Lý do đơn vị nhận từ chối nhận việc</label>
+                        <div class="col-md-9">
+                            <textarea type="text" class="form-control " style="height: 95px;"
+                                   ng-model="caller.insertForm.cancelDvnDescription"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label">Lý do đơn vị giao từ chối đóng việc</label>
+                        <div class="col-md-9">
+                            <textarea type="text" class="form-control " style="height: 95px;"
+                                   ng-model="caller.insertForm.rejectDvgDescription"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+                <div class="portlet-title margin-top15">
+                    <div class="caption">
+                        <span class="caption-subject bold lowercase" translate>Danh sách file giao việc</span>
+                    </div>
+                </div>
+                <div class="padding-width18 body-content">
+                    <div class="border-gray">
+                        <div ng-if="!(caller.checkViewDetail) ">
+                            <center translate>Kéo thả các file vào đây hoặc click để chọn file</center>
+                        </div>
+                        <div class="clearfix" ng-if="!(caller.checkViewDetail)">
+                            <div class="col-md-12">
+                                <input class="file-input" name="files" type="file"
+                                       kendo-upload id="files" tabindex="10" k-select="caller.onSelect"/>
+                            </div>
+                        </div>
+                        <center ng-if="!(caller.checkViewDetail)">
+                            <span style="color: gray"
+                                  translate>Dung lượng &#60;&#61; 50MB, định dạng pdf, doc, docx</span>
+                        </center>
+                        <div id="listAttachDocumentGrid" kendo-grid="caller.listAttachDocumentGrid"
+                             k-options="caller.gridFileOptions"
+                             k-on-change="onGridChange(kendoEvent, { selected: selected }, data)"></div>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+    <div class="clearfix form-actions margin-top">
+        <div class="col-md-12 text-right" style="padding-right:0px; padding-top:5px;"
+             ng-if="!(caller.checkViewDetail)">
+            <button class="btn btn-qlk padding-search-right saveQLK" ng-click="caller.save()" style="width: 200px"
+                    translate>Lưu và chờ duyệt
+            </button>
+            <button class="btn btn-qlk padding-search-right closeQLK" ng-click="caller.cancel()" translate>Hủy bỏ
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
