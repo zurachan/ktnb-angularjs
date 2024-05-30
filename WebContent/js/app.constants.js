@@ -19,34 +19,34 @@
 			SUCCESS: 0,
 			ERROR: 1,
 			BUSINESS_ERROR: 400
-		};
-		config.pageSize = 20,
-			config.pageSizes = [10, 15, 20, 25],
+		}
+		config.pageSize = 20
+		config.pageSizes = [10, 15, 20, 25]
 
-			/**
-			 * Thêm cấu hình các white list url không cần add version
-			 */
-			config.LIST_WHITE_LIST_VERSION_URL = [
-				"template/tabs/tab.html",
-				"template/tabs/tabset.html",
-				"template/tooltip/tooltip-html-popup.html"],
-			config.inWhiteListAddVersion = function (url) {
-				if (url.startsWith(config.BASE_SERVICE_URL)) {
+		/**
+		 * Thêm cấu hình các white list url không cần add version
+		 */
+		config.LIST_WHITE_LIST_VERSION_URL = [
+			"template/tabs/tab.html",
+			"template/tabs/tabset.html",
+			"template/tooltip/tooltip-html-popup.html"]
+		config.inWhiteListAddVersion = function (url) {
+			if (url.startsWith(config.BASE_SERVICE_URL)) {
+				return true;
+			}
+			if (url.startsWith('template/')) {
+				return true;
+			}
+			if (url.indexOf('?tsVersion=')) {
+				return true;
+			}
+			for (var str in config.LIST_WHITE_LIST_VERSION_URL) {
+				if (url
+					.indexOf(config.LIST_WHITE_LIST_VERSION_URL[str]) >= 0) {
 					return true;
-				}
-				if (url.startsWith('template/')) {
-					return true;
-				}
-				if (url.indexOf('?tsVersion=')) {
-					return true;
-				}
-				for (var str in config.LIST_WHITE_LIST_VERSION_URL) {
-					if (url
-						.indexOf(config.LIST_WHITE_LIST_VERSION_URL[str]) >= 0) {
-						return true;
-					}
 				}
 			}
+		}
 
 		config.ROLE_ID = {
 			employee_roleID_CDT_PTGST: 102,// 4 - RoleID 102
@@ -76,20 +76,16 @@
 		config.UPLOAD_FOLDER_TYPE_INPUT = 'input'; // folder lưu file nghiệp vụ, k xóa
 		config.UPLOAD_FOLDER_TYPE_TEMP = 'temp'; //folder lưu file tạm, dc phép xóa
 		config.contextPath = "wms-web";
-		config.prefixLanguage = 'js/languages/',
-			config.loginUrl = 'authenServiceRest/login';
+		config.prefixLanguage = 'js/languages/';
+		config.loginUrl = 'authenServiceRest/login';
 		config.getUser = function () {
 			return this.user;
 		}
-
-
 
 		config.setUser = function (user) {
 			this.user = user;
 			config.userInfo = this.user;
 		}
-
-
 
 		config.URL_POPUP = {
 			DELETE_POPUP: 'wms/popup/Delete_Popup.html',
@@ -119,7 +115,8 @@
 					dataType: "Number"
 				}
 			]
-		};
+		}
+
 		config.TEMPLATE_URL = [
 			{
 				key: 'DASH_BOARD',
@@ -426,19 +423,11 @@
 					'ktnb/reportSummaryKri/reportSummaryKriController.js',
 				]
 			},
-			// {
-			// 	key: 'RP_FOLLOW_WO',
-			// 	title: 'Báo cáo theo dõi khắc phục các kiến nghị Kiểm toán',
-			// 	templateUrl: 'ktnb/reportFollowWo/reportFollowWo.html',
-			// 	lazyLoadFiles: [
-			// 		'ktnb/reportFollowWo/reportFollowWoController.js'
-			// 	]
-			// },
 			{
 				key: 'RP_FOLLOW_WO',
 				title: 'Báo cáo theo dõi khắc phục các kiến nghị Kiểm toán',
 				templateUrl: 'ktnb/reportFollowWo/reportFollowWo.html',
-				lazyLoadFiles : [
+				lazyLoadFiles: [
 					'ktnb/reportFollowWo/reportFollowWoController.js'
 				]
 			}, {
@@ -451,15 +440,6 @@
 
 				]
 			},
-			// {
-			// 	key: 'ASSIGNMENT_MANAGEMENT',
-			// 	title: 'Quản lý giao việc',
-			// 	templateUrl: 'ktnb/assignmentManagement/listAssignmentManagement.html',
-			// 	lazyLoadFiles : [
-			// 		'ktnb/assignmentManagement/assignmentManagementController.js',
-			// 		'ktnb/assignmentManagement/assignmentManagementService.js',
-			// 	]
-			// },
 			{
 				key: 'QLGV3',
 				title: 'Quản lý giao việc',
@@ -495,7 +475,7 @@
 					'ktnb/dashboardWorkTCLD/dashboardWorkTCLDController.js',
 				]
 			},
-		];
+		]
 
 		config.getTemplateUrl = function (key) {
 			for (var i in config.TEMPLATE_URL) {
